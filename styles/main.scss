@@ -1,32 +1,89 @@
-@import './utils.scss';
+@import "./utils.scss";
 
-$primary-color: #333;
-$secondary-color: #fff;
-
+$primary-color: #15191c;
+$hover-color: #55DEF1;
+$text-color: white;
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   text-decoration: none;
+  font-family: "Baloo 2", cursive;
+  overflow:hidden;
 }
-
-nav{
+body{
+  height:100vh;
+background: url('../img/img-ly-AK66mYNrbk0-unsplash.jpg') center center/cover no-repeat;  
+}
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: $primary-color;
-  h1{
-    color:white;
+  h1 {
+    color: white;
   }
-  ul{
+  ul {
     list-style-type: none;
-    display:flex;
-    li{
-      a{
-        color:white;
+    display: flex;
+    li {
+      a {
+        color: $text-color;
       }
     }
   }
+}
 
+#pairpicker {
+  display: flex;
+  justify-content: center;
+  margin: 5rem 0;
+
+  .pairsmenu {
+    position:fixed;
+    left:0;
+    background: $primary-color;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    color:$text-color;
+    padding: 2rem;
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    justify-items: center;
+    ul{
+      list-style-type: none;
+    }
+  }
+
+  .alerts {
+    padding: 5rem;
+    color: $text-color;
+    border-radius: 25px;
+    background: $primary-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .addalert {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .table {
+      margin: 5rem 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .row {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+    }
+  }
 }
