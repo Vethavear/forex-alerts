@@ -20,72 +20,66 @@
       <li class="p1"><a href="journal.html">Journal</a></li>
     </ul>
   </nav>
+  <!-- pair picker -->
 
+  <!-- table with already set up alerts -->
   <section id="pairpicker">
-
     <div class="pairsmenu">
-      <!--         "EURUSD",
-        "EURGBP",
-        "GBPUSD",
-        "USDJPY",
-        "AUDUSD",
-        "USDCHF",
-        "NZDUSD",
-        "USDCAD", -->
       <ul>
-        <h4 class="p1">Pairs</h4>
-        <li class="p1">
-          <button id="changepair">EURUSD</button>
-        </li>
+        <h2 class="p1 center">Pairs</h4>
           <li class="p1">
-          <button id="changepair">EURGBP</button>
-        </li>
+            <button id="changepair">EUR/USD</button>
+          </li>
           <li class="p1">
-          <button id="changepair">USDJPY</button>
-        </li>
+            <button id="changepair">EUR/GBP</button>
+          </li>
           <li class="p1">
-          <button id="changepair">AUDUSD</button>
-        </li>
+            <button id="changepair">USD/JPY</button>
+          </li>
           <li class="p1">
-          <button id="changepair">USDCHF</button>
-        </li>
+            <button id="changepair">AUD/USD</button>
+          </li>
           <li class="p1">
-          <button id="changepair">NZDUSD</button>
-        </li>
+            <button id="changepair">USD/CHF</button>
+          </li>
           <li class="p1">
-          <button id="changepair">USDCAD</button>
-        </li>
+            <button id="changepair">NZD/USD</button>
+          </li>
+          <li class="p1">
+            <button id="changepair">USD/CAD</button>
+          </li>
       </ul>
     </div>
 
     <div class="alerts">
 
-      <h1 id="currentpair">
+      <h1 id="currentpair" class="my-1">
         GBPUSD
       </h1>
 
-      <div class="addalert">
-        <input type="text" name="inputprice" id="inputprice"> <button id="add">Add</button>
-
+      <div class="addalert my-1">
+        <input type="text" name="inputprice" id="inputprice" placeholder="1.2303"> <button id="add">Add</button>
       </div>
       <div class="table">
         <div class="row">
           <h3>Price</h3>
-          <p class="px-2">2000</p>
-          <button id="delete">Delete</button>
+          <h3>Time</h3>
+          <h3>Delete</h3>
         </div>
-
-
+        <div class="row">
+          <p>2000</p>
+          <p>10:23</p>
+          <button id="delete"><i class="fas fa-times-circle"></i></button>
+        </div>
+        <div class="row">
+          <p>2000</p>
+          <p>10:23</p>
+          <button id="delete"><i class="fas fa-times-circle"></i></button>
+        </div>
       </div>
-
     </div>
-
-
-
   </section>
-  <!-- pair picker -->
 
-  <!-- table with already set up alerts -->
 
   <!-- world markets trading hours? Open or not? -->
 

@@ -68,6 +68,10 @@
   font-size: 2rem;
 }
 
+button:focus {
+  outline: 0;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -81,6 +85,12 @@
 body {
   height: 100vh;
   background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover no-repeat;
+}
+
+button,
+i {
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
 }
 
 nav {
@@ -108,7 +118,13 @@ nav ul {
 }
 
 nav ul li a {
+  font-weight: bold;
   color: white;
+  font-size: 1.2rem;
+}
+
+nav ul li a:hover {
+  color: #55def1;
 }
 
 #pairpicker {
@@ -141,6 +157,22 @@ nav ul li a {
   list-style-type: none;
 }
 
+#pairpicker .pairsmenu ul li button {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  font-weight: bold;
+  color: #15191c;
+  background: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#pairpicker .pairsmenu ul li button:hover {
+  background: #55def1;
+}
+
 #pairpicker .alerts {
   padding: 5rem;
   color: white;
@@ -170,6 +202,36 @@ nav ul li a {
           justify-content: space-evenly;
 }
 
+#pairpicker .alerts .addalert input {
+  border: none;
+  border-radius: 0.25rem;
+  margin: 0 1rem;
+  padding: 0 0.25rem;
+}
+
+#pairpicker .alerts .addalert button {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  font-weight: bold;
+  color: #15191c;
+  background: white;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#pairpicker .alerts .addalert button:hover {
+  background: #55def1;
+}
+
 #pairpicker .alerts .table {
   margin: 5rem 0;
   display: -webkit-box;
@@ -188,13 +250,32 @@ nav ul li a {
 }
 
 #pairpicker .alerts .table .row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  margin: 0.5rem 0;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid white;
+}
+
+#pairpicker .alerts .table .row h3,
+#pairpicker .alerts .table .row p,
+#pairpicker .alerts .table .row button {
+  padding: 0 1rem;
+}
+
+#pairpicker .alerts .table .row button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+#pairpicker .alerts .table .row button i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+#pairpicker .alerts .table .row button i:hover {
+  color: #55def1;
 }
