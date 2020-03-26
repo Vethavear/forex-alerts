@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../styles/widescreen.scss"
+    ],
+    "names": [],
+    "file": "widescreen.css"
+}
