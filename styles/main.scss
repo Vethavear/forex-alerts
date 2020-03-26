@@ -1,7 +1,7 @@
-@import '/styles/utils.scss';
+@import './utils.scss';
 
-$primary-color: #;
-$secondary-color: #;
+$primary-color: #333;
+$secondary-color: #fff;
 
 
 * {
@@ -11,4 +11,22 @@ $secondary-color: #;
   text-decoration: none;
 }
 
-//utilities
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $primary-color;
+  h1{
+    color:white;
+  }
+  ul{
+    list-style-type: none;
+    display:flex;
+    li{
+      a{
+        color:white;
+      }
+    }
+  }
+
+}
