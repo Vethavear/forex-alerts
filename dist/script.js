@@ -1,21 +1,35 @@
-// Chose pair
-
-const PairCtrl = (function() {
-  const alerts = {
-    eurusd: [],
-    eurgbp: [],
-    usdjpy: [],
-    audusd: [],
-    usdchf: [],
-    usdcad: [],
-    gbpusd: []
+const StorageCtrl = (function() {
+  return {
+    getAlerts: function() {
+      let alerts;
+      if (localStorage.getItem("alerts") == null) {
+        alerts = {
+          eurusd: [],
+          eurgbp: [],
+          usdjpy: [],
+          audusd: [],
+          usdchf: [],
+          usdcad: [],
+          gbpusd: []
+        };
+      } else {
+        alerts = JSON.parse(localStorage.getItem("alerts"));
+      }
+      return alerts;
+    },
+    updateStorage: function(data) {
+      localStorage.setItem("alerts", JSON.stringify(data));
+    }
   };
+})();
+
+const PairCtrl = (function(StorageCtrl) {
+  const alerts = StorageCtrl.getAlerts();
 
   return {
     getAlerts: function() {
       return alerts;
     },
-
     addAlert: function(pair, price) {
       const date = new Date();
       const alert = {
@@ -26,7 +40,7 @@ const PairCtrl = (function() {
         ).slice(-2)}`
       };
       alerts[pair.toLowerCase()].push(alert);
-
+      StorageCtrl.updateStorage(alerts);
       return alert;
     },
     getPricesFromApi: async function(pairs) {
@@ -40,9 +54,14 @@ const PairCtrl = (function() {
       } catch (err) {
         console.log("Error getting prices", err);
       }
+    },
+    removeAlert: function(pair, alertId) {
+      const index = alerts[pair].findIndex(el => el.id == alertId);
+      alerts[pair].splice(index, 1);
+      StorageCtrl.updateStorage(alerts);
     }
   };
-})();
+})(StorageCtrl);
 
 const UICtrl = (function() {
   const selectors = {
@@ -100,8 +119,7 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
         const alertId = target.closest(".row").id;
         UICtrl.removeAlert(alertId);
         const pair = selectors.currentPair.innerHTML.toLowerCase();
-        const index = alerts[pair].findIndex(el => el.id == alertId);
-        alerts[pair].splice(index, 1);
+        PairCtrl.removeAlert(pair, alertId);
       });
 
       // Add Alert
@@ -148,7 +166,7 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
                 const index = alerts[pair.toLowerCase()].findIndex(
                   p => p.id == el.id
                 );
-                alerts[pair.toLowerCase()].splice(index, 1);
+                PairCtrl.removeAlert(pair, alertId);
                 UICtrl.removeAlert(el.id);
                 alert(`${pair} price on liq`);
               }
