@@ -166,14 +166,14 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
                 const alertId = alerts[pair.toLowerCase()].findIndex(
                   p => p.id == el.id
                 );
-                PairCtrl.removeAlert(pair, alertId);
+                PairCtrl.removeAlert(pair.toLowerCase(), alertId);
                 UICtrl.removeAlert(el.id);
                 alert(`${pair} price on liq`);
               }
             });
           }
         }
-      }, 60000);
+      }, 10000);
     }
   };
 })(PairCtrl, UICtrl);
