@@ -279,3 +279,41 @@ nav ul li a:hover {
 #pairpicker .alerts .table .row button i:hover {
   color: #55def1;
 }
+
+.alertsfired {
+  position: fixed;
+  right: 0;
+  background: #15191c;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  color: white;
+  padding: 2rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  gap: 0.5rem;
+  justify-items: center;
+}
+
+.alertsfired .labels {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.alertsfired ul {
+  list-style-type: none;
+}
+
+.alertsfired ul li {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
