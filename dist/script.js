@@ -163,7 +163,7 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
           for (pair in prices) {
             alerts[pair.toLowerCase()].forEach(el => {
               if (prices[pair].rate >= el.price) {
-                const index = alerts[pair.toLowerCase()].findIndex(
+                const alertId = alerts[pair.toLowerCase()].findIndex(
                   p => p.id == el.id
                 );
                 PairCtrl.removeAlert(pair, alertId);
