@@ -155,3 +155,31 @@ nav {
     }
   }
 }
+
+.alertsfired{
+  position: fixed;
+  right: 0;
+  background: $primary-color;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  color: $text-color;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  justify-items: center;
+  .labels{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+  align-items: stretch;
+
+  }
+  ul {
+    list-style-type: none;
+    li {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
