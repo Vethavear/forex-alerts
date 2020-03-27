@@ -114,6 +114,9 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
         }
         const alertId = target.closest(".row").id;
         UICtrl.removeAlert(alertId);
+        const pair = selectors.currentPair.innerHTML.toLowerCase();
+        const index = alerts[pair].findIndex(el => el.id == alertId);
+        alerts[pair].splice(index, 1);
       });
 
       // Add Alert
@@ -123,6 +126,7 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
         if (price > 0) {
           const alert = PairCtrl.addAlert(pair, price);
           UICtrl.displayAlert(alert);
+          selectors.inputField.value = "";
         }
       });
 
