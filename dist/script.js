@@ -2,41 +2,13 @@
 
 const PairCtrl = (function() {
   const alerts = {
-    eurusd: [
-      {
-        id: "a4",
-        price: 1.045,
-        date: "2019-02-26 12:30"
-      },
-      {
-        id: "a5",
-        price: 1.07,
-        date: "2019-02-26 15:30"
-      }
-    ],
+    eurusd: [],
     eurgbp: [],
-    usdjpy: [
-      {
-        id: "a3",
-        price: 109.4,
-        date: "2019-02-26 17:30"
-      },
-      {
-        id: "a2",
-        price: 110.5,
-        date: "2019-02-26 11:30"
-      }
-    ],
+    usdjpy: [],
     audusd: [],
     usdchf: [],
     usdcad: [],
-    gbpusd: [
-      {
-        id: "a2",
-        price: 110.5,
-        date: "2019-02-26 11:30"
-      }
-    ]
+    gbpusd: []
   };
 
   return {
@@ -48,7 +20,7 @@ const PairCtrl = (function() {
       const date = new Date();
       const alert = {
         id: Date.now() + Math.random(),
-        price: parseInt(price),
+        price: parseFloat(price),
         date: `${date.getFullYear()}-${("0" + date.getMonth()).slice(-2)}-${(
           "0" + date.getDate()
         ).slice(-2)}`
@@ -56,6 +28,18 @@ const PairCtrl = (function() {
       alerts[pair.toLowerCase()].push(alert);
 
       return alert;
+    },
+    getPricesFromApi: async function(pairs) {
+      try {
+        const respone = await fetch(
+          `https://cors-anywhere.herokuapp.com/https://www.freeforexapi.com/api/live?pairs=${pairs}`
+        );
+        const json = await respone.json();
+        const prices = json.rates;
+        return prices;
+      } catch (err) {
+        console.log("Error getting prices", err);
+      }
     }
   };
 })();
@@ -104,9 +88,10 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
   }
 
   return {
-    init: function() {
+    init: async function() {
       addAlerts();
 
+      // Remove Alert
       selectors.alertsContainer.addEventListener("click", function(e) {
         const target = e.target;
         if (target.tagName != "I") {
@@ -124,7 +109,7 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
         const price = selectors.inputField.value;
         const pair = selectors.currentPair.textContent;
         if (price > 0) {
-          const alert = PairCtrl.addAlert(pair, price);
+          const alert = PairCtrl.addAlert(pair, parseFloat(price));
           UICtrl.displayAlert(alert);
           selectors.inputField.value = "";
         }
@@ -141,6 +126,36 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
         UICtrl.changePair(pair);
         addAlerts();
       });
+      let prices;
+      // Get prices from API
+      // EURGBP,USDJPY,EURUSD, GBPUSD, AUDUSD, USDCHF, USDCAD
+      setInterval(async () => {
+        let pairs = "";
+        for (key in alerts) {
+          if (alerts[key].length > 0) {
+            pairs += `${key.toUpperCase()},`;
+          }
+        }
+        if (pairs.length > 0) {
+          prices = await PairCtrl.getPricesFromApi(pairs);
+        } else {
+          return;
+        }
+        if (prices) {
+          for (pair in prices) {
+            alerts[pair.toLowerCase()].forEach(el => {
+              if (prices[pair].rate >= el.price) {
+                const index = alerts[pair.toLowerCase()].findIndex(
+                  p => p.id == el.id
+                );
+                alerts[pair.toLowerCase()].splice(index, 1);
+                UICtrl.removeAlert(el.id);
+                alert(`${pair} price on liq`);
+              }
+            });
+          }
+        }
+      }, 60000);
     }
   };
 })(PairCtrl, UICtrl);
