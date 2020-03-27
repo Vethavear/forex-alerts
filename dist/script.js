@@ -86,6 +86,9 @@ const UICtrl = (function() {
     },
     removeAlert: function(id) {
       document.getElementById(id).remove();
+    },
+    changePair: function(pair) {
+      selectors.currentPair.innerHTML = pair.toUpperCase();
     }
   };
 })();
@@ -96,6 +99,7 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
 
   function addAlerts() {
     const pair = selectors.currentPair.textContent.toLowerCase();
+    selectors.alertsContainer.innerHTML = "";
     alerts[pair].forEach(UICtrl.displayAlert);
   }
 
@@ -120,6 +124,18 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
           const alert = PairCtrl.addAlert(pair, price);
           UICtrl.displayAlert(alert);
         }
+      });
+
+      // Change Pair
+      selectors.pairContainer.addEventListener("click", function(e) {
+        const target = e.target;
+
+        if (!target.matches(".changepair")) {
+          return;
+        }
+        const pair = target.innerHTML.replace("/", "");
+        UICtrl.changePair(pair);
+        addAlerts();
       });
     }
   };
