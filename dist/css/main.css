@@ -68,7 +68,10 @@
   font-size: 2rem;
 }
 
-button:focus {
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
   outline: 0;
 }
 
@@ -79,11 +82,11 @@ button:focus {
   padding: 0;
   text-decoration: none;
   font-family: "Baloo 2", cursive;
-  overflow: hidden;
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
+  overflow: visible;
   background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover no-repeat;
 }
 
@@ -91,6 +94,28 @@ button,
 i {
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
+}
+
+.clicked {
+  background: black !important;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.clicked button {
+  color: #55def1 !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.separator {
+  width: 100%;
+  height: 2px;
+  background: #55def1;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 
 nav {
@@ -326,13 +351,49 @@ nav ul li a:hover {
 
 #container {
   width: 100%;
-  margin-top: 15vh;
+  margin-top: 5vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  height: 95vh;
+}
+
+#container button {
+  border: none;
+  background: white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 50%;
+  padding: 0.5rem 0;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+#container button:hover {
+  background: #55def1;
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#container label,
+#container p {
+  font-size: 1.1rem;
+}
+
+#container #addTradeBtn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15%;
+  margin: 1rem 1rem;
 }
 
 #container #stats,
@@ -355,7 +416,7 @@ nav ul li a:hover {
 #container #stats h1,
 #container #addtrade h1,
 #container #settings h1 {
-  margin: 1rem 0;
+  text-align: center;
 }
 
 #container #stats,
@@ -382,15 +443,26 @@ nav ul li a:hover {
 }
 
 #container #addtrade {
+  padding-top: 5rem;
   position: relative;
-  width: 30%;
+  width: 50%;
+  height: 90%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   overflow: visible;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+}
+
+#container #addtrade #pair {
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 2rem;
 }
 
 #container #addtrade .pairsTabs {
@@ -399,7 +471,34 @@ nav ul li a:hover {
   position: absolute;
   top: 0;
   left: -100px;
+}
+
+#container #addtrade .pairsTabs ul li {
   background: #15191c;
+  margin: 0.7rem 0;
+  padding: 0.95rem 0.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#container #addtrade .pairsTabs ul li:first-child, #container #addtrade .pairsTabs ul li:last-child {
+  margin: 0;
+}
+
+#container #addtrade .pairsTabs ul li button {
+  border: none;
+  color: white;
+  background: none;
+  font-size: 1.1rem;
 }
 
 #container #addtrade .basic {
@@ -410,10 +509,41 @@ nav ul li a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-right: 3rem;
+}
+
+#container #addtrade .basic .row {
+  position: relative;
+}
+
+#container #addtrade .basic .row input {
+  border: none;
+  border-bottom: 2px solid gray;
+  background: #15191c;
+  margin: 2rem;
+  padding: 0 0.25rem;
+  height: 30px;
+  color: white;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: lighter;
+}
+
+#container #addtrade .basic .row input:focus, #container #addtrade .basic .row input:hover {
+  border-color: #55def1;
+}
+
+#container #addtrade .basic .row label {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#container #addtrade .additionalInfo {
+  margin: 0 1rem;
 }
 
 #container #addtrade .additionalInfo p {
@@ -437,8 +567,88 @@ nav ul li a:hover {
   color: #55def1;
 }
 
+#container #addtrade .additionalInfo .setupInfo .bases .stop {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+#container #addtrade .improvements p {
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+#container #addtrade .improvements .missedR {
+  position: relative;
+}
+
+#container #addtrade .improvements .missedR input {
+  border: none;
+  border-bottom: 2px solid gray;
+  background: #15191c;
+  margin: 2rem;
+  padding: 0 0.25rem;
+  height: 30px;
+  color: white;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: lighter;
+}
+
+#container #addtrade .improvements .missedR input:focus, #container #addtrade .improvements .missedR input:hover {
+  border-color: #55def1;
+}
+
+#container #addtrade .improvements .missedR label {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
 #container #settings {
   right: 0;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
+}
+
+#container #settings .row {
+  position: relative;
+}
+
+#container #settings .row input {
+  border: none;
+  border-bottom: 2px solid gray;
+  background: #15191c;
+  margin: 2rem;
+  padding: 0 0.25rem;
+  height: 30px;
+  color: white;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: lighter;
+}
+
+#container #settings .row input:focus, #container #settings .row input:hover {
+  border-color: #55def1;
+}
+
+#container #settings .row label {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }

@@ -3,7 +3,10 @@
 $primary-color: #15191c;
 $hover-color: #55def1;
 $text-color: white;
-button:focus {
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
   outline: 0;
 }
 * {
@@ -12,15 +15,34 @@ button:focus {
   padding: 0;
   text-decoration: none;
   font-family: "Baloo 2", cursive;
-  overflow: hidden;
 }
 body {
-  height: 100vh;
+  min-height: 100vh;
+  overflow: visible;
   background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover no-repeat;
 }
 button,
 i {
   transition: 0.5s all;
+}
+//utils
+.clicked {
+  background: black !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  button {
+    color: $hover-color !important;
+  }
+}
+.hide {
+  display: none !important;
+}
+
+.separator {
+  width: 100%;
+  height: 2px;
+  background: $hover-color;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 nav {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -186,18 +208,43 @@ nav {
 }
 // Journal
 
-
 #container {
   width: 100%;
-  margin-top: 15vh;
+  margin-top: 5vh;
   display: flex;
   justify-content: center;
-
+  height: 95vh;
+  button {
+    border: none;
+    background: white;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    width: 50%;
+    padding: 0.5rem 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    align-self: center;
+    &:hover {
+      background: $hover-color;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+  }
+  label,
+  p {
+    font-size: 1.1rem;
+  }
+  #addTradeBtn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15%;
+    margin: 1rem 1rem;
+  }
   #stats,
   #addtrade,
   #settings {
     h1 {
-      margin: 1rem 0;
+      text-align: center;
     }
     display: flex;
     flex-direction: column;
@@ -224,29 +271,86 @@ nav {
     }
   }
   #addtrade {
+    padding-top: 5rem;
     position: relative;
-    width: 30%;
+    width: 50%;
+    height: 90%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     overflow: visible;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
 
+    #pair {
+      position: absolute;
+      top: 1%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      // margin: 1rem 1rem;
+    }
+
     .pairsTabs {
       width: 100px;
-      height:100%;
+      height: 100%;
       position: absolute;
       top: 0;
       left: -100px;
-      background: $primary-color;
+      ul {
+        li {
+          &:first-child,
+          &:last-child {
+            margin: 0;
+          }
+          background: $primary-color;
+          margin: 0.7rem 0;
+          padding: 0.95rem 0.25rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+          button {
+            border: none;
+            color: white;
+            background: none;
+            font-size: 1.1rem;
+          }
+        }
+      }
     }
     .basic {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding-right: 3rem;
+      .row {
+        position: relative;
+        input {
+          border: none;
+          border-bottom: 2px solid gray;
+          background: $primary-color;
+          margin: 2rem;
+          padding: 0 0.25rem;
+          height: 30px;
+          color: white;
+          font-size: 1.1rem;
+          transition: all 0.3s;
+          font-weight: lighter;
+          &:focus,
+          &:hover {
+            border-color: $hover-color;
+          }
+        }
+        label {
+          font-size: 1.2rem;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: all 0.5s;
+        }
+      }
     }
     .additionalInfo {
+      margin: 0 1rem;
       p {
         font-weight: bold;
         margin: 1rem 0;
@@ -261,11 +365,83 @@ nav {
           }
         }
       }
+      .setupInfo {
+        .bases {
+          .stop {
+            display: grid;
+            grid-template-columns: 1fr;
+          }
+        }
+      }
+    }
+    .improvements {
+      p {
+        font-weight: bold;
+        margin: 1rem 0;
+      }
+      .missedR{
+        position: relative;
+        input {
+          border: none;
+          border-bottom: 2px solid gray;
+          background: $primary-color;
+          margin: 2rem;
+          padding: 0 0.25rem;
+          height: 30px;
+          color: white;
+          font-size: 1.1rem;
+          transition: all 0.3s;
+          font-weight: lighter;
+          &:focus,
+          &:hover {
+            border-color: $hover-color;
+          }
+        }
+        label {
+          font-size: 1.2rem;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: all 0.5s;
+        }
+      }
     }
   }
   #settings {
     right: 0;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
+    .row {
+      position: relative;
+      input {
+        border: none;
+        border-bottom: 2px solid gray;
+        background: $primary-color;
+        margin: 2rem;
+        padding: 0 0.25rem;
+        height: 30px;
+        color: white;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        font-weight: lighter;
+        &:focus,
+        &:hover {
+          border-color: $hover-color;
+        }
+      }
+      label {
+        font-size: 1.2rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.5s;
+      }
+    }
   }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }

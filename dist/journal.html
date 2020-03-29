@@ -42,55 +42,54 @@
         <p id="R">-24R</p>
       </div>
     </div>
+    
     <div id="addtrade">
       <div class="pairsTabs">
         <ul>
-            <li class="p1">
-              <button class="changepair">EUR/USD</button>
-            </li>
-            <li class="p1">
-              <button class="changepair">EUR/GBP</button>
-            </li>
-            <li class="p1">
-              <button class="changepair">GBP/USD</button>
-            </li>
-            <li class="p1">
-              <button class="changepair">USD/JPY</button>
-            </li>
-            <li class="p1">
-              <button class="changepair">AUD/USD</button>
-            </li>
-            <li class="p1">
-              <button class="changepair">USD/CHF</button>
-            </li>
-            <li class="p1">
-              <button class="changepair">USD/CAD</button>
-            </li>
+          <li class="clicked">
+            <button class="changepair">EUR/USD</button>
+          </li>
+          <li>
+            <button class="changepair">EUR/GBP</button>
+          </li>
+          <li>
+            <button class="changepair">GBP/USD</button>
+          </li>
+          <li>
+            <button class="changepair">USD/JPY</button>
+          </li>
+          <li>
+            <button class="changepair">AUD/USD</button>
+          </li>
+          <li>
+            <button class="changepair">USD/CHF</button>
+          </li>
+          <li>
+            <button class="changepair">USD/CAD</button>
+          </li>
         </ul>
       </div>
+      <h1 id="pair">EURUSD</h1>
       <div class="basic">
-        <h1>Add trade</h1>
-        <label for="pair">Pair</label>
-        <input type="text" name="pair" id="pair" placeholder="EURUSD">
-        <label for="date">Date</label>
-        <input type="date" name="date" id="date">
-        <label for="result">Result</label>
-        <input type="text" name="result" id="result" placeholder="-1.23">
-        <label for="chart">Chart</label>
-        <input type="text" name="chart" id="chart" placeholder="tradingview/fhjd321">
-        <button id="addTrade">Add</button>
+        <h1>Core</h1>
+        <div class="separator"></div>
+        <div class="row">
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date">
+        </div>
+        <div class="row">
+          <label for="result">Result</label>
+          <input type="text" name="result" id="result">
+        </div>
+        <div class="row">
+          <label for="chart">Chart</label>
+          <input type="text" name="chart" id="chart">
+        </div>
+
       </div>
       <div class="additionalInfo">
         <h1>Additional Info</h1>
-        <p>Setup</p>
-        <div class="setup">
-          <label>Continuation
-            <input type="radio" name="setup" id="continuation" value="Continuation">
-          </label>
-          <label>Raid
-            <input type="radio" name="setup" id="raid" value="Raid">
-          </label>
-        </div>
+        <div class="separator"></div>
         <p>Timeframe</p>
         <div class="tf">
           <label>5m
@@ -106,29 +105,159 @@
             <input type="radio" name="timeframe" id="tf60" value="60">
           </label>
         </div>
+        <p>Setup</p>
+        <div class="setup">
+          <label>Continuation
+            <input type="radio" name="setup" id="continuation" value="continuation">
+          </label>
+          <label>Raid
+            <input type="radio" name="setup" id="raid" value="raid">
+          </label>
+
+          <div class="setupInfo">
+            <div class="bases hide">
+              <p>Base type</p>
+              <label>Blocky
+                <input type="radio" name="bases" id="blocky" value="blocky">
+              </label>
+              <label>Wicky
+                <input type="radio" name="bases" id="wicky" value="wicky">
+              </label>
+              <p>Visible on lower timeframes?</p>
+              <label>Yes
+                <input type="radio" name="visible" id="visibleYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" name="visible" id="visibleNo" value="no">
+              </label>
+              <div class="stop">
+                <p>Swing stop?</p>
+                <label>Yes
+                  <input type="radio" name="stop" id="stopYes" value="yes">
+                </label>
+                <label>Gambling stop
+                  <input type="radio" name="stop" id="stopGamble" value="gamble">
+                </label>
+                <label>Stop above minor high on LTF
+                  <input type="radio" name="stop" id="stopLTF" value="ltf">
+                </label>
+              </div>
+            </div>
+
+            <div class="raids ">
+              <p>MSB type</p>
+              <label>Origin
+                <input type="radio" name="msb" id="origin" value="origin">
+              </label>
+              <label>Shady
+                <input type="radio" name="msb" id="shady" value="shady">
+              </label>
+              <p>Was this clear MSB on higher timeframe?</p>
+              <label>Yes
+                <input type="radio" name="clear" id="clearYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" name="clear" id="visibleNo" value="no">
+              </label>
+
+            </div>
+          </div>
+        </div>
 
       </div>
+      <div class="improvements">
+        <h1>Improvements</h1>
+        <div class="separator"></div>
+        <!-- If stopped bases+raids-->
+        <div class="ifswingDiv">
+          <p id="ifSwingLabel">Did swing stop worked out?</p>
+          <label>Yes
+            <input type="radio" name="ifSwing" id="ifSwingYes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifSwing" id="ifSwingNo" value="no">
+          </label>
+          <!-- if yes -->
+          <div class="missedR ">
+            <label>How many R missed by stupidity?</label>
+            <input type="text" name="missedR" id="missedR">
+          </div>
+        </div>
+        <!-- If won bases -->
+        <div class="ifLTFDiv hide">
+          <p>Did LTF stop worked out?</p>
+          <label>Yes
+            <input type="radio" name="ifLTF" id="ifLTFYes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifLTF" id="ifLTFNo" value="no">
+          </label>
+        </div>
+
+        <!-- raids -->
+
+        <div class="ifFiboDiv">
+          <p>Did 0.65 with 0.786 stop worked out?</p>
+          <label>Yes
+            <input type="radio" name="ifFibo" id="ifFiboYes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifFibo" id="ifFiboNo" value="no">
+          </label>
+        </div>
+        <div class="ifFiboExtendedDiv">
+          <p>Did 0.65 with 0.88 stop worked out?</p>
+          <label>Yes
+            <input type="radio" name="ifFiboExtended" id="ifFiboExtendedYes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifFiboExtended" id="ifFiboExtendedNo" value="no">
+          </label>
+        </div>
+        <!-- if used swing stop -->
+        <div class="if01Stop hide">
+          <p>Did stop above 1 (minor liq line) worked out?</p>
+          <label>Yes
+            <input type="radio" name="if01Stop" id="if01StopYes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="if01Stop" id="if01StopNo" value="no">
+          </label>
+        </div>
+
+      </div>
+      <button id="addTradeBtn">Add</button>
     </div>
     <div id="settings">
       <h1>Weekly settings</h1>
-      <label for="acc">Account</label>
-      <input type="text" name="acc" id="pair">
-      <label for="risk">% of Risk</label>
-      <input type="text" name="risk" id="risk" value="1%">
-      <label for="size">Entry size</label>
-      <input type="text" name="size" id="size" value="">
-      <label for="goal">Goal</label>
-      <input type="text" name="goal" id="goal" value="5R">
-      <button id="addTrade">Change</button>
+      <div class="separator"></div>
+      <div class="row">
+        <label for="acc">Account</label>
+        <input type="text" name="acc" id="pair">
+      </div>
+      <div class="row">
+        <label for="risk">% of Risk</label>
+        <input type="text" name="risk" id="risk" value="1%">
+      </div>
+      <div class="row">
+        <label for="size">Entry size</label>
+        <input type="text" name="size" id="size" value="" disabled>
+      </div>
+      <div class="row">
+        <label for="goal">Goal</label>
+        <input type="text" name="goal" id="goal" value="5R">
+      </div>
+      <button id="changeSettings">Change</button>
     </div>
   </section>
 
 
+  <footer>
+    <a href="https://www.freeforexapi.com">
+      <img alt="Free Forex API" src="https://www.freeforexapi.com/Images/link.png" height="20">
+    </a>
+  </footer>
 
-  <!-- world markets trading hours? Open or not?  we need to add source! -->
-  <a href="https://www.freeforexapi.com">
-    <img alt="Free Forex API" src="https://www.freeforexapi.com/Images/link.png" height="20">
-  </a>
 </body>
 <script src="journal.js"></script>
 <script src="https://kit.fontawesome.com/86d05de8a6.js" crossorigin="anonymous"></script>
