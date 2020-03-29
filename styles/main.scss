@@ -23,7 +23,7 @@ i {
   transition: 0.5s all;
 }
 nav {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,7 +48,6 @@ nav {
 }
 
 #pairpicker {
-   
   display: flex;
   justify-content: center;
   margin: 5rem 0;
@@ -86,7 +85,7 @@ nav {
   }
 
   .alerts {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     padding: 5rem;
     color: $text-color;
     border-radius: 25px;
@@ -99,7 +98,7 @@ nav {
     .addalert {
       display: flex;
       justify-content: space-evenly;
-      input{
+      input {
         border: none;
         border-radius: 0.25rem;
         margin: 0 1rem;
@@ -114,14 +113,13 @@ nav {
         border: none;
         border-radius: 0.25rem;
         cursor: pointer;
-        display:flex;
+        display: flex;
         justify-items: center;
         align-items: center;
         &:hover {
           background: $hover-color;
         }
       }
-      
     }
 
     .table {
@@ -159,8 +157,8 @@ nav {
   }
 }
 
-.alertsfired{
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
+.alertsfired {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   position: fixed;
   right: 0;
   background: $primary-color;
@@ -172,12 +170,11 @@ nav {
   grid-template-columns: 1fr;
   gap: 0.5rem;
   justify-items: center;
-  .labels{
+  .labels {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
-  align-items: stretch;
-
+    align-items: stretch;
   }
   ul {
     list-style-type: none;
@@ -185,5 +182,90 @@ nav {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
     }
+  }
+}
+// Journal
+
+
+#container {
+  width: 100%;
+  margin-top: 15vh;
+  display: flex;
+  justify-content: center;
+
+  #stats,
+  #addtrade,
+  #settings {
+    h1 {
+      margin: 1rem 0;
+    }
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    padding: 3rem;
+    color: $text-color;
+    background: $primary-color;
+  }
+  #stats,
+  #settings {
+    position: fixed;
+    top: 15vh;
+  }
+  #stats {
+    left: 0;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    .row {
+      display: flex;
+      width: 100%;
+      p {
+        padding: 0 1rem;
+      }
+    }
+  }
+  #addtrade {
+    position: relative;
+    width: 30%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: visible;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    .pairsTabs {
+      width: 100px;
+      height:100%;
+      position: absolute;
+      top: 0;
+      left: -100px;
+      background: $primary-color;
+    }
+    .basic {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 3rem;
+    }
+    .additionalInfo {
+      p {
+        font-weight: bold;
+        margin: 1rem 0;
+      }
+      .setup,
+      .tf {
+        display: grid;
+        label {
+          cursor: pointer;
+          &:hover {
+            color: $hover-color;
+          }
+        }
+      }
+    }
+  }
+  #settings {
+    right: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
   }
 }

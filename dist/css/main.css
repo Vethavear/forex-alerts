@@ -323,3 +323,122 @@ nav ul li a:hover {
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
 }
+
+#container {
+  width: 100%;
+  margin-top: 15vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#container #stats,
+#container #addtrade,
+#container #settings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 3rem;
+  color: white;
+  background: #15191c;
+}
+
+#container #stats h1,
+#container #addtrade h1,
+#container #settings h1 {
+  margin: 1rem 0;
+}
+
+#container #stats,
+#container #settings {
+  position: fixed;
+  top: 15vh;
+}
+
+#container #stats {
+  left: 0;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+#container #stats .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+#container #stats .row p {
+  padding: 0 1rem;
+}
+
+#container #addtrade {
+  position: relative;
+  width: 30%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  overflow: visible;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+#container #addtrade .pairsTabs {
+  width: 100px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -100px;
+  background: #15191c;
+}
+
+#container #addtrade .basic {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-right: 3rem;
+}
+
+#container #addtrade .additionalInfo p {
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+#container #addtrade .additionalInfo .setup,
+#container #addtrade .additionalInfo .tf {
+  display: -ms-grid;
+  display: grid;
+}
+
+#container #addtrade .additionalInfo .setup label,
+#container #addtrade .additionalInfo .tf label {
+  cursor: pointer;
+}
+
+#container #addtrade .additionalInfo .setup label:hover,
+#container #addtrade .additionalInfo .tf label:hover {
+  color: #55def1;
+}
+
+#container #settings {
+  right: 0;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
