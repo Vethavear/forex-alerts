@@ -1,6 +1,6 @@
-const StorageCtrl = (function () {
+const StorageCtrl = (function() {
   return {
-    getAlerts: function () {
+    getAlerts: function() {
       let alerts;
       if (localStorage.getItem("alerts") == null) {
         alerts = {
@@ -17,33 +17,34 @@ const StorageCtrl = (function () {
       }
       return alerts;
     },
-    updateStorage: function (data) {
+    updateStorage: function(data) {
       localStorage.setItem("alerts", JSON.stringify(data));
     }
   };
 })();
 
-const PairCtrl = (function (StorageCtrl) {
+const PairCtrl = (function(StorageCtrl) {
   const alerts = StorageCtrl.getAlerts();
 
   return {
-    getAlerts: function () {
+    getAlerts: function() {
       return alerts;
     },
-    addAlert: function (pair, price) {
+    addAlert: function(pair, price, direction) {
       const date = new Date();
       const alert = {
         id: Date.now() + Math.random(),
         price: parseFloat(price),
         date: `${date.getFullYear()}-${("0" + date.getMonth()).slice(-2)}-${(
           "0" + date.getDate()
-        ).slice(-2)}`
+        ).slice(-2)}`,
+        direction: direction
       };
       alerts[pair.toLowerCase()].push(alert);
       StorageCtrl.updateStorage(alerts);
       return alert;
     },
-    getPricesFromApi: async function (pairs) {
+    getPricesFromApi: async function(pairs) {
       try {
         const respone = await fetch(
           `https://cors-anywhere.herokuapp.com/https://www.freeforexapi.com/api/live?pairs=${pairs}`
@@ -55,7 +56,7 @@ const PairCtrl = (function (StorageCtrl) {
         console.log("Error getting prices", err);
       }
     },
-    removeAlert: function (pair, alertId) {
+    removeAlert: function(pair, alertId) {
       const index = alerts[pair].findIndex(el => el.id == alertId);
       alerts[pair].splice(index, 1);
       StorageCtrl.updateStorage(alerts);
@@ -63,7 +64,7 @@ const PairCtrl = (function (StorageCtrl) {
   };
 })(StorageCtrl);
 
-const UICtrl = (function () {
+const UICtrl = (function() {
   const selectors = {
     pairContainer: document.querySelector("#pairpicker .pairsmenu"),
     alertsContainer: document.querySelector(".alerts .table .container"),
@@ -74,11 +75,11 @@ const UICtrl = (function () {
   };
 
   return {
-    getSelectors: function () {
+    getSelectors: function() {
       return selectors;
     },
 
-    displayAlert: function (alert) {
+    displayAlert: function(alert) {
       const markup = `
         <div class="row" id =${alert.id}>
           <p>${alert.price}</p>
@@ -88,15 +89,14 @@ const UICtrl = (function () {
     `;
       selectors.alertsContainer.insertAdjacentHTML("beforeend", markup);
     },
-    removeAlert: function (id) {
+    removeAlert: function(id) {
       document.getElementById(id).remove();
     },
-    addAlertToFiredAlerts: function (alert, pair) {
-
+    addAlertToFiredAlerts: function(alert, pair) {
       const today = new Date();
-      const date = today.getMonth() +1 +'.'+ today.getDate();
+      const date = today.getMonth() + 1 + "." + today.getDate();
       const time = today.getHours() + ":" + today.getMinutes();
-      const dateTime = date + ' ' + time;
+      const dateTime = date + " " + time;
       const markup = `
       <li>
       <p>${pair}</p>
@@ -104,15 +104,15 @@ const UICtrl = (function () {
       <p>${dateTime}</p>
        </li>
     `;
-      selectors.firedAlertsContainer.insertAdjacentHTML('afterbegin', markup);
+      selectors.firedAlertsContainer.insertAdjacentHTML("afterbegin", markup);
     },
-    changePair: function (pair) {
+    changePair: function(pair) {
       selectors.currentPair.innerHTML = pair.toUpperCase();
     }
   };
 })();
 
-const AppCtrl = (function (PairCtrl, UICtrl) {
+const AppCtrl = (function(PairCtrl, UICtrl) {
   const alerts = PairCtrl.getAlerts();
   const selectors = UICtrl.getSelectors();
 
@@ -123,28 +123,28 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
   }
   function prepareAudio() {
     const audio = document.createElement("AUDIO");
-    audio.src = 'alertsound.mp3';
+    audio.src = "alertsound.mp3";
     audio.setAttribute("preload", "auto");
     audio.setAttribute("controls", "none");
     audio.style.display = "none";
     document.body.appendChild(audio);
 
     return {
-      play: function () {
+      play: function() {
         audio.play();
       },
-      stop: function () {
+      stop: function() {
         audio.pause();
       }
-    }
+    };
   }
   return {
-    init: async function () {
+    init: async function() {
       addAlerts();
-      const audioCtrl = prepareAudio();
-      // Prepare alert audio
+      const audioCtrl = prepareAudio(); // Prepare alert audio
+
       // Remove Alert
-      selectors.alertsContainer.addEventListener("click", function (e) {
+      selectors.alertsContainer.addEventListener("click", function(e) {
         const target = e.target;
         if (target.tagName != "I") {
           return;
@@ -156,18 +156,27 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
       });
 
       // Add Alert
-      selectors.addBtn.addEventListener("click", function () {
+      selectors.addBtn.addEventListener("click", function() {
+        let direction;
+        try {
+          direction = document.querySelector("input[name=direction]:checked")
+            .value;
+        } catch {
+          alert("Pick direction");
+          return;
+        }
         const price = selectors.inputField.value;
         const pair = selectors.currentPair.textContent;
         if (price > 0) {
-          const alert = PairCtrl.addAlert(pair, parseFloat(price));
+          const alert = PairCtrl.addAlert(pair, parseFloat(price), direction);
           UICtrl.displayAlert(alert);
           selectors.inputField.value = "";
+          console.log(alert);
         }
       });
 
       // Change Pair
-      selectors.pairContainer.addEventListener("click", function (e) {
+      selectors.pairContainer.addEventListener("click", function(e) {
         const target = e.target;
 
         if (!target.matches(".changepair")) {
@@ -195,17 +204,27 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
         if (prices) {
           for (pair in prices) {
             alerts[pair.toLowerCase()].forEach(alert => {
-              if (prices[pair].rate >= alert.price) {
-                const alertId = alerts[pair.toLowerCase()].findIndex(
-                  p => p.id == alert.id
-                );
+              const alertId = alerts[pair.toLowerCase()].findIndex(
+                p => p.id == alert.id
+              );
+              if (
+                prices[pair].rate >= alert.price &&
+                alert.direction == "short"
+              ) {
                 PairCtrl.removeAlert(pair.toLowerCase(), alertId);
                 UICtrl.addAlertToFiredAlerts(alert, pair);
                 UICtrl.removeAlert(alert.id);
                 audioCtrl.play();
                 // alert(`${pair} price on liq`);
                 // audioCtrl.stop();
-
+              } else if (
+                prices[pair].rate <= alert.price &&
+                alert.direction == "long"
+              ) {
+                PairCtrl.removeAlert(pair.toLowerCase(), alertId);
+                UICtrl.addAlertToFiredAlerts(alert, pair);
+                UICtrl.removeAlert(alert.id);
+                audioCtrl.play();
               }
             });
           }
