@@ -16,14 +16,15 @@ button:focus {
 }
 body {
   height: 100vh;
-  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover no-repeat;
+  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover
+    no-repeat;
 }
 button,
 i {
   transition: 0.5s all;
 }
 nav {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,7 +49,6 @@ nav {
 }
 
 #pairpicker {
-   
   display: flex;
   justify-content: center;
   margin: 5rem 0;
@@ -69,7 +69,8 @@ nav {
       list-style-type: none;
       li {
         button {
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
           font-weight: bold;
           color: $primary-color;
           background: white;
@@ -86,7 +87,7 @@ nav {
   }
 
   .alerts {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     padding: 5rem;
     color: $text-color;
     border-radius: 25px;
@@ -99,7 +100,7 @@ nav {
     .addalert {
       display: flex;
       justify-content: space-evenly;
-      input{
+      input {
         border: none;
         border-radius: 0.25rem;
         margin: 0 1rem;
@@ -114,18 +115,26 @@ nav {
         border: none;
         border-radius: 0.25rem;
         cursor: pointer;
-        display:flex;
+        display: flex;
         justify-items: center;
         align-items: center;
         &:hover {
           background: $hover-color;
         }
       }
-      
+    }
+
+    .radio-container {
+      width: 100%;
+      margin-left: 40px;
+      label,
+      input {
+        padding: 0.5rem;
+      }
     }
 
     .table {
-      margin: 5rem 0;
+      margin: 1rem 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -159,8 +168,8 @@ nav {
   }
 }
 
-.alertsfired{
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
+.alertsfired {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   position: fixed;
   right: 0;
   background: $primary-color;
@@ -172,12 +181,11 @@ nav {
   grid-template-columns: 1fr;
   gap: 0.5rem;
   justify-items: center;
-  .labels{
+  .labels {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
-  align-items: stretch;
-
+    align-items: stretch;
   }
   ul {
     list-style-type: none;
