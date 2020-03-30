@@ -26,7 +26,7 @@
       <h1>Daily stats</h1>
       <div class="row">
         <label for="trades">Trades:</label>
-        <p id="trades">5</p>
+        <p id="dailytrades">5</p>
       </div>
       <div class="row">
         <label for="R">Gains:</label>
@@ -35,37 +35,37 @@
       <h1>Weekly stats</h1>
       <div class="row">
         <label for="trades">Trades:</label>
-        <p id="trades">24</p>
+        <p id="weeklytrades">24</p>
       </div>
       <div class="row">
         <label for="R">Gains:</label>
         <p id="R">-24R</p>
       </div>
     </div>
-    
+
     <div id="addtrade">
       <div class="pairsTabs">
         <ul>
-          <li class="clicked">
-            <button class="changepair">EUR/USD</button>
+          <li class="checked">
+            <button class="change">EUR/USD</button>
           </li>
           <li>
-            <button class="changepair">EUR/GBP</button>
+            <button class="change">EUR/GBP</button>
           </li>
           <li>
-            <button class="changepair">GBP/USD</button>
+            <button class="change">GBP/USD</button>
           </li>
           <li>
-            <button class="changepair">USD/JPY</button>
+            <button class="change">USD/JPY</button>
           </li>
           <li>
-            <button class="changepair">AUD/USD</button>
+            <button class="change">AUD/USD</button>
           </li>
           <li>
-            <button class="changepair">USD/CHF</button>
+            <button class="change">USD/CHF</button>
           </li>
           <li>
-            <button class="changepair">USD/CAD</button>
+            <button class="change">USD/CAD</button>
           </li>
         </ul>
       </div>
@@ -93,53 +93,53 @@
         <p>Timeframe</p>
         <div class="tf">
           <label>5m
-            <input type="radio" name="timeframe" id="tf5" value="5">
+            <input type="radio" name="timeframe" id="tf5" value="5" class="info">
           </label>
           <label>15m
-            <input type="radio" name="timeframe" id="tf15" value="15">
+            <input type="radio" name="timeframe" id="tf15" value="15" class="info">
           </label>
           <label>30m
-            <input type="radio" name="timeframe" id="tf30" value="30">
+            <input type="radio" name="timeframe" id="tf30" value="30" class="info">
           </label>
           <label>1h
-            <input type="radio" name="timeframe" id="tf60" value="60">
+            <input type="radio" name="timeframe" id="tf60" value="60" class="info">
           </label>
         </div>
         <p>Setup</p>
         <div class="setup">
           <label>Continuation
-            <input type="radio" name="setup" id="continuation" value="continuation">
+            <input type="radio" name="setup" id="continuation" class="info" value="continuation">
           </label>
           <label>Raid
-            <input type="radio" name="setup" id="raid" value="raid">
+            <input type="radio" name="setup" id="raid" class="info" value="raid">
           </label>
 
           <div class="setupInfo">
             <div class="bases hide">
               <p>Base type</p>
               <label>Blocky
-                <input type="radio" name="bases" id="blocky" value="blocky">
+                <input type="radio" name="bases" class="info" id="blocky" value="blocky">
               </label>
               <label>Wicky
-                <input type="radio" name="bases" id="wicky" value="wicky">
+                <input type="radio" name="bases" class="info" id="wicky" value="wicky">
               </label>
               <p>Visible on lower timeframes?</p>
               <label>Yes
-                <input type="radio" name="visible" id="visibleYes" value="yes">
+                <input type="radio" name="visible" class="info" id="visibleYes" value="yes">
               </label>
               <label>No
-                <input type="radio" name="visible" id="visibleNo" value="no">
+                <input type="radio" name="visible" class="info" id="visibleNo" value="no">
               </label>
               <div class="stop">
                 <p>Swing stop?</p>
                 <label>Yes
-                  <input type="radio" name="stop" id="stopYes" value="yes">
+                  <input type="radio" name="stop" class="info" id="stopYes" value="yes">
                 </label>
                 <label>Gambling stop
-                  <input type="radio" name="stop" id="stopGamble" value="gamble">
+                  <input type="radio" name="stop" class="info" id="stopGamble" value="gamble">
                 </label>
                 <label>Stop above minor high on LTF
-                  <input type="radio" name="stop" id="stopLTF" value="ltf">
+                  <input type="radio" name="stop" class="info" id="stopLTF" value="ltf">
                 </label>
               </div>
             </div>
@@ -147,17 +147,17 @@
             <div class="raids ">
               <p>MSB type</p>
               <label>Origin
-                <input type="radio" name="msb" id="origin" value="origin">
+                <input type="radio" name="msb" class="info" id="origin" value="origin">
               </label>
               <label>Shady
-                <input type="radio" name="msb" id="shady" value="shady">
+                <input type="radio" name="msb" class="info" id="shady" value="shady">
               </label>
               <p>Was this clear MSB on higher timeframe?</p>
               <label>Yes
-                <input type="radio" name="clear" id="clearYes" value="yes">
+                <input type="radio" name="clear" class="info" id="clearYes" value="yes">
               </label>
               <label>No
-                <input type="radio" name="clear" id="visibleNo" value="no">
+                <input type="radio" name="clear" class="info" id="visibleNo" value="no">
               </label>
 
             </div>
@@ -168,29 +168,32 @@
       <div class="improvements">
         <h1>Improvements</h1>
         <div class="separator"></div>
+        <!-- Was there bigger resistance to the left -->
+        <!-- Was trade align with htf bias? -->
+        <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
         <!-- If stopped bases+raids-->
         <div class="ifswingDiv">
           <p id="ifSwingLabel">Did swing stop worked out?</p>
           <label>Yes
-            <input type="radio" name="ifSwing" id="ifSwingYes" value="yes">
+            <input type="radio" name="ifSwing" class="info" id="ifSwingYes" value="yes">
           </label>
           <label>No
-            <input type="radio" name="ifSwing" id="ifSwingNo" value="no">
+            <input type="radio" name="ifSwing" class="info" id="ifSwingNo" value="no">
           </label>
           <!-- if yes -->
           <div class="missedR ">
             <label>How many R missed by stupidity?</label>
-            <input type="text" name="missedR" id="missedR">
+            <input type="text" name="missedR" class="info" id="missedR">
           </div>
         </div>
         <!-- If won bases -->
         <div class="ifLTFDiv hide">
           <p>Did LTF stop worked out?</p>
           <label>Yes
-            <input type="radio" name="ifLTF" id="ifLTFYes" value="yes">
+            <input type="radio" name="ifLTF" class="info" id="ifLTFYes" value="yes">
           </label>
           <label>No
-            <input type="radio" name="ifLTF" id="ifLTFNo" value="no">
+            <input type="radio" name="ifLTF" class="info" id="ifLTFNo" value="no">
           </label>
         </div>
 
@@ -199,29 +202,29 @@
         <div class="ifFiboDiv">
           <p>Did 0.65 with 0.786 stop worked out?</p>
           <label>Yes
-            <input type="radio" name="ifFibo" id="ifFiboYes" value="yes">
+            <input type="radio" name="ifFibo" class="info" id="ifFiboYes" value="yes">
           </label>
           <label>No
-            <input type="radio" name="ifFibo" id="ifFiboNo" value="no">
+            <input type="radio" name="ifFibo" class="info" id="ifFiboNo" value="no">
           </label>
         </div>
         <div class="ifFiboExtendedDiv">
           <p>Did 0.65 with 0.88 stop worked out?</p>
           <label>Yes
-            <input type="radio" name="ifFiboExtended" id="ifFiboExtendedYes" value="yes">
+            <input type="radio" name="ifFiboExtended" class="info" id="ifFiboExtendedYes" value="yes">
           </label>
           <label>No
-            <input type="radio" name="ifFiboExtended" id="ifFiboExtendedNo" value="no">
+            <input type="radio" name="ifFiboExtended" class="info" id="ifFiboExtendedNo" value="no">
           </label>
         </div>
         <!-- if used swing stop -->
         <div class="if01Stop hide">
           <p>Did stop above 1 (minor liq line) worked out?</p>
           <label>Yes
-            <input type="radio" name="if01Stop" id="if01StopYes" value="yes">
+            <input type="radio" name="if01Stop" class="info" id="if01StopYes" value="yes">
           </label>
           <label>No
-            <input type="radio" name="if01Stop" id="if01StopNo" value="no">
+            <input type="radio" name="if01Stop" class="info" id="if01StopNo" value="no">
           </label>
         </div>
 
