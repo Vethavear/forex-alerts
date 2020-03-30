@@ -96,13 +96,13 @@ i {
   transition: 0.5s all;
 }
 
-.clicked {
+.checked {
   background: black !important;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.clicked button {
+.checked button {
   color: #55def1 !important;
 }
 
@@ -473,19 +473,14 @@ nav ul li a:hover {
   left: -100px;
 }
 
+#container #addtrade .pairsTabs ul {
+  list-style-type: none;
+}
+
 #container #addtrade .pairsTabs ul li {
   background: #15191c;
   margin: 0.7rem 0;
   padding: 0.95rem 0.25rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -495,6 +490,8 @@ nav ul li a:hover {
 }
 
 #container #addtrade .pairsTabs ul li button {
+  width: 100%;
+  height: 100%;
   border: none;
   color: white;
   background: none;
