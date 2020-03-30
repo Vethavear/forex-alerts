@@ -74,6 +74,7 @@ const UICtrl = (function () {
     currentPair: document.getElementById("currentpair"),
     firedAlertsContainer: document.querySelector(".alertsfired ul"),
     // Journal
+    currentTradeR: document.getElementById('result'),
     dailytrades: document.getElementById('dailytrades'),
     weeklytrades: document.getElementById('weeklytrades'),
     gains: document.getElementById('R'),
@@ -81,8 +82,31 @@ const UICtrl = (function () {
     journalCurrentPair: document.getElementById('pair'),
     // Adding trade radios etc
     journalRadios: document.querySelectorAll('.info'),
-    missedRInput: document.getElementById('missedR'),
-
+    setup: document.getElementById('setup'),
+    fill: document.getElementById('fill'),
+    continuation: document.getElementById('continuation'),
+    raid: document.getElementById('raid'),
+    basesContainer: document.getElementById('bases'),
+    raidsContainer: document.getElementById('raids'),
+    continuationStops: document.getElementById('continuationStops'),
+    continuationEntries: document.getElementById('continuationEntries'),
+    raidsStops: document.getElementById('raidsStops'),
+    ifswingDiv: document.getElementById('ifswingDiv'),
+    missedRInputContainer: document.getElementsByClassName('missedR').item(0),
+    ifSwingStopWorked: document.getElementById('ifSwingYes'),
+    ifSwingStopDidntWork: document.getElementById('ifSwingNo'),
+    ifLTFDiv: document.getElementById('ifLTFDiv'),
+    ifWicksDiv: document.getElementById('ifWicksDiv'),
+    cuttedRStopDiv: document.getElementById('cuttedRStopDiv'),
+    cuttedREntryCloseDiv: document.getElementById('cuttedREntryCloseDiv'),
+    cuttedREntryMiddleDiv: document.getElementById('cuttedREntryMiddleDiv'),
+    stopBasesYes: document.getElementById('stopBasesYes'),
+    ifWicksCloseYes: document.getElementById('ifWicksCloseYes'),
+    ifWicksMiddleYes: document.getElementById('ifWicksMiddleYes'),
+    ifWickClosesNo: document.getElementById('ifWickClosesNo'),
+    ifWicksMiddleNo: document.getElementById('ifWicksMiddleNo'),
+    ifLTFStopWorked: document.getElementById('ifLTFYes'),
+    ifLTFStopDidntWork: document.getElementById('ifLTFNo'),
     // timeframeRadio: document.getElementsByName('timeframe'),
     // setupRadio: document.getElementsByName('setup'),
     // basesRadio: document.getElementsByName('bases'),
@@ -136,10 +160,14 @@ const UICtrl = (function () {
       currentlyChecked.classList.remove('checked');
       // add checked class to currently clicked class
       clickedTab.setAttribute('class', 'checked');
-
-      
     },
-    
+    hideContainer: (container, hide) => {
+      if (hide) {
+        container.classList.add('hide')
+      } else {
+        container.classList.remove('hide');
+      }
+    }
   };
 })();
 
@@ -219,6 +247,102 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
         };
       });
 
+      // expand additional info on certain conditions
+      const currentTradeR = document.getElementById('result');
+
+      currentTradeR.addEventListener('input', (e) => {
+
+        UICtrl.hideContainer(selectors.setup, false);
+        UICtrl.hideContainer(selectors.fill, true);
+
+        // setup picker
+        selectors.continuation.addEventListener('click', (e) => {
+          // CONTINUATION SETUPS
+          UICtrl.hideContainer(selectors.basesContainer, false);
+          // If mistake
+          selectors.raid.addEventListener('click', (e) => {
+            UICtrl.hideContainer(selectors.basesContainer, true);
+          });
+
+          if (currentTradeR.value < 0) {
+            // lose
+            selectors.continuationStops.addEventListener('click', e => {
+              if (e.target.matches('#stopBasesGamble') || (e.target.matches('#stopBasesLTF'))) {
+                // stopped but used tighter stop, possibility of mistake
+                UICtrl.hideContainer(selectors.ifswingDiv, false);
+              } else {
+                UICtrl.hideContainer(selectors.ifswingDiv, true);
+              }
+            })
+          } else {
+            // win, check if stop  and entry could be better
+
+            // entries
+            selectors.continuationEntries.addEventListener('click', e => {
+              // entry at wick
+              if (e.target.matches('#entryBasesWicks')) {
+                UICtrl.hideContainer(selectors.ifWicksDiv, false);
+                selectors.ifWicksCloseYes.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.cuttedREntryCloseDiv, false);
+                });
+                selectors.ifWickClosesNo.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.cuttedREntryCloseDiv, true);
+                });
+                selectors.ifWicksMiddleYes.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.cuttedREntryMiddleDiv, false);
+                });
+                selectors.ifWicksMiddleNo.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.cuttedREntryMiddleDiv, true);
+                });
+
+              } else {
+                UICtrl.hideContainer(selectors.ifLTFDiv, true);
+              }
+            })
+
+            // stops
+            selectors.continuationStops.addEventListener('click', e => {
+              // swing stop
+              if (e.target.matches('#stopBasesYes')) {
+                UICtrl.hideContainer(selectors.ifLTFDiv, false);
+                selectors.ifLTFStopWorked.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.cuttedRStopDiv, false);
+                });
+                selectors.ifLTFStopDidntWork.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.cuttedRStopDiv, true);
+                });
+
+              } else {
+                UICtrl.hideContainer(selectors.ifLTFDiv, true);
+              }
+            })
+          }
+        })
+        selectors.raid.addEventListener('click', (e) => {
+          // raids
+          UICtrl.hideContainer(selectors.raidsContainer, false);
+          // If mistake
+          selectors.continuation.addEventListener('click', (e) => {
+            UICtrl.hideContainer(selectors.raidsContainer, true);
+          });
+        })
+
+        if (currentTradeR.value < 0) {
+          // // if stopped, wait for swing stop data
+          selectors.ifSwingStopWorked.addEventListener('click', (e) => {
+            UICtrl.hideContainer(selectors.missedRInputContainer, false);
+            // If mistake
+            selectors.ifSwingStopDidntWork.addEventListener('click', (e) => {
+              UICtrl.hideContainer(selectors.missedRInputContainer, true);
+            });
+          })
+        } else {
+          // positive R base case:
+          selectors.ifSwingStopWorked.addEventListener('click', (e) => {
+            UICtrl.hideContainer(selectors.missedRInputContainer, false);
+          })
+        }
+      })
       // let prices;
       // // Get prices from API
       // // EURGBP,USDJPY,EURUSD, GBPUSD, AUDUSD, USDCHF, USDCAD

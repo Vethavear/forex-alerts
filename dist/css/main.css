@@ -96,6 +96,11 @@ i {
   transition: 0.5s all;
 }
 
+label:hover {
+  color: #55def1;
+  cursor: pointer;
+}
+
 .checked {
   background: black !important;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -319,7 +324,7 @@ nav ul li a:hover {
   color: #55def1;
 }
 
-.alertsfired {
+#pairpicker .alertsfired {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   position: fixed;
@@ -337,7 +342,7 @@ nav ul li a:hover {
   justify-items: center;
 }
 
-.alertsfired .labels {
+#pairpicker .alertsfired .labels {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
@@ -348,11 +353,11 @@ nav ul li a:hover {
           align-items: stretch;
 }
 
-.alertsfired ul {
+#pairpicker .alertsfired ul {
   list-style-type: none;
 }
 
-.alertsfired ul li {
+#pairpicker .alertsfired ul li {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
@@ -360,15 +365,17 @@ nav ul li a:hover {
 }
 
 #container {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
   width: 100%;
-  margin-top: 5vh;
+  margin-top: 1vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 95vh;
+  min-height: 103vh;
 }
 
 #container button {
@@ -404,6 +411,8 @@ nav ul li a:hover {
   right: 0;
   width: 15%;
   margin: 1rem 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 #container #stats,
@@ -574,7 +583,7 @@ nav ul li a:hover {
   color: #55def1;
 }
 
-#container #addtrade .additionalInfo .setupInfo .bases .stop {
+#container #addtrade .additionalInfo .setupInfo #bases #continuationStops, #container #addtrade .additionalInfo .setupInfo #bases #raidsStops, #container #addtrade .additionalInfo .setupInfo #raids #continuationStops, #container #addtrade .additionalInfo .setupInfo #raids #raidsStops {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
@@ -610,6 +619,38 @@ nav ul li a:hover {
 
 #container #addtrade .improvements .missedR label {
   font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#container #addtrade .improvements #cuttedREntryMiddleDiv, #container #addtrade .improvements #cuttedREntryCloseDiv, #container #addtrade .improvements #cuttedRStopDiv {
+  margin: 0.25rem 0;
+  position: relative;
+}
+
+#container #addtrade .improvements #cuttedREntryMiddleDiv input, #container #addtrade .improvements #cuttedREntryCloseDiv input, #container #addtrade .improvements #cuttedRStopDiv input {
+  border: none;
+  border-bottom: 2px solid gray;
+  background: #15191c;
+  margin-top: 2rem;
+  padding: 0 0.25rem;
+  height: 30px;
+  color: white;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: lighter;
+}
+
+#container #addtrade .improvements #cuttedREntryMiddleDiv input:focus, #container #addtrade .improvements #cuttedREntryMiddleDiv input:hover, #container #addtrade .improvements #cuttedREntryCloseDiv input:focus, #container #addtrade .improvements #cuttedREntryCloseDiv input:hover, #container #addtrade .improvements #cuttedRStopDiv input:focus, #container #addtrade .improvements #cuttedRStopDiv input:hover {
+  border-color: #55def1;
+}
+
+#container #addtrade .improvements #cuttedREntryMiddleDiv label, #container #addtrade .improvements #cuttedREntryCloseDiv label, #container #addtrade .improvements #cuttedRStopDiv label {
+  font-size: 1rem;
   position: absolute;
   top: 0;
   left: 0;
