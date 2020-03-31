@@ -375,7 +375,7 @@ nav ul li a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  min-height: 103vh;
+  min-height: 90vh;
 }
 
 #container button {
@@ -465,7 +465,6 @@ nav ul li a:hover {
   padding-top: 5rem;
   position: relative;
   width: 50%;
-  height: 90%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
@@ -626,12 +625,12 @@ nav ul li a:hover {
   transition: all 0.5s;
 }
 
-#container #addtrade .improvements #cuttedREntryMiddleDiv, #container #addtrade .improvements #cuttedREntryCloseDiv, #container #addtrade .improvements #cuttedRStopDiv {
+#container #addtrade .improvements .inputText {
   margin: 0.25rem 0;
   position: relative;
 }
 
-#container #addtrade .improvements #cuttedREntryMiddleDiv input, #container #addtrade .improvements #cuttedREntryCloseDiv input, #container #addtrade .improvements #cuttedRStopDiv input {
+#container #addtrade .improvements .inputText input {
   border: none;
   border-bottom: 2px solid gray;
   background: #15191c;
@@ -645,11 +644,11 @@ nav ul li a:hover {
   font-weight: lighter;
 }
 
-#container #addtrade .improvements #cuttedREntryMiddleDiv input:focus, #container #addtrade .improvements #cuttedREntryMiddleDiv input:hover, #container #addtrade .improvements #cuttedREntryCloseDiv input:focus, #container #addtrade .improvements #cuttedREntryCloseDiv input:hover, #container #addtrade .improvements #cuttedRStopDiv input:focus, #container #addtrade .improvements #cuttedRStopDiv input:hover {
+#container #addtrade .improvements .inputText input:focus, #container #addtrade .improvements .inputText input:hover {
   border-color: #55def1;
 }
 
-#container #addtrade .improvements #cuttedREntryMiddleDiv label, #container #addtrade .improvements #cuttedREntryCloseDiv label, #container #addtrade .improvements #cuttedRStopDiv label {
+#container #addtrade .improvements .inputText label {
   font-size: 1rem;
   position: absolute;
   top: 0;
@@ -699,4 +698,36 @@ footer {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+
+.inputText {
+  margin: 0.25rem 0;
+  position: relative;
+}
+
+.inputText input {
+  border: none;
+  border-bottom: 2px solid gray;
+  background: #15191c;
+  margin-top: 2rem;
+  padding: 0 0.25rem;
+  height: 30px;
+  color: white;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: lighter;
+}
+
+.inputText input:focus, .inputText input:hover {
+  border-color: #55def1;
+}
+
+.inputText label {
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }

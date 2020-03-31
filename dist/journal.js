@@ -91,22 +91,58 @@ const UICtrl = (function () {
     continuationStops: document.getElementById('continuationStops'),
     continuationEntries: document.getElementById('continuationEntries'),
     raidsStops: document.getElementById('raidsStops'),
+    raidsEntries: document.getElementById('raidsEntries'),
     ifswingDiv: document.getElementById('ifswingDiv'),
-    missedRInputContainer: document.getElementsByClassName('missedR').item(0),
-    ifSwingStopWorked: document.getElementById('ifSwingYes'),
-    ifSwingStopDidntWork: document.getElementById('ifSwingNo'),
+    ifSwingYes: document.getElementById('ifSwingYes'),
+    missedR: document.getElementById('missedR'),
+    ifSwingNo: document.getElementById('ifSwingNo'),
     ifLTFDiv: document.getElementById('ifLTFDiv'),
     ifWicksDiv: document.getElementById('ifWicksDiv'),
     cuttedRStopDiv: document.getElementById('cuttedRStopDiv'),
     cuttedREntryCloseDiv: document.getElementById('cuttedREntryCloseDiv'),
     cuttedREntryMiddleDiv: document.getElementById('cuttedREntryMiddleDiv'),
     stopBasesYes: document.getElementById('stopBasesYes'),
+    //profit:
     ifWicksCloseYes: document.getElementById('ifWicksCloseYes'),
     ifWicksMiddleYes: document.getElementById('ifWicksMiddleYes'),
     ifWickClosesNo: document.getElementById('ifWickClosesNo'),
     ifWicksMiddleNo: document.getElementById('ifWicksMiddleNo'),
     ifLTFStopWorked: document.getElementById('ifLTFYes'),
     ifLTFStopDidntWork: document.getElementById('ifLTFNo'),
+    // loses
+    entryRaids65: document.getElementById('entryRaids65'),
+    entryRaidsYes: document.getElementById('entryRaidsYes'),
+    ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
+    if01Stop: document.getElementById('if01Stop'),
+    ifSwingStopRaidsDiv: document.getElementById('ifSwingStopRaidsDiv'),
+    ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
+    ifFiboExtendedYes: document.getElementById('ifFiboExtendedYes'),
+    missedR078Div: document.getElementById('missedR078Div'),
+    ifFiboExtendedNo: document.getElementById('ifFiboExtendedNo'),
+    if01StopYes: document.getElementById('if01StopYes'),
+    if01StopNo: document.getElementById('if01StopNo'),
+    missedR01Div: document.getElementById('missedR01Div'),
+    ifSwingStopRaidsDiv: document.getElementById('ifSwingStopRaidsDiv'),
+    ifSwingStopRaidsStopYes: document.getElementById('ifSwingStopRaidsStopYes'),
+    missedRSwingDiv: document.getElementById('missedRSwingDiv'),
+    ifSwingStopRaidsStopNo: document.getElementById('ifSwingStopRaidsStopNo'),
+    // profit
+    ifFiboDiv: document.getElementById('ifFiboDiv'),
+    ifFiboYes: document.getElementById('ifFiboYes'),
+    ifFiboNo: document.getElementById('ifFiboNo'),
+    cuttedR065x0786: document.getElementById('cuttedR065x0786'),
+    ifFibo088Div: document.getElementById('ifFibo088Div'),
+    ifFibo088Yes: document.getElementById('ifFibo088Yes'),
+    ifFibo088No: document.getElementById('ifFibo088No'),
+    cuttedR065x088: document.getElementById('cuttedR065x088'),
+    ifFibo078x088Div: document.getElementById('ifFibo078x088Div'),
+    ifFibo078x088Yes: document.getElementById('ifFibo078x088Yes'),
+    ifFibo078x088No: document.getElementById('ifFibo078x088No'),
+    cuttedR078x088: document.getElementById('cuttedR078x088'),
+    ifFibo088x1Div: document.getElementById('ifFibo088x1Div'),
+    Fibo088x1Yes: document.getElementById('Fibo088x1Yes'),
+    Fibo088x1No: document.getElementById('Fibo088x1No'),
+    cuttedR088x1: document.getElementById('cuttedR088x1'),
     // timeframeRadio: document.getElementsByName('timeframe'),
     // setupRadio: document.getElementsByName('setup'),
     // basesRadio: document.getElementsByName('bases'),
@@ -265,15 +301,29 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
           });
 
           if (currentTradeR.value < 0) {
+            // swing stop
+
             // lose
             selectors.continuationStops.addEventListener('click', e => {
               if (e.target.matches('#stopBasesGamble') || (e.target.matches('#stopBasesLTF'))) {
                 // stopped but used tighter stop, possibility of mistake
                 UICtrl.hideContainer(selectors.ifswingDiv, false);
+                console.log('elo');
+                selectors.ifSwingYes.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.missedR, false);
+                })
+                selectors.ifSwingNo.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.missedR, true);
+                })
+
+
+
+
               } else {
                 UICtrl.hideContainer(selectors.ifswingDiv, true);
               }
             })
+
           } else {
             // win, check if stop  and entry could be better
 
@@ -302,10 +352,10 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
 
             // stops
             selectors.continuationStops.addEventListener('click', e => {
-              // swing stop
               if (e.target.matches('#stopBasesYes')) {
                 UICtrl.hideContainer(selectors.ifLTFDiv, false);
                 selectors.ifLTFStopWorked.addEventListener('click', e => {
+                  // NIE POJAWIA SIE INPUT
                   UICtrl.hideContainer(selectors.cuttedRStopDiv, false);
                 });
                 selectors.ifLTFStopDidntWork.addEventListener('click', e => {
@@ -318,30 +368,159 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
             })
           }
         })
-        selectors.raid.addEventListener('click', (e) => {
-          // raids
+
+        selectors.raid.addEventListener('click', e => {
+          // RAIDS SETUPS
           UICtrl.hideContainer(selectors.raidsContainer, false);
           // If mistake
-          selectors.continuation.addEventListener('click', (e) => {
+          selectors.continuation.addEventListener('click', e => {
             UICtrl.hideContainer(selectors.raidsContainer, true);
           });
-        })
 
-        if (currentTradeR.value < 0) {
-          // // if stopped, wait for swing stop data
-          selectors.ifSwingStopWorked.addEventListener('click', (e) => {
-            UICtrl.hideContainer(selectors.missedRInputContainer, false);
-            // If mistake
-            selectors.ifSwingStopDidntWork.addEventListener('click', (e) => {
-              UICtrl.hideContainer(selectors.missedRInputContainer, true);
+          selectors.raidsEntries.addEventListener('click', e => {
+            UICtrl.hideContainer(selectors.raidsStops, false);
+            UICtrl.hideContainer(selectors.if01Stop, true);
+            UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+            UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+          })
+
+          // if loss
+
+          if (currentTradeR.value < 0) {
+
+            selectors.raidsStops.addEventListener('click', e => {
+
+              if (e.target.matches('#stopRaidsYes')) {
+                // if swing stop, hide all
+                // if (selectors.entryRaids65.checked) {
+                // 0.78 stop, check if 0.88 and swing worked out
+                UICtrl.hideContainer(selectors.if01Stop, true);
+                UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+
+              }
+              else if (e.target.matches('#stop078Raids')) {
+                // if fibo entry
+                // if (selectors.entryRaids65.checked) {
+                // 0.78 stop, check if 0.88 and swing worked out
+                UICtrl.hideContainer(selectors.ifFiboExtendedDiv, false);
+
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+                UICtrl.hideContainer(selectors.if01Stop, true);
+
+              } else if (e.target.matches('#stop088Raids')) {
+                UICtrl.hideContainer(selectors.if01Stop, false);
+
+                UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+
+              } else if (e.target.matches('#stop1Raids')) {
+
+                UICtrl.hideContainer(selectors.if01Stop, true);
+                UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+
+
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, false);
+              } else if (e.target.matches('#stopRaidsGamble')) {
+                UICtrl.hideContainer(selectors.ifFiboExtendedDiv, false);
+
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+                UICtrl.hideContainer(selectors.if01Stop, true);
+
+              }
+
+              // cases always true:
+              selectors.ifFiboExtendedYes.addEventListener('click', e => {
+                UICtrl.hideContainer(selectors.missedR078Div, false);
+
+                // hide rest if mistake
+                UICtrl.hideContainer(selectors.if01Stop, true);
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+
+              })
+              selectors.ifFiboExtendedNo.addEventListener('click', e => {
+                UICtrl.hideContainer(selectors.missedR078Div, true);
+                // then did stop above minor liq hunt line worked out?
+                UICtrl.hideContainer(selectors.if01Stop, false);
+              })
+              selectors.if01StopYes.addEventListener('click', e => {
+                UICtrl.hideContainer(selectors.missedR01Div, false);
+                // hide rest if mistake
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+
+              })
+              selectors.if01StopNo.addEventListener('click', e => {
+                UICtrl.hideContainer(selectors.missedR01Div, true);
+                // then did swing stop worked out?
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, false);
+              })
+              selectors.ifSwingStopRaidsStopYes.addEventListener('click', e => {
+                UICtrl.hideContainer(selectors.missedRSwingDiv, false);
+              })
+              selectors.ifSwingStopRaidsStopNo.addEventListener('click', e => {
+                UICtrl.hideContainer(selectors.missedRSwingDiv, true);
+              })
+            })
+          } else {
+            // gain RAIDS
+
+            selectors.raidsStops.addEventListener('click', e => {
+
+              if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked) {
+                // swing stop and middle of msb entry
+                UICtrl.hideContainer(selectors.ifFiboDiv, false);
+
+              } else if (e.target.matches('#stopRaidsYes') && selectors.entry1Raids786.checked) {
+                // swing stop and 0786 entry
+                UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
+              } else  {
+               
+                UICtrl.hideContainer(selectors.ifFiboDiv, false);
+              }
+
             });
-          })
-        } else {
-          // positive R base case:
-          selectors.ifSwingStopWorked.addEventListener('click', (e) => {
-            UICtrl.hideContainer(selectors.missedRInputContainer, false);
-          })
-        }
+
+            // always true listeners
+            selectors.ifFiboYes.addEventListener('click', e => {
+              UICtrl.hideContainer(selectors.cuttedR065x0786, false);
+
+            })
+            selectors.ifFiboNo.addEventListener('click', e => {
+              UICtrl.hideContainer(selectors.cuttedR065x0786, true);
+// show next
+UICtrl.hideContainer(selectors.ifFibo088Div, false);
+
+            })
+            selectors.ifFibo088Yes.addEventListener('click', e => {
+              UICtrl.hideContainer(selectors.cuttedR065x088, false);
+              UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
+
+            })
+            selectors.ifFibo088No.addEventListener('click', e => {
+              UICtrl.hideContainer(selectors.cuttedR065x088, true);
+
+            })
+            selectors.ifFibo078x088Yes.addEventListener('click', e => {
+              UICtrl.hideContainer(selectors.cuttedR078x088, false);
+
+            })
+            selectors.ifFibo078x088No.addEventListener('click', e => {
+              UICtrl.hideContainer(selectors.cuttedR078x088, true);
+              UICtrl.hideContainer(selectors.ifFibo088x1Div, false);
+
+            })
+            selectors.Fibo088x1Yes.addEventListener('click', e => {
+              UICtrl.hideContainer(selectors.cuttedR088x1, false);
+
+            })
+            selectors.Fibo088x1No.addEventListener('click', e => {
+              UICtrl.hideContainer(selectors.cuttedR088x1, true);
+
+            })
+
+          }
+        })
       })
       // let prices;
       // // Get prices from API

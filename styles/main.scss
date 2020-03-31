@@ -228,7 +228,7 @@ nav {
   margin-top: 1vh;
   display: flex;
   justify-content: center;
-  min-height:103vh;
+  min-height:90vh;
   button {
     border: none;
     background: white;
@@ -291,7 +291,7 @@ nav {
     padding-top: 5rem;
     position: relative;
     width: 50%;
-    height: 90%;
+    // min-height: 50vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     overflow: visible;
@@ -425,7 +425,7 @@ nav {
           transition: all 0.5s;
         }
       }
-      #cuttedREntryMiddleDiv, #cuttedREntryCloseDiv, #cuttedRStopDiv {
+      .inputText {
         margin: 0.25rem 0;
         position: relative;
         input {
@@ -491,4 +491,31 @@ footer {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+.inputText {
+  margin: 0.25rem 0;
+  position: relative;
+  input {
+    border: none;
+    border-bottom: 2px solid gray;
+    background: $primary-color;
+    margin-top: 2rem;
+    padding: 0 0.25rem;
+    height: 30px;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    font-weight: lighter;
+    &:focus,
+    &:hover {
+      border-color: $hover-color;
+    }
+  }
+  label {
+    font-size: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s;
+  }
 }
