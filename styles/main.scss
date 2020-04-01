@@ -9,6 +9,9 @@ textarea:focus,
 select:focus {
   outline: 0;
 }
+textarea{
+  resize: none;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -24,6 +27,12 @@ body {
 button,
 i {
   transition: 0.5s all;
+}
+label{
+  &:hover{
+    color: $hover-color;
+    cursor: pointer;
+  }
 }
 //utils
 .checked {
@@ -90,8 +99,7 @@ nav {
       list-style-type: none;
       li {
         button {
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-            0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
           font-weight: bold;
           color: $primary-color;
           background: white;
@@ -143,52 +151,49 @@ nav {
           background: $hover-color;
         }
       }
-
-
-    .radio-container {
-      width: 100%;
-      margin-left: 40px;
-      label,
-      input {
-        padding: 0.5rem;
+    }
+      .radio-container {
+        width: 100%;
+        margin-left: 40px;
+        label,
+        input {
+          padding: 0.5rem;
+        }
       }
 
-    }
-
-    .table {
-      margin: 1rem 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .row {
-        h3,
-        p,
-        button {
-          padding: 0 1rem;
-        }
-        margin: 0.5rem 0;
-        width: 100%;
-
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        border-bottom: 1px solid white;
-        button {
-          cursor: pointer;
-          background: none;
-          border: none;
-          i {
-            font-size: 1.5rem;
-            color: white;
-            &:hover {
-              color: $hover-color;
+      .table {
+        margin: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .row {
+          h3,
+          p,
+          button {
+            padding: 0 1rem;
+          }
+          margin: 0.5rem 0;
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          border-bottom: 1px solid white;
+          button {
+            cursor: pointer;
+            background: none;
+            border: none;
+            i {
+              font-size: 1.5rem;
+              color: white;
+              &:hover {
+                color: $hover-color;
+              }
             }
           }
         }
       }
     }
-  }
-}
+
 
 .alertsfired {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -217,15 +222,16 @@ nav {
     }
   }
 }
-
+}
 // Journal
 
 #container {
+  transition: all 0.5s;
   width: 100%;
-  margin-top: 5vh;
+  margin-top: 1vh;
   display: flex;
   justify-content: center;
-  height: 95vh;
+  min-height:90vh;
   button {
     border: none;
     background: white;
@@ -251,6 +257,8 @@ nav {
     right: 0;
     width: 15%;
     margin: 1rem 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
   }
   #stats,
   #addtrade,
@@ -286,7 +294,7 @@ nav {
     padding-top: 5rem;
     position: relative;
     width: 50%;
-    height: 90%;
+    // min-height: 50vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     overflow: visible;
@@ -324,8 +332,8 @@ nav {
           border-top-left-radius: 10px;
           border-bottom-left-radius: 10px;
           button {
-            width:100%;
-            height:100%;
+            width: 100%;
+            height: 100%;
             border: none;
             color: white;
             background: none;
@@ -362,13 +370,22 @@ nav {
           left: 0;
           transition: all 0.5s;
         }
+        textarea{
+          // border: 2px solid white;
+          background: #EEF0F2;
+          border-radius: 0.5rem;
+          margin: 3rem;
+          &:hover{
+          border: 1px solid $hover-color;
+          }
+        }
       }
     }
     .additionalInfo {
       margin: 0 1rem;
       p {
         font-weight: bold;
-        margin: 1rem 0;
+        margin: 0.5rem 0;
       }
       .setup,
       .tf {
@@ -381,8 +398,8 @@ nav {
         }
       }
       .setupInfo {
-        .bases {
-          .stop {
+        #bases, #raids {
+          #continuationStops, #raidsStops {
             display: grid;
             grid-template-columns: 1fr;
           }
@@ -394,7 +411,7 @@ nav {
         font-weight: bold;
         margin: 1rem 0;
       }
-      .missedR{
+      .missedR {
         position: relative;
         input {
           border: none;
@@ -414,6 +431,33 @@ nav {
         }
         label {
           font-size: 1.2rem;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: all 0.5s;
+        }
+      }
+      .inputText {
+        margin: 0.25rem 0;
+        position: relative;
+        input {
+          border: none;
+          border-bottom: 2px solid gray;
+          background: $primary-color;
+          margin-top: 2rem;
+          padding: 0 0.25rem;
+          height: 30px;
+          color: white;
+          font-size: 1.1rem;
+          transition: all 0.3s;
+          font-weight: lighter;
+          &:focus,
+          &:hover {
+            border-color: $hover-color;
+          }
+        }
+        label {
+          font-size: 1rem;
           position: absolute;
           top: 0;
           left: 0;
@@ -460,4 +504,30 @@ footer {
   bottom: 0;
   left: 0;
 }
-
+.inputText {
+  margin: 0.25rem 0;
+  position: relative;
+  input {
+    border: none;
+    border-bottom: 2px solid gray;
+    background: $primary-color;
+    margin-top: 2rem;
+    padding: 0 0.25rem;
+    height: 30px;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    font-weight: lighter;
+    &:focus,
+    &:hover {
+      border-color: $hover-color;
+    }
+  }
+  label {
+    font-size: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s;
+  }
+}

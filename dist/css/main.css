@@ -75,6 +75,10 @@ select:focus {
   outline: 0;
 }
 
+textarea {
+  resize: none;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -94,6 +98,11 @@ button,
 i {
   -webkit-transition: 0.5s all;
   transition: 0.5s all;
+}
+
+label:hover {
+  color: #55def1;
+  cursor: pointer;
 }
 
 .checked {
@@ -319,7 +328,7 @@ nav ul li a:hover {
   color: #55def1;
 }
 
-.alertsfired {
+#pairpicker .alertsfired {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   position: fixed;
@@ -337,7 +346,7 @@ nav ul li a:hover {
   justify-items: center;
 }
 
-.alertsfired .labels {
+#pairpicker .alertsfired .labels {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
@@ -348,11 +357,11 @@ nav ul li a:hover {
           align-items: stretch;
 }
 
-.alertsfired ul {
+#pairpicker .alertsfired ul {
   list-style-type: none;
 }
 
-.alertsfired ul li {
+#pairpicker .alertsfired ul li {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
@@ -360,15 +369,17 @@ nav ul li a:hover {
 }
 
 #container {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
   width: 100%;
-  margin-top: 5vh;
+  margin-top: 1vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 95vh;
+  min-height: 90vh;
 }
 
 #container button {
@@ -404,6 +415,8 @@ nav ul li a:hover {
   right: 0;
   width: 15%;
   margin: 1rem 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 #container #stats,
@@ -456,7 +469,6 @@ nav ul li a:hover {
   padding-top: 5rem;
   position: relative;
   width: 50%;
-  height: 90%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
@@ -549,13 +561,23 @@ nav ul li a:hover {
   transition: all 0.5s;
 }
 
+#container #addtrade .basic .row textarea {
+  background: #EEF0F2;
+  border-radius: 0.5rem;
+  margin: 3rem;
+}
+
+#container #addtrade .basic .row textarea:hover {
+  border: 1px solid #55def1;
+}
+
 #container #addtrade .additionalInfo {
   margin: 0 1rem;
 }
 
 #container #addtrade .additionalInfo p {
   font-weight: bold;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 #container #addtrade .additionalInfo .setup,
@@ -574,7 +596,7 @@ nav ul li a:hover {
   color: #55def1;
 }
 
-#container #addtrade .additionalInfo .setupInfo .bases .stop {
+#container #addtrade .additionalInfo .setupInfo #bases #continuationStops, #container #addtrade .additionalInfo .setupInfo #bases #raidsStops, #container #addtrade .additionalInfo .setupInfo #raids #continuationStops, #container #addtrade .additionalInfo .setupInfo #raids #raidsStops {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
@@ -610,6 +632,38 @@ nav ul li a:hover {
 
 #container #addtrade .improvements .missedR label {
   font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#container #addtrade .improvements .inputText {
+  margin: 0.25rem 0;
+  position: relative;
+}
+
+#container #addtrade .improvements .inputText input {
+  border: none;
+  border-bottom: 2px solid gray;
+  background: #15191c;
+  margin-top: 2rem;
+  padding: 0 0.25rem;
+  height: 30px;
+  color: white;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: lighter;
+}
+
+#container #addtrade .improvements .inputText input:focus, #container #addtrade .improvements .inputText input:hover {
+  border-color: #55def1;
+}
+
+#container #addtrade .improvements .inputText label {
+  font-size: 1rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -658,4 +712,36 @@ footer {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+
+.inputText {
+  margin: 0.25rem 0;
+  position: relative;
+}
+
+.inputText input {
+  border: none;
+  border-bottom: 2px solid gray;
+  background: #15191c;
+  margin-top: 2rem;
+  padding: 0 0.25rem;
+  height: 30px;
+  color: white;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: lighter;
+}
+
+.inputText input:focus, .inputText input:hover {
+  border-color: #55def1;
+}
+
+.inputText label {
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }

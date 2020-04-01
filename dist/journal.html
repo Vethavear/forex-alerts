@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" media="screen and (max-width: 1100px)" href="css/widescreen.css">
   <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobile.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+<link rel="manifest" href="./site.webmanifest">
   <title>Forex Alerts</title>
 </head>
 
@@ -78,44 +82,54 @@
           <input type="date" name="date" id="date">
         </div>
         <div class="row">
-          <label for="result">Result</label>
+          <label for="result">Profit</label>
           <input type="text" name="result" id="result">
         </div>
         <div class="row">
           <label for="chart">Chart</label>
           <input type="text" name="chart" id="chart">
         </div>
+        <div class="row">
+          <label for="thoughts">Thoughts</label>
+        <textarea name="thoughts" id="thoughts" cols="30" rows="5"></textarea>
+        </div>
 
       </div>
       <div class="additionalInfo">
-        <h1>Additional Info</h1>
+        <h1>Technicals</h1>
         <div class="separator"></div>
+
         <p>Timeframe</p>
         <div class="tf">
           <label>5m
-            <input type="radio" name="timeframe" id="tf5" value="5" class="info">
+            <input type="radio" name="timeframe" id="tf5" value="5m" class="info">
           </label>
           <label>15m
-            <input type="radio" name="timeframe" id="tf15" value="15" class="info">
+            <input type="radio" name="timeframe" id="tf15" value="15m" class="info">
           </label>
           <label>30m
-            <input type="radio" name="timeframe" id="tf30" value="30" class="info">
+            <input type="radio" name="timeframe" id="tf30" value="30m" class="info">
           </label>
           <label>1h
-            <input type="radio" name="timeframe" id="tf60" value="60" class="info">
+            <input type="radio" name="timeframe" id="tf1H" value="1H" class="info">
+          </label>
+          <label>4h
+            <input type="radio" name="timeframe" id="tf2H" value="4H" class="info">
           </label>
         </div>
         <p>Setup</p>
-        <div class="setup">
+        <div id="fill">
+          Fill Profit pool first!
+        </div>
+        <div id="setup" class="hide">
           <label>Continuation
             <input type="radio" name="setup" id="continuation" class="info" value="continuation">
           </label>
           <label>Raid
             <input type="radio" name="setup" id="raid" class="info" value="raid">
           </label>
-
           <div class="setupInfo">
-            <div class="bases hide">
+            <div id="bases" class="hide">
               <p>Base type</p>
               <label>Blocky
                 <input type="radio" name="bases" class="info" id="blocky" value="blocky">
@@ -123,57 +137,105 @@
               <label>Wicky
                 <input type="radio" name="bases" class="info" id="wicky" value="wicky">
               </label>
-              <p>Visible on lower timeframes?</p>
+              <p>Visible on higher timeframes?</p>
               <label>Yes
                 <input type="radio" name="visible" class="info" id="visibleYes" value="yes">
               </label>
               <label>No
                 <input type="radio" name="visible" class="info" id="visibleNo" value="no">
               </label>
-              <div class="stop">
+              <p>Was there big base on the left?</p>
+              <label>Yes
+                <input type="radio" name="BigBaseLeft" class="info" id="BigBaseLeftYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" name="BigBaseLeft" class="info" id="BigBaseLeftNo" value="no">
+              </label>
+              <div id="continuationEntries">
+                <p>Entry at body?</p>
+                <label>Yes
+                  <input type="radio" name="entry" class="info" id="entryBasesYes" value="yes">
+                </label>
+                <label>Wicks
+                  <input type="radio" name="entry" class="info" id="entryBasesWicks" value="gamble">
+                </label>
+                <label>Middle of base
+                  <input type="radio" name="entry" class="info" id="entryMiddle" value="ltf">
+                </label>
+              </div>
+              <div id="continuationStops">
                 <p>Swing stop?</p>
                 <label>Yes
-                  <input type="radio" name="stop" class="info" id="stopYes" value="yes">
-                </label>
-                <label>Gambling stop
-                  <input type="radio" name="stop" class="info" id="stopGamble" value="gamble">
+                  <input type="radio" name="stop" class="info" id="stopBasesYes" value="yes">
                 </label>
                 <label>Stop above minor high on LTF
-                  <input type="radio" name="stop" class="info" id="stopLTF" value="ltf">
+                  <input type="radio" name="stop" class="info" id="stopBasesLTF" value="ltf">
+                </label>
+                <label>Gambling stop
+                  <input type="radio" name="stop" class="info" id="stopBasesGamble" value="gamble">
                 </label>
               </div>
             </div>
 
-            <div class="raids ">
+            <div id="raids" class="hide">
               <p>MSB type</p>
               <label>Origin
-                <input type="radio" name="msb" class="info" id="origin" value="origin">
+                <input type="radio" name="msb" class="info" id="origin" value="yes">
               </label>
               <label>Shady
-                <input type="radio" name="msb" class="info" id="shady" value="shady">
+                <input type="radio" name="msb" class="info" id="shady" value="yes">
               </label>
               <p>Was this clear MSB on higher timeframe?</p>
               <label>Yes
-                <input type="radio" name="clear" class="info" id="clearYes" value="yes">
+                <input type="radio" name="clear" class="info" id="clearMSBYes" value="yes">
               </label>
               <label>No
-                <input type="radio" name="clear" class="info" id="visibleNo" value="no">
+                <input type="radio" name="clear" class="info" id="clearMSBNo" value="no">
               </label>
-
+              <div id="raidsEntries">
+                <p>Entry at middle of MSB?</p>
+                <label>Yes
+                  <input type="radio" name="entry" class="info" id="entryRaidsYes" value="yes">
+                </label>
+                <label>0.65
+                  <input type="radio" name="entry" class="info" id="entryRaids65" value="yes">
+                </label>
+                <label>0.786
+                  <input type="radio" name="entry" class="info" id="entry1Raids786" value="yes">
+                </label>
+                <label>0.88
+                  <input type="radio" name="entry" class="info" id="entry1Raids88" value="yes">
+                </label>
+              </div>
+              <div id="raidsStops" class="hide">
+                <p>Swing stop?</p>
+                <label>Yes
+                  <input type="radio" name="stop" class="info" id="stopRaidsYes" value="yes">
+                </label>
+                <label>Stop above 1 (minor liq line)
+                  <input type="radio" name="stop" class="info" id="stop1Raids" value="yes">
+                </label>
+                <label>0.78 stop
+                  <input type="radio" name="stop" class="info" id="stop078Raids" value="yes">
+                </label>
+                <label>0.88 stop
+                  <input type="radio" name="stop" class="info" id="stop088Raids" value="yes">
+                </label>
+                <label>Gambling stop
+                  <input type="radio" name="stop" class="info" id="stopRaidsGamble" value="yes">
+                </label>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
+
       <div class="improvements">
         <h1>Improvements</h1>
         <div class="separator"></div>
-        <!-- Was there bigger resistance to the left -->
-        <!-- Was trade align with htf bias? -->
-        <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
         <!-- If stopped bases+raids-->
-        <div class="ifswingDiv">
-          <p id="ifSwingLabel">Did swing stop worked out?</p>
+        <div id="ifswingDiv" class="hide">
+          <p id="ifSwingLabel">Did swing stop work out?</p>
           <label>Yes
             <input type="radio" name="ifSwing" class="info" id="ifSwingYes" value="yes">
           </label>
@@ -181,14 +243,38 @@
             <input type="radio" name="ifSwing" class="info" id="ifSwingNo" value="no">
           </label>
           <!-- if yes -->
-          <div class="missedR ">
-            <label>How many R missed by stupidity?</label>
-            <input type="text" name="missedR" class="info" id="missedR">
+          <div id="missedR" class="hide inputText">
+            <label>R missed (too tight stop)?</label>
+            <input type="text" name="missedR" class="info" id="missedR" value="0">
           </div>
         </div>
         <!-- If won bases -->
-        <div class="ifLTFDiv hide">
-          <p>Did LTF stop worked out?</p>
+        <div id="ifWicksDiv" class="hide">
+          <p>Did entry at body work out?</p>
+          <label>Yes
+            <input type="radio" name="ifWicksClose" class="info" id="ifWicksCloseYes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifWicksClose" class="info" id="ifWickClosesNo" value="no">
+          </label>
+          <div id="cuttedREntryCloseDiv" class="hide inputText">
+            <label>If used entry at body, profit:</label>
+            <input type="text" name="cuttedREntryClose" class="info" id="cuttedREntryClose" value="0">
+          </div>
+          <p>Did entry at middle of base work out?</p>
+          <label>Yes
+            <input type="radio" name="ifWicksMiddle" class="info" id="ifWicksMiddleYes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifWicksMiddle" class="info" id="ifWicksMiddleNo" value="no">
+          </label>
+        </div>
+        <div id="cuttedREntryMiddleDiv" class="hide inputText">
+          <label>If used entry at middle, profit:</label>
+          <input type="text" name="cuttedREntryMiddle" class="info" id="cuttedREntryMiddle" value="0">
+        </div>
+        <div id="ifLTFDiv" class="hide">
+          <p>Did LTF stop work out?</p>
           <label>Yes
             <input type="radio" name="ifLTF" class="info" id="ifLTFYes" value="yes">
           </label>
@@ -196,38 +282,105 @@
             <input type="radio" name="ifLTF" class="info" id="ifLTFNo" value="no">
           </label>
         </div>
-
+        <div id="cuttedRStopDiv" class="hide inputText">
+          <label>If used tighter stop, profit:</label>
+          <input type="text" name="cuttedRStop" class="info" id="cuttedRStop" value="0">
+        </div>
         <!-- raids -->
 
-        <div class="ifFiboDiv">
-          <p>Did 0.65 with 0.786 stop worked out?</p>
-          <label>Yes
-            <input type="radio" name="ifFibo" class="info" id="ifFiboYes" value="yes">
-          </label>
-          <label>No
-            <input type="radio" name="ifFibo" class="info" id="ifFiboNo" value="no">
-          </label>
-        </div>
-        <div class="ifFiboExtendedDiv">
-          <p>Did 0.65 with 0.88 stop worked out?</p>
+        <!-- loses: -->
+        <div id="ifFiboExtendedDiv" class="hide">
+          <p>Did 0.88 stop work out?</p>
           <label>Yes
             <input type="radio" name="ifFiboExtended" class="info" id="ifFiboExtendedYes" value="yes">
           </label>
           <label>No
             <input type="radio" name="ifFiboExtended" class="info" id="ifFiboExtendedNo" value="no">
           </label>
+          <div id="missedR078Div" class="hide inputText">
+            <label>R missed (too tight stop)?</label>
+            <input type="text" name="missedR" class="info" id="missedR078" value="0">
+          </div>
         </div>
-        <!-- if used swing stop -->
-        <div class="if01Stop hide">
-          <p>Did stop above 1 (minor liq line) worked out?</p>
+        <div id="if01Stop" class="hide">
+          <p>Did stop above 1 (minor liq line) work out?</p>
           <label>Yes
             <input type="radio" name="if01Stop" class="info" id="if01StopYes" value="yes">
           </label>
           <label>No
             <input type="radio" name="if01Stop" class="info" id="if01StopNo" value="no">
           </label>
+          <div id="missedR01Div" class="hide inputText">
+            <label>R missed (too tight stop)?</label>
+            <input type="text" name="missedR" class="info" id="missedR01" value="0">
+          </div>
         </div>
-
+        <div id="ifSwingStopRaidsDiv" class="hide">
+          <p>Did swing stop work out?</p>
+          <label>Yes
+            <input type="radio" name="ifSwingStopRaidsStop" class="info" id="ifSwingStopRaidsStopYes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifSwingStopRaidsStop" class="info" id="ifSwingStopRaidsStopNo" value="no">
+          </label>
+          <div id="missedRSwingDiv" class="hide inputText">
+            <label>R missed (too tight stop)?</label>
+            <input type="text" name="missedR" class="info" id="missedRSwing" value="0">
+          </div>
+        </div>
+        <!--  wins -->
+        <div id="ifFiboDiv" class="hide">
+          <p>Did 0.65 with 0.786 stop work out?</p>
+          <label>Yes
+            <input type="radio" name="ifFibo" class="info" id="ifFiboYes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifFibo" class="info" id="ifFiboNo" value="no">
+          </label>
+          <div id="cuttedR065x0786" class="hide inputText">
+            <label>0.65 with 0.786 would yield profit:</label>
+            <input type="text" name="missedR" class="info" id="cuttedR065x0786" value="0">
+          </div>
+        </div>
+        <div id="ifFibo088Div" class="hide">
+          <p>Did 0.65 with 0.88 stop work out?</p>
+          <label>Yes
+            <input type="radio" name="ifFibo088" class="info" id="ifFibo088Yes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifFibo088" class="info" id="ifFibo088No" value="no">
+          </label>
+          <div id="cuttedR065x088" class="hide inputText">
+            <label>0.65 with 0.88 would yield profit:</label>
+            <input type="text" name="missedR" class="info" id="cuttedR065x088" value="0">
+          </div>
+        </div>
+        <div id="ifFibo078x088Div" class="hide">
+          <p>Did 0.78 with 0.88 stop work out?</p>
+          <label>Yes
+            <input type="radio" name="ifFibo078x088" class="info" id="ifFibo078x088Yes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifFibo078x088" class="info" id="ifFibo078x088No" value="no">
+          </label>
+          <div id="cuttedR078x088" class="hide inputText">
+            <label>0.78 with 0.88 would yield profit:</label>
+            <input type="text" name="missedR" class="info" id="cuttedR078x088" value="0">
+          </div>
+        </div>
+        <div id="ifFibo088x1Div" class="hide">
+          <p>Did 0.88 with swing stop work out?</p>
+          <label>Yes
+            <input type="radio" name="ifFibo088x1" class="info" id="Fibo088x1Yes" value="yes">
+          </label>
+          <label>No
+            <input type="radio" name="ifFibo088x1" class="info" id="Fibo088x1No" value="no">
+          </label>
+          <div id="cuttedR088x1" class="hide inputText">
+            <label>0.88 with 1 would yield profit:</label>
+            <input type="text" name="missedR" class="info" id="cuttedR088x1" value="0">
+          </div>
+        </div>
       </div>
       <button id="addTradeBtn">Add</button>
     </div>
