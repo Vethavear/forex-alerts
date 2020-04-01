@@ -75,6 +75,10 @@ select:focus {
   outline: 0;
 }
 
+textarea {
+  resize: none;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -557,13 +561,23 @@ nav ul li a:hover {
   transition: all 0.5s;
 }
 
+#container #addtrade .basic .row textarea {
+  background: #EEF0F2;
+  border-radius: 0.5rem;
+  margin: 3rem;
+}
+
+#container #addtrade .basic .row textarea:hover {
+  border: 1px solid #55def1;
+}
+
 #container #addtrade .additionalInfo {
   margin: 0 1rem;
 }
 
 #container #addtrade .additionalInfo p {
   font-weight: bold;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 #container #addtrade .additionalInfo .setup,

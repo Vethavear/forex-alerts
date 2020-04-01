@@ -74,6 +74,7 @@ const UICtrl = (function () {
     currentPair: document.getElementById("currentpair"),
     firedAlertsContainer: document.querySelector(".alertsfired ul"),
     // Journal
+    date: document.getElementById('date'),
     currentTradeR: document.getElementById('result'),
     dailytrades: document.getElementById('dailytrades'),
     weeklytrades: document.getElementById('weeklytrades'),
@@ -143,13 +144,8 @@ const UICtrl = (function () {
     Fibo088x1Yes: document.getElementById('Fibo088x1Yes'),
     Fibo088x1No: document.getElementById('Fibo088x1No'),
     cuttedR088x1: document.getElementById('cuttedR088x1'),
-    // timeframeRadio: document.getElementsByName('timeframe'),
-    // setupRadio: document.getElementsByName('setup'),
-    // basesRadio: document.getElementsByName('bases'),
-    // visibleRadio: document.getElementsByName('visible'),
-    // stopRadio: document.getElementsByName('stop'),
-    // msbRadio: document.getElementsByName('msb'),
-    // msbRadio: document.getElementsByName('msb'),
+    allInputs: document.getElementsByClassName('info')
+
 
 
   };
@@ -203,6 +199,10 @@ const UICtrl = (function () {
       } else {
         container.classList.remove('hide');
       }
+    },
+    initDate: () =>{
+      let today = new Date();
+      selectors.date.valueAsDate = today;
     }
   };
 })();
@@ -235,6 +235,7 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
   // }
   return {
     init: async function () {
+      UICtrl.initDate();
       // addAlerts();
       // const audioCtrl = prepareAudio();
       // // Prepare alert audio
@@ -474,11 +475,13 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
               } else if (e.target.matches('#stopRaidsYes') && selectors.entry1Raids786.checked) {
                 // swing stop and 0786 entry
                 UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
-              } else  {
-               
+              }else if (e.target.matches('#stop078Raids') && selectors.entryRaids65.checked) {
+                // everything done well
+                // UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
+              }
+               else {
                 UICtrl.hideContainer(selectors.ifFiboDiv, false);
               }
-
             });
 
             // always true listeners
@@ -488,8 +491,8 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
             })
             selectors.ifFiboNo.addEventListener('click', e => {
               UICtrl.hideContainer(selectors.cuttedR065x0786, true);
-// show next
-UICtrl.hideContainer(selectors.ifFibo088Div, false);
+              // show next
+              UICtrl.hideContainer(selectors.ifFibo088Div, false);
 
             })
             selectors.ifFibo088Yes.addEventListener('click', e => {

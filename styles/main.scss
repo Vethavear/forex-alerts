@@ -9,6 +9,9 @@ textarea:focus,
 select:focus {
   outline: 0;
 }
+textarea{
+  resize: none;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -367,13 +370,22 @@ nav {
           left: 0;
           transition: all 0.5s;
         }
+        textarea{
+          // border: 2px solid white;
+          background: #EEF0F2;
+          border-radius: 0.5rem;
+          margin: 3rem;
+          &:hover{
+          border: 1px solid $hover-color;
+          }
+        }
       }
     }
     .additionalInfo {
       margin: 0 1rem;
       p {
         font-weight: bold;
-        margin: 1rem 0;
+        margin: 0.5rem 0;
       }
       .setup,
       .tf {
