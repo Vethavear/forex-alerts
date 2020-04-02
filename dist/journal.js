@@ -145,9 +145,6 @@ const UICtrl = (function () {
     Fibo088x1No: document.getElementById('Fibo088x1No'),
     cuttedR088x1: document.getElementById('cuttedR088x1'),
     allInputs: document.getElementsByClassName('info')
-
-
-
   };
 
   return {
@@ -316,18 +313,12 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
                 selectors.ifSwingNo.addEventListener('click', e => {
                   UICtrl.hideContainer(selectors.missedR, true);
                 })
-
-
-
-
               } else {
                 UICtrl.hideContainer(selectors.ifswingDiv, true);
               }
             })
-
           } else {
             // win, check if stop  and entry could be better
-
             // entries
             selectors.continuationEntries.addEventListener('click', e => {
               // entry at wick
@@ -345,12 +336,10 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
                 selectors.ifWicksMiddleNo.addEventListener('click', e => {
                   UICtrl.hideContainer(selectors.cuttedREntryMiddleDiv, true);
                 });
-
               } else {
                 UICtrl.hideContainer(selectors.ifLTFDiv, true);
               }
             })
-
             // stops
             selectors.continuationStops.addEventListener('click', e => {
               if (e.target.matches('#stopBasesYes')) {
@@ -377,7 +366,6 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
           selectors.continuation.addEventListener('click', e => {
             UICtrl.hideContainer(selectors.raidsContainer, true);
           });
-
           selectors.raidsEntries.addEventListener('click', e => {
             UICtrl.hideContainer(selectors.raidsStops, false);
             UICtrl.hideContainer(selectors.if01Stop, true);
@@ -386,11 +374,8 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
           })
 
           // if loss
-
           if (currentTradeR.value < 0) {
-
             selectors.raidsStops.addEventListener('click', e => {
-
               if (e.target.matches('#stopRaidsYes')) {
                 // if swing stop, hide all
                 // if (selectors.entryRaids65.checked) {
@@ -398,14 +383,12 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
                 UICtrl.hideContainer(selectors.if01Stop, true);
                 UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
                 UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-
               }
               else if (e.target.matches('#stop078Raids')) {
                 // if fibo entry
                 // if (selectors.entryRaids65.checked) {
                 // 0.78 stop, check if 0.88 and swing worked out
                 UICtrl.hideContainer(selectors.ifFiboExtendedDiv, false);
-
                 UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
                 UICtrl.hideContainer(selectors.if01Stop, true);
 
@@ -420,12 +403,9 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
                 UICtrl.hideContainer(selectors.if01Stop, true);
                 UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
                 UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-
-
                 UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, false);
               } else if (e.target.matches('#stopRaidsGamble')) {
                 UICtrl.hideContainer(selectors.ifFiboExtendedDiv, false);
-
                 UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
                 UICtrl.hideContainer(selectors.if01Stop, true);
 
