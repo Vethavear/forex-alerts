@@ -409,7 +409,6 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
                   UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
                 }
               });
-
             }
           }
         })
