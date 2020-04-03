@@ -40,7 +40,6 @@ const PairCtrl = (function (StorageCtrl) {
         )}-${("0" + date.getDate()).slice(-2)}`,
         direction: direction,
       };
-      console.log(date.getMonth() + 1);
       alerts[pair.toLowerCase()].push(alert);
       StorageCtrl.updateStorage(alerts);
       return alert;
