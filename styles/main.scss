@@ -9,7 +9,7 @@ textarea:focus,
 select:focus {
   outline: 0;
 }
-textarea{
+textarea {
   resize: none;
 }
 * {
@@ -28,8 +28,8 @@ button,
 i {
   transition: 0.5s all;
 }
-label{
-  &:hover{
+label {
+  &:hover {
     color: $hover-color;
     cursor: pointer;
   }
@@ -46,13 +46,6 @@ label{
   display: none !important;
 }
 
-.separator {
-  width: 100%;
-  height: 2px;
-  background: $hover-color;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
-}
 nav {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   display: flex;
@@ -152,76 +145,75 @@ nav {
         }
       }
     }
-      .radio-container {
-        width: 100%;
-        margin-left: 40px;
-        label,
-        input {
-          padding: 0.5rem;
-        }
+    .radio-container {
+      width: 100%;
+      margin-left: 40px;
+      label,
+      input {
+        padding: 0.5rem;
       }
+    }
 
-      .table {
-        margin: 1rem 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        .row {
-          h3,
-          p,
-          button {
-            padding: 0 1rem;
-          }
-          margin: 0.5rem 0;
-          width: 100%;
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          border-bottom: 1px solid white;
-          button {
-            cursor: pointer;
-            background: none;
-            border: none;
-            i {
-              font-size: 1.5rem;
-              color: white;
-              &:hover {
-                color: $hover-color;
-              }
+    .table {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .row {
+        h3,
+        p,
+        button {
+          padding: 0 1rem;
+        }
+        margin: 0.5rem 0;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        border-bottom: 1px solid white;
+        button {
+          cursor: pointer;
+          background: none;
+          border: none;
+          i {
+            font-size: 1.5rem;
+            color: white;
+            &:hover {
+              color: $hover-color;
             }
           }
         }
       }
     }
-
-
-.alertsfired {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  position: fixed;
-  right: 0;
-  background: $primary-color;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-  color: $text-color;
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5rem;
-  justify-items: center;
-  .labels {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.5rem;
-    align-items: stretch;
   }
-  ul {
-    list-style-type: none;
-    li {
+
+  .alertsfired {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    position: fixed;
+    right: 0;
+    background: $primary-color;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    color: $text-color;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    justify-items: center;
+    .labels {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+    ul {
+      list-style-type: none;
+      li {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
     }
   }
-}
 }
 // Journal
 
@@ -230,9 +222,29 @@ nav {
   width: 100%;
   margin-top: 1vh;
   display: flex;
-  justify-content: center;
-  min-height:90vh;
-  button {
+  height: 100%;
+
+  label,
+  p {
+    font-size: 1.1rem;
+  }
+  input[type="text"] {
+    border-radius: 0.25rem;
+    border: 1px solid gray;
+    background: $primary-color;
+    margin: 2rem;
+    padding: 0 0.25rem;
+    height: 30px;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    font-weight: lighter;
+    &:focus,
+    &:hover {
+      border-color: $hover-color;
+    }
+  }
+  #addTradeBtn {
     border: none;
     background: white;
     border-radius: 0.25rem;
@@ -246,12 +258,7 @@ nav {
       background: $hover-color;
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
-  }
-  label,
-  p {
-    font-size: 1.1rem;
-  }
-  #addTradeBtn {
+
     position: absolute;
     bottom: 0;
     right: 0;
@@ -260,98 +267,65 @@ nav {
     font-weight: bold;
     font-size: 1.1rem;
   }
-  #stats,
-  #addtrade,
-  #settings {
-    h1 {
-      text-align: center;
-    }
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    padding: 3rem;
-    color: $text-color;
+  .pairsTabs {
     background: rgba(21, 25, 28, 0.9);
-  }
-  #stats,
-  #settings {
-    position: fixed;
-    top: 15vh;
-  }
-  #stats {
-    left: 0;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    .row {
-      display: flex;
+    width: 100px;
+    min-height: 90vh;
+
+    display: flex;
+    ul {
       width: 100%;
-      p {
-        padding: 0 1rem;
+      list-style-type: none;
+      li {
+        &:first-child,
+        &:last-child {
+          margin: 0;
+        }
+        background: $primary-color;
+        // margin: 0.7rem 0;
+        // padding: 0.95rem 0.25rem;
+        margin: 1rem 0;
+        button {
+          width: 100%;
+          height: 100%;
+          border: none;
+          color: white;
+          background: none;
+          font-size: 1.1rem;
+          cursor: pointer;
+        }
       }
     }
   }
   #addtrade {
-    padding-top: 5rem;
     position: relative;
-    width: 90%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 2rem;
+    padding-left: 3rem;
+    width: 100%;
     overflow: visible;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
+    // h1 {
+    //   text-align: center;
+    // }
+    display: flex;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    color: $text-color;
+    background: rgba(21, 25, 28, 0.9);
 
-    #pair {
-      position: absolute;
-      top: 1%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2rem;
-    }
-
-    .pairsTabs {
-      width: 100px;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: -100px;
-      ul {
-        list-style-type: none;
-        li {
-          &:first-child,
-          &:last-child {
-            margin: 0;
-          }
-          background: $primary-color;
-          margin: 0.7rem 0;
-          padding: 0.95rem 0.25rem;
-          // display: flex;
-          // justify-content: center;
-          // align-items: center;
-          border-top-left-radius: 10px;
-          border-bottom-left-radius: 10px;
-          button {
-            width: 100%;
-            height: 100%;
-            border: none;
-            color: white;
-            background: none;
-            font-size: 1.1rem;
-          }
-        }
-      }
-    }
     .basic {
+      margin-right: 3rem;
       display: flex;
       flex-direction: column;
       .row {
         position: relative;
         input {
-          border: none;
-          border-bottom: 2px solid gray;
+          border-radius: 0.25rem;
+          // border: none;
+          border: 1px solid gray;
           background: $primary-color;
           margin: 2rem;
           padding: 0 0.25rem;
           height: 30px;
+          width: 209px;
           color: white;
           font-size: 1.1rem;
           transition: all 0.3s;
@@ -368,26 +342,42 @@ nav {
           left: 0;
           transition: all 0.5s;
         }
-        textarea{
+        textarea {
           // border: 2px solid white;
-          background: #EEF0F2;
+          border: 1px solid gray;
+          background: $primary-color;
           border-radius: 0.5rem;
-          margin: 3rem;
-          &:hover{
-          border: 1px solid $hover-color;
+          width: 209px;
+          color: white;
+          padding: 0.5rem;
+          font-size: 1rem;
+          margin: 2rem;
+
+          &:hover {
+            border: 1px solid $hover-color;
           }
         }
       }
     }
+    .flex {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
     .additionalInfo {
-      margin: 0 1rem;
+      flex: 40%;
+      // margin: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      // grid-template-columns: 1fr 1fr 1fr 1fr;
       p {
         font-weight: bold;
         margin: 0.5rem 0;
       }
-      .setup,
       .tf {
         display: grid;
+        grid-template-columns: 1fr 1fr;
         label {
           cursor: pointer;
           &:hover {
@@ -395,65 +385,37 @@ nav {
           }
         }
       }
+      .cont {
+        padding: 0 1rem;
+        display: flex;
+        flex-direction: column;
+      }
+      #setup {
+        display: flex;
+      }
       .setupInfo {
-        #bases, #raids {
-          #continuationStops, #raidsStops {
-            display: grid;
-            grid-template-columns: 1fr;
-          }
+        #bases,
+        #raids {
+          display: flex;
         }
       }
     }
     .improvements {
+      display: flex;
+      flex-direction: column;
+      flex: 60%;
+      .flex {
+        flex-direction: row;
+      }
       p {
         font-weight: bold;
         margin: 1rem 0;
-      }
-      .missedR {
-        position: relative;
-        input {
-          border: none;
-          border-bottom: 2px solid gray;
-          background: $primary-color;
-          margin: 2rem;
-          padding: 0 0.25rem;
-          height: 30px;
-          color: white;
-          font-size: 1.1rem;
-          transition: all 0.3s;
-          font-weight: lighter;
-          &:focus,
-          &:hover {
-            border-color: $hover-color;
-          }
-        }
-        label {
-          font-size: 1.2rem;
-          position: absolute;
-          top: 0;
-          left: 0;
-          transition: all 0.5s;
-        }
+        margin-right: 1rem;
       }
       .inputText {
         margin: 0.25rem 0;
         position: relative;
-        input {
-          border: none;
-          border-bottom: 2px solid gray;
-          background: $primary-color;
-          margin-top: 2rem;
-          padding: 0 0.25rem;
-          height: 30px;
-          color: white;
-          font-size: 1.1rem;
-          transition: all 0.3s;
-          font-weight: lighter;
-          &:focus,
-          &:hover {
-            border-color: $hover-color;
-          }
-        }
+
         label {
           font-size: 1rem;
           position: absolute;
@@ -464,39 +426,7 @@ nav {
       }
     }
   }
-  #settings {
-    right: 0;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    .row {
-      position: relative;
-      input {
-        border: none;
-        border-bottom: 2px solid gray;
-        background: $primary-color;
-        margin: 2rem;
-        padding: 0 0.25rem;
-        height: 30px;
-        color: white;
-        font-size: 1.1rem;
-        transition: all 0.3s;
-        font-weight: lighter;
-        &:focus,
-        &:hover {
-          border-color: $hover-color;
-        }
-      }
-      label {
-        font-size: 1.2rem;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition: all 0.5s;
-      }
-    }
-  }
 }
-
 footer {
   position: fixed;
   bottom: 0;

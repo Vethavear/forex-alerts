@@ -119,14 +119,6 @@ label:hover {
   display: none !important;
 }
 
-.separator {
-  width: 100%;
-  height: 2px;
-  background: #55def1;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
-}
-
 nav {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -376,13 +368,33 @@ nav ul li a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  min-height: 90vh;
+  height: 100%;
 }
 
-#container button {
+#container label,
+#container p {
+  font-size: 1.1rem;
+}
+
+#container input[type="text"] {
+  border-radius: 0.25rem;
+  border: 1px solid gray;
+  background: #15191c;
+  margin: 2rem;
+  padding: 0 0.25rem;
+  height: 30px;
+  color: white;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: lighter;
+}
+
+#container input[type="text"]:focus, #container input[type="text"]:hover {
+  border-color: #55def1;
+}
+
+#container #addTradeBtn {
   border: none;
   background: white;
   border-radius: 0.25rem;
@@ -396,20 +408,6 @@ nav ul li a:hover {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-}
-
-#container button:hover {
-  background: #55def1;
-  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-#container label,
-#container p {
-  font-size: 1.1rem;
-}
-
-#container #addTradeBtn {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -419,108 +417,62 @@ nav ul li a:hover {
   font-size: 1.1rem;
 }
 
-#container #stats,
-#container #addtrade,
-#container #settings {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  padding: 3rem;
-  color: white;
+#container #addTradeBtn:hover {
+  background: #55def1;
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#container .pairsTabs {
   background: rgba(21, 25, 28, 0.9);
-}
-
-#container #stats h1,
-#container #addtrade h1,
-#container #settings h1 {
-  text-align: center;
-}
-
-#container #stats,
-#container #settings {
-  position: fixed;
-  top: 15vh;
-}
-
-#container #stats {
-  left: 0;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-}
-
-#container #stats .row {
+  width: 100px;
+  min-height: 90vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+#container .pairsTabs ul {
   width: 100%;
-}
-
-#container #stats .row p {
-  padding: 0 1rem;
-}
-
-#container #addtrade {
-  padding-top: 5rem;
-  position: relative;
-  width: 90%;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
-  overflow: visible;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-}
-
-#container #addtrade #pair {
-  position: absolute;
-  top: 1%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  font-size: 2rem;
-}
-
-#container #addtrade .pairsTabs {
-  width: 100px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: -100px;
-}
-
-#container #addtrade .pairsTabs ul {
   list-style-type: none;
 }
 
-#container #addtrade .pairsTabs ul li {
+#container .pairsTabs ul li {
   background: #15191c;
-  margin: 0.7rem 0;
-  padding: 0.95rem 0.25rem;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  margin: 1rem 0;
 }
 
-#container #addtrade .pairsTabs ul li:first-child, #container #addtrade .pairsTabs ul li:last-child {
+#container .pairsTabs ul li:first-child, #container .pairsTabs ul li:last-child {
   margin: 0;
 }
 
-#container #addtrade .pairsTabs ul li button {
+#container .pairsTabs ul li button {
   width: 100%;
   height: 100%;
   border: none;
   color: white;
   background: none;
   font-size: 1.1rem;
+  cursor: pointer;
+}
+
+#container #addtrade {
+  position: relative;
+  padding-top: 2rem;
+  padding-left: 3rem;
+  width: 100%;
+  overflow: visible;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  color: white;
+  background: rgba(21, 25, 28, 0.9);
 }
 
 #container #addtrade .basic {
+  margin-right: 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -535,12 +487,13 @@ nav ul li a:hover {
 }
 
 #container #addtrade .basic .row input {
-  border: none;
-  border-bottom: 2px solid gray;
+  border-radius: 0.25rem;
+  border: 1px solid gray;
   background: #15191c;
   margin: 2rem;
   padding: 0 0.25rem;
   height: 30px;
+  width: 209px;
   color: white;
   font-size: 1.1rem;
   -webkit-transition: all 0.3s;
@@ -562,17 +515,43 @@ nav ul li a:hover {
 }
 
 #container #addtrade .basic .row textarea {
-  background: #EEF0F2;
+  border: 1px solid gray;
+  background: #15191c;
   border-radius: 0.5rem;
-  margin: 3rem;
+  width: 209px;
+  color: white;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 2rem;
 }
 
 #container #addtrade .basic .row textarea:hover {
   border: 1px solid #55def1;
 }
 
+#container #addtrade .flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
 #container #addtrade .additionalInfo {
-  margin: 0 1rem;
+  -webkit-box-flex: 40%;
+      -ms-flex: 40%;
+          flex: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 #container #addtrade .additionalInfo p {
@@ -580,63 +559,69 @@ nav ul li a:hover {
   margin: 0.5rem 0;
 }
 
-#container #addtrade .additionalInfo .setup,
 #container #addtrade .additionalInfo .tf {
   display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 }
 
-#container #addtrade .additionalInfo .setup label,
 #container #addtrade .additionalInfo .tf label {
   cursor: pointer;
 }
 
-#container #addtrade .additionalInfo .setup label:hover,
 #container #addtrade .additionalInfo .tf label:hover {
   color: #55def1;
 }
 
-#container #addtrade .additionalInfo .setupInfo #bases #continuationStops, #container #addtrade .additionalInfo .setupInfo #bases #raidsStops, #container #addtrade .additionalInfo .setupInfo #raids #continuationStops, #container #addtrade .additionalInfo .setupInfo #raids #raidsStops {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
+#container #addtrade .additionalInfo .cont {
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#container #addtrade .additionalInfo #setup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#container #addtrade .additionalInfo .setupInfo #bases,
+#container #addtrade .additionalInfo .setupInfo #raids {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#container #addtrade .improvements {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 60%;
+      -ms-flex: 60%;
+          flex: 60%;
+}
+
+#container #addtrade .improvements .flex {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 #container #addtrade .improvements p {
   font-weight: bold;
   margin: 1rem 0;
-}
-
-#container #addtrade .improvements .missedR {
-  position: relative;
-}
-
-#container #addtrade .improvements .missedR input {
-  border: none;
-  border-bottom: 2px solid gray;
-  background: #15191c;
-  margin: 2rem;
-  padding: 0 0.25rem;
-  height: 30px;
-  color: white;
-  font-size: 1.1rem;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  font-weight: lighter;
-}
-
-#container #addtrade .improvements .missedR input:focus, #container #addtrade .improvements .missedR input:hover {
-  border-color: #55def1;
-}
-
-#container #addtrade .improvements .missedR label {
-  font-size: 1.2rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  margin-right: 1rem;
 }
 
 #container #addtrade .improvements .inputText {
@@ -644,63 +629,8 @@ nav ul li a:hover {
   position: relative;
 }
 
-#container #addtrade .improvements .inputText input {
-  border: none;
-  border-bottom: 2px solid gray;
-  background: #15191c;
-  margin-top: 2rem;
-  padding: 0 0.25rem;
-  height: 30px;
-  color: white;
-  font-size: 1.1rem;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  font-weight: lighter;
-}
-
-#container #addtrade .improvements .inputText input:focus, #container #addtrade .improvements .inputText input:hover {
-  border-color: #55def1;
-}
-
 #container #addtrade .improvements .inputText label {
   font-size: 1rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-}
-
-#container #settings {
-  right: 0;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-}
-
-#container #settings .row {
-  position: relative;
-}
-
-#container #settings .row input {
-  border: none;
-  border-bottom: 2px solid gray;
-  background: #15191c;
-  margin: 2rem;
-  padding: 0 0.25rem;
-  height: 30px;
-  color: white;
-  font-size: 1.1rem;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  font-weight: lighter;
-}
-
-#container #settings .row input:focus, #container #settings .row input:hover {
-  border-color: #55def1;
-}
-
-#container #settings .row label {
-  font-size: 1.2rem;
   position: absolute;
   top: 0;
   left: 0;
