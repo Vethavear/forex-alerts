@@ -186,7 +186,7 @@ const UICtrl = (function () {
     //   selectors.currentPair.innerHTML = pair.toUpperCase();
     // }
     changeJournalPair: (pair, clickedTab) => {
-      selectors.journalCurrentPair.innerHTML = pair.toUpperCase();
+      selectors.journalCurrentPair.value = pair.toUpperCase();
       const currentlyChecked = document.querySelector('.checked');
       currentlyChecked.classList.remove('checked');
       // add checked class to currently clicked class
