@@ -115,6 +115,15 @@ const UICtrl = (function () {
     // loses
     entryRaids65: document.getElementById('entryRaids65'),
     entryRaids786: document.getElementById('entryRaids786'),
+    entryRaids88: document.getElementById('entryRaids88'),
+    tpn0236Raids: document.getElementById('tpn0236Raids'),
+    ifn065TpDiv: document.getElementById('ifn065TpDiv'),
+    tpn065Raids: document.getElementById('tpn065Raids'),
+    ifn1TpDiv: document.getElementById('ifn1TpDiv'),
+    tpn01Raids: document.getElementById('tpn01Raids'),
+    ifn0236TpDiv: document.getElementById('ifn0236TpDiv'),
+    ifn0236TpYes: document.getElementById('ifn0236TpYes'),
+    ifn065TpYes: document.getElementById('ifn065TpYes'),
     entryRaidsYes: document.getElementById('entryRaidsYes'),
     ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
     if01Stop: document.getElementById('if01Stop'),
@@ -413,6 +422,29 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
                 UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
               }
             });
+            selectors.raidsEntries.addEventListener('click', e => {
+
+              if (e.target.matches('#entryRaids65') || e.target.matches('entryRaids786') || e.target.matches('entryRaids88')) {
+                // show take profits
+                if (selectors.tpn0236Raids.checked) {
+                  UICtrl.hideContainer(selectors.ifn065TpDiv, false);
+                } else if (selectors.tpn065Raids.checked) {
+                  UICtrl.hideContainer(selectors.ifn065TpDiv, true);
+                  UICtrl.hideContainer(selectors.ifn1TpDiv, false);
+                } else if (selectors.tpn01Raids.checked) {
+                  UICtrl.hideContainer(selectors.ifn065TpDiv, true);
+                  UICtrl.hideContainer(selectors.ifn1TpDiv, true);
+                }
+              } else {
+                UICtrl.hideContainer(selectors.ifn0236TpDiv, false);
+              }
+            });
+            selectors.ifn0236TpYes.addEventListener('click', e=>{
+              UICtrl.hideContainer(selectors.ifn065TpDiv, false);
+            })
+            selectors.ifn065TpYes.addEventListener('click', e=>{
+              UICtrl.hideContainer(selectors.ifn1TpDiv, false);
+            })
           }
         }
       })
