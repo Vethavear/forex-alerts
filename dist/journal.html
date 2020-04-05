@@ -69,6 +69,9 @@
         <li>
           <button class="change">USD/CAD</button>
         </li>
+        <li>
+          <button id="addpair">Add <i class="fas fa-plus-square"></i></button>
+        </li>
       </ul>
     </div>
     <div id="addtrade">
@@ -192,6 +195,25 @@
                       id="stopBasesGamble" value="gamble">
                   </label>
                 </div>
+                <div id="continuationTps" class="cont">
+                  <p>Takeprofit</p>
+                  <label>First liq pool
+                    <input type="radio" data-show="ifMajorPoolTpDiv" data-profit="positive" name="tp" class="info"
+                      id="tpLiqPoolBases" value="yes">
+                  </label>
+                  <label>Major liq pool
+                    <input type="radio" data-profit="positive" name="tp" class="info" id="tpMLiqPoolBases"
+                      value="yes">
+                  </label>
+                  <label>First untested base
+                    <input type="radio" data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
+                      id="tpBaseBases" value="yes">
+                  </label>
+                  <label>Opposite signal occured
+                    <input type="radio" data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
+                      id="tpOppositeSignalBases" value="yes">
+                  </label>
+                </div>
               </div>
 
               <div id="raids" class="hide">
@@ -203,7 +225,7 @@
                   <label>Shady
                     <input type="radio" name="msb" class="info" id="shady" value="yes">
                   </label>
-                  <p>Was this clear MSB on higher timeframe?</p>
+                  <p>Clear MSB on higher timeframe?</p>
                   <label>Yes
                     <input type="radio" name="clear" class="info" id="clearMSBYes" value="yes">
                   </label>
@@ -248,6 +270,37 @@
                       data-profit="negative" name="stop" class="info" id="stopRaidsGamble" value="yes">
                   </label>
                 </div>
+                <div id="raidsTps" class="cont">
+                  <p>Takeprofit</p>
+                  <label>First liq pool
+                    <input type="radio" data-show="ifMajorPoolTpDiv" data-profit="positive"
+                      name="tp" class="info" id="tpLiqPoolRaids" value="yes">
+                  </label>
+                  <label>Major liq pool
+                    <input type="radio" data-profit="positive" name="tp"
+                      class="info" id="tpMliqPoolRaids" value="ltf">
+                  </label>
+                  <label>First untested base
+                    <input type="radio" data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
+                      id="tpBaseRaids" value="yes">
+                  </label>
+                  <label>Opposite signal occured
+                    <input type="radio" data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
+                      id="tpOppositeSignalRaids" value="yes">
+                  </label>
+                  <label>-0.236
+                    <input type="radio" data-show="ifn065TpDiv" data-profit="positive" name="tp" class="info"
+                      id="tpn0236Raids" value="yes">
+                  </label>
+                  <label>-0.65
+                    <input type="radio" data-show="ifn1TpDiv" data-profit="positive" name="tp" class="info "
+                      id="tpn065Raids" value="yes">
+                  </label>
+                  <label>-1
+                    <input type="radio" data-profit="positive" name="tp" class="info"
+                      id="tpn01Raids" value="yes">
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -257,182 +310,286 @@
           <h1>Improvements</h1>
           <!-- If stopped bases-->
           <div class="flex">
-           
-              <div id="ifswingDiv" class="hide">
-                <p id="ifSwingLabel">Did swing stop work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="missedR" data-profit="negative" name="ifSwing" class="info"
-                    id="ifSwingYes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-hide="missedR" data-profit="negative" name="ifSwing" class="info"
-                    id="ifSwingNo" value="no">
-                </label>
-                <!-- if yes -->
-                <div id="missedR" class="hide inputText">
-                  <label>R missed (too tight stop)?</label>
-                  <input type="text" name="missedR" class="info" id="missedR" value="0">
-                </div>
+            <div id="ifswingDiv" class="hide">
+              <p id="ifSwingLabel">Did swing stop work out?</p>
+              <label>Yes
+                <input type="radio" data-show="missedR" data-profit="negative" name="ifSwing" class="info"
+                  id="ifSwingYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="missedR" data-profit="negative" name="ifSwing" class="info"
+                  id="ifSwingNo" value="no">
+              </label>
+              <!-- if yes -->
+              <div id="missedR" class="hide inputText">
+                <label>R missed (too tight stop)?</label>
+                <input type="text" name="missedR" class="info" id="missedR" value="0">
               </div>
-              <!-- raids -->
-              <!-- loses: -->
-              <div id="ifFiboExtendedDiv" class="hide">
-                <p>Did 0.88 stop work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="missedR078Div" data-profit="negative" name="ifFiboExtended"
-                    class="info" id="ifFiboExtendedYes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-show="if01Stop" data-hide="missedR078Div" data-profit="negative"
-                    name="ifFiboExtended" class="info" id="ifFiboExtendedNo" value="no">
-                </label>
-                <div id="missedR078Div" class="hide inputText">
-                  <label>R missed (too tight stop)?</label>
-                  <input type="text" name="missedR" class="info" id="missedR078" value="0">
-                </div>
+            </div>
+            <!-- raids -->
+            <!-- loses: -->
+            <div id="ifFiboExtendedDiv" class="hide">
+              <p>Did 0.88 stop work out?</p>
+              <label>Yes
+                <input type="radio" data-show="missedR078Div" data-profit="negative" name="ifFiboExtended" class="info"
+                  id="ifFiboExtendedYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-show="if01Stop" data-hide="missedR078Div" data-profit="negative"
+                  name="ifFiboExtended" class="info" id="ifFiboExtendedNo" value="no">
+              </label>
+              <div id="missedR078Div" class="hide inputText">
+                <label>R missed (too tight stop)?</label>
+                <input type="text" name="missedR" class="info" id="missedR078" value="0">
               </div>
-              <div id="if01Stop" class="hide">
-                <p>Did stop behind 1 (minor liq line) work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="missedR01Div" data-profit="negative" name="if01Stop" class="info"
-                    id="if01StopYes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-show="ifSwingStopRaidsDiv" data-hide="missedR01Div" data-profit="negative"
-                    name="if01Stop" class="info" id="if01StopNo" value="no">
-                </label>
-                <div id="missedR01Div" class="hide inputText">
-                  <label>R missed (too tight stop)?</label>
-                  <input type="text" name="missedR" class="info" id="missedR01" value="0">
-                </div>
+            </div>
+            <div id="if01Stop" class="hide">
+              <p>Did stop behind 1 (minor liq line) work out?</p>
+              <label>Yes
+                <input type="radio" data-show="missedR01Div" data-profit="negative" name="if01Stop" class="info"
+                  id="if01StopYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-show="ifSwingStopRaidsDiv" data-hide="missedR01Div" data-profit="negative"
+                  name="if01Stop" class="info" id="if01StopNo" value="no">
+              </label>
+              <div id="missedR01Div" class="hide inputText">
+                <label>R missed (too tight stop)?</label>
+                <input type="text" name="missedR" class="info" id="missedR01" value="0">
               </div>
-              <div id="ifSwingStopRaidsDiv" class="hide">
-                <p>Did swing stop work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="missedRSwingDiv" data-profit="negative" name="ifSwingStopRaidsStop"
-                    class="info" id="ifSwingStopRaidsStopYes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-hide="missedRSwingDiv" data-profit="negative" name="ifSwingStopRaidsStop"
-                    class="info" id="ifSwingStopRaidsStopNo" value="no">
-                </label>
-                <div id="missedRSwingDiv" class="hide inputText">
-                  <label>R missed (too tight stop)?</label>
-                  <input type="text" name="missedR" class="info" id="missedRSwing" value="0">
-                </div>
+            </div>
+            <div id="ifSwingStopRaidsDiv" class="hide">
+              <p>Did swing stop work out?</p>
+              <label>Yes
+                <input type="radio" data-show="missedRSwingDiv" data-profit="negative" name="ifSwingStopRaidsStop"
+                  class="info" id="ifSwingStopRaidsStopYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="missedRSwingDiv" data-profit="negative" name="ifSwingStopRaidsStop"
+                  class="info" id="ifSwingStopRaidsStopNo" value="no">
+              </label>
+              <div id="missedRSwingDiv" class="hide inputText">
+                <label>R missed (too tight stop)?</label>
+                <input type="text" name="missedR" class="info" id="missedRSwing" value="0">
               </div>
-          
-            
-           
-              <!-- If won bases -->
-              <div id="ifWicksDiv" class="hide">
-                <p>Did entry at body work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="cuttedREntryCloseDiv" data-profit="positive" name="ifWicksClose"
-                    class="info" id="ifWicksCloseYes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-hide="cuttedREntryCloseDiv" data-profit="positive" name="ifWicksClose"
-                    class="info" id="ifWickClosesNo" value="no">
-                </label>
-                <div id="cuttedREntryCloseDiv" class="hide inputText">
-                  <label>If used entry at body, profit:</label>
-                  <input type="text" name="cuttedREntryClose" class="info" id="cuttedREntryClose" value="0">
-                </div>
-                <p>Did entry at middle of base work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="cuttedREntryMiddleDiv" data-profit="positive" name="ifWicksMiddle"
-                    class="info" id="ifWicksMiddleYes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-hide="cuttedREntryMiddleDiv" data-profit="positive" name="ifWicksMiddle"
-                    class="info" id="ifWicksMiddleNo" value="no">
-                </label>
+            </div>
+
+
+
+            <!-- If won bases -->
+            <div id="ifWicksDiv" class="hide">
+              <p>Did entry at body work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedREntryCloseDiv" data-profit="positive" name="ifWicksClose"
+                  class="info" id="ifWicksCloseYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="cuttedREntryCloseDiv" data-profit="positive" name="ifWicksClose"
+                  class="info" id="ifWickClosesNo" value="no">
+              </label>
+              <div id="cuttedREntryCloseDiv" class="hide inputText">
+                <label>If used entry at body, profit:</label>
+                <input type="text" name="cuttedREntryClose" class="info" id="cuttedREntryClose" value="0">
               </div>
-              <div id="cuttedREntryMiddleDiv" class="hide inputText">
-                <label>If used entry at middle, profit:</label>
-                <input type="text" name="cuttedREntryMiddle" class="info" id="cuttedREntryMiddle" value="0">
+              <p>Did entry at middle of base work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedREntryMiddleDiv" data-profit="positive" name="ifWicksMiddle"
+                  class="info" id="ifWicksMiddleYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="cuttedREntryMiddleDiv" data-profit="positive" name="ifWicksMiddle"
+                  class="info" id="ifWicksMiddleNo" value="no">
+              </label>
+            </div>
+            <div id="cuttedREntryMiddleDiv" class="hide inputText">
+              <label>If used entry at middle, profit:</label>
+              <input type="text" name="cuttedREntryMiddle" class="info" id="cuttedREntryMiddle" value="0">
+            </div>
+            <div id="ifLTFDiv" class="hide">
+              <p>Did LTF stop work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedRStopDiv" data-profit="positive" name="ifLTF" class="info"
+                  id="ifLTFYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="cuttedRStopDiv" data-profit="positive" name="ifLTF" class="info"
+                  id="ifLTFNo" value="no">
+              </label>
+            </div>
+            <div id="cuttedRStopDiv" class="hide inputText">
+              <label>If used tighter stop, profit:</label>
+              <input type="text" name="cuttedRStop" class="info" id="cuttedRStop" value="0">
+            </div>
+            <!-- raids -->
+            <!--  wins -->
+            <div id="ifFiboDiv" class="hide">
+              <p>Did 0.65 with 0.786 stop work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedR065x0786" data-profit="positive" name="ifFibo" class="info"
+                  id="ifFiboYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-show="ifFibo088Div" data-hide="cuttedR065x0786" data-profit="positive"
+                  name="ifFibo" class="info" id="ifFiboNo" value="no">
+              </label>
+              <div id="cuttedR065x0786" class="hide inputText">
+                <label>0.65 with 0.786 would yield profit:</label>
+                <input type="text" name="cuttedR" class="info" id="cuttedR065x0786" value="0">
               </div>
-              <div id="ifLTFDiv" class="hide">
-                <p>Did LTF stop work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="cuttedRStopDiv" data-profit="positive" name="ifLTF" class="info"
-                    id="ifLTFYes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-hide="cuttedRStopDiv" data-profit="positive" name="ifLTF" class="info"
-                    id="ifLTFNo" value="no">
-                </label>
+            </div>
+            <div id="ifFibo088Div" class="hide">
+              <p>Did 0.65 with 0.88 stop work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedR065x088" data-profit="positive" name="ifFibo088" class="info"
+                  id="ifFibo088Yes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-show="ifFibo088x1Div" data-hide="cuttedR065x088" data-profit="positive"
+                  name="ifFibo088" class="info" id="ifFibo088No" value="no">
+              </label>
+              <div id="cuttedR065x088" class="hide inputText">
+                <label>0.65 with 0.88 would yield profit:</label>
+                <input type="text" name="cuttedR" class="info" id="cuttedR065x088" value="0">
               </div>
-              <div id="cuttedRStopDiv" class="hide inputText">
-                <label>If used tighter stop, profit:</label>
-                <input type="text" name="cuttedRStop" class="info" id="cuttedRStop" value="0">
+            </div>
+            <div id="ifFibo078x088Div" class="hide">
+              <p>Did 0.78 with 0.88 stop work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedR078x088" data-profit="positive" name="ifFibo078x088" class="info"
+                  id="ifFibo078x088Yes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="cuttedR078x088" data-profit="positive" name="ifFibo078x088" class="info"
+                  id="ifFibo078x088No" value="no">
+              </label>
+              <div id="cuttedR078x088" class="hide inputText">
+                <label>0.78 with 0.88 would yield profit:</label>
+                <input type="text" name="cuttedR" class="info" id="cuttedR078x088" value="0">
               </div>
-              <!-- raids -->
-              <!--  wins -->
-              <div id="ifFiboDiv" class="hide">
-                <p>Did 0.65 with 0.786 stop work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="cuttedR065x0786" data-profit="positive" name="ifFibo" class="info"
-                    id="ifFiboYes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-show="ifFibo088Div" data-hide="cuttedR065x0786" data-profit="positive"
-                    name="ifFibo" class="info" id="ifFiboNo" value="no">
-                </label>
-                <div id="cuttedR065x0786" class="hide inputText">
-                  <label>0.65 with 0.786 would yield profit:</label>
-                  <input type="text" name="missedR" class="info" id="cuttedR065x0786" value="0">
-                </div>
+            </div>
+            <div id="ifFibo088x1Div" class="hide">
+              <p>Did 0.88 with swing stop work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedR088x1" data-profit="positive" name="ifFibo088x1" class="info"
+                  id="Fibo088x1Yes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="cuttedR088x1" data-profit="positive" name="ifFibo088x1" class="info"
+                  id="Fibo088x1No" value="no">
+              </label>
+              <div id="cuttedR088x1" class="hide inputText">
+                <label>0.88 with swing would yield profit:</label>
+                <input type="text" name="cuttedR" class="info" id="cuttedR088x1" value="0">
               </div>
-              <div id="ifFibo088Div" class="hide">
-                <p>Did 0.65 with 0.88 stop work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="cuttedR065x088" data-profit="positive" name="ifFibo088" class="info"
-                    id="ifFibo088Yes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-show="ifFibo088x1Div" data-hide="cuttedR065x088" data-profit="positive"
-                    name="ifFibo088" class="info" id="ifFibo088No" value="no">
-                </label>
-                <div id="cuttedR065x088" class="hide inputText">
-                  <label>0.65 with 0.88 would yield profit:</label>
-                  <input type="text" name="missedR" class="info" id="cuttedR065x088" value="0">
-                </div>
-              </div>
-              <div id="ifFibo078x088Div" class="hide">
-                <p>Did 0.78 with 0.88 stop work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="cuttedR078x088" data-profit="positive" name="ifFibo078x088"
-                    class="info" id="ifFibo078x088Yes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-hide="cuttedR078x088" data-profit="positive" name="ifFibo078x088"
-                    class="info" id="ifFibo078x088No" value="no">
-                </label>
-                <div id="cuttedR078x088" class="hide inputText">
-                  <label>0.78 with 0.88 would yield profit:</label>
-                  <input type="text" name="missedR" class="info" id="cuttedR078x088" value="0">
-                </div>
-              </div>
-              <div id="ifFibo088x1Div" class="hide">
-                <p>Did 0.88 with swing stop work out?</p>
-                <label>Yes
-                  <input type="radio" data-show="cuttedR088x1" data-profit="positive" name="ifFibo088x1" class="info"
-                    id="Fibo088x1Yes" value="yes">
-                </label>
-                <label>No
-                  <input type="radio" data-hide="cuttedR088x1" data-profit="positive" name="ifFibo088x1" class="info"
-                    id="Fibo088x1No" value="no">
-                </label>
-                <div id="cuttedR088x1" class="hide inputText">
-                  <label>0.88 with swing would yield profit:</label>
-                  <input type="text" name="missedR" class="info" id="cuttedR088x1" value="0">
-                </div>
-              </div>
+            </div>
           </div>
           <div class="flex">
-            tp
+            <!-- if won bases and first liq pool-->
+            <div id="ifMajorPoolTpDiv" class="hide">
+              <p>Did tp at major liq pool work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedifMajorPoolTp" data-profit="positive" name="ifMajorPoolTp"
+                  class="info" id="ifMajorPoolTpYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="cuttedifMajorPoolTp" data-profit="positive" name="ifMajorPoolTp"
+                  class="info" id="ifMajorPoolTpNo" value="no">
+              </label>
+              <div id="cuttedifMajorPoolTp" class="hide inputText">
+                <label>Tp at major liq pool would yield profit:</label>
+                <input type="text" name="cuttedRtp" class="info" id="cuttedifMajorPoolTp" value="0">
+              </div>
+            </div>
+            <div id="ifFirstPoolTpDiv" class="hide">
+              <p>Did tp at first liq pool work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedifFirstPoolTp" data-profit="positive" name="ifFirstPoolTp"
+                  class="info" id="ifFirstPoolTpYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="cuttedifFirstPoolTp" data-profit="positive" name="ifFirstPoolTp"
+                  class="info" id="ifFirstPoolTpNo" value="no">
+              </label>
+              <div id="cuttedifFirstPoolTp" class="hide inputText">
+                <label>Tp at first liq pool would yield profit:</label>
+                <input type="text" name="cuttedRtp" class="info" id="cuttedifFirstPoolTp" value="0">
+              </div>
+            </div>
+            <!-- wins raids fibo -->
+            <div id="ifn065TpDiv" class="hide">
+              <p>Did tp -0.65 work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedifn065Tp" data-profit="positive" name="ifn065Tp" class="info"
+                  id="ifn065TpYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="cuttedifn065Tp" data-profit="positive" name="ifn065Tp" class="info"
+                  id="ifn065TpNo" value="no">
+              </label>
+              <div id="cuttedifn065Tp" class="hide inputText">
+                <label>Tp at -0.65 would yield profit:</label>
+                <input type="text" name="cuttedRtp" class="info" id="cuttedifn065Tp" data-show="ifn1TpDiv" value="0">
+              </div>
+            </div>
+            <div id="ifn1TpDiv" class="hide">
+              <p>Did tp -1 work out?</p>
+              <label>Yes
+                <input type="radio" data-show="cuttedifn1Tp" data-profit="positive" name="ifn1Tp" class="info"
+                  id="ifn1TpYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="cuttedifn1Tp" data-profit="positive" name="ifn1Tp" class="info"
+                  id="ifn1TpNo" value="no">
+              </label>
+              <div id="cuttedifn1Tp" class="hide inputText">
+                <label>Tp at -1 would yield profit:</label>
+                <input type="text" name="cuttedRtp" class="info" id="cuttedifn1Tp" value="0">
+              </div>
+            </div>
+            <!-- if lost BY GREED -->
+            <div id="greedDiv" class="hide">
+              <p>Was there any tp on which setup would work?</p>
+              <label>Yes
+                <input type="radio" data-show="missedRGreedDiv" data-profit="negative" name="wasGreed" class="info"
+                  id="greedYes" value="yes">
+              </label>
+              <label>No
+                <input type="radio" data-hide="missedRGreedDiv" data-profit="negative" name="wasGreed" class="info"
+                  id="greedNo" value="no">
+              </label>
+              <div id="missedRGreedDiv" class="hide">
+                <label>Opposite signal
+                  <input type="radio"  data-profit="negative" name="greed" class="info"
+                    id="greedOppositeSignal" value="yes">
+                </label>
+                <label>Untested base
+                  <input type="radio"  data-profit="negative" name="greed" class="info"
+                    id="greedUntestedBaseYes" value="yes">
+                </label>
+                <label>First liq pool
+                  <input type="radio"  data-profit="negative" name="greed" class="info"
+                    id="greedFirstLiqPoolYes" value="yes">
+                </label>
+                <label>-0.236
+                  <input type="radio"  data-profit="negative" name="greed" class="info"
+                    id="greedn0236No" value="no">
+                </label>
+                <label>-0.65
+                  <input type="radio"  data-profit="negative" name="greed" class="info"
+                    id="greedn065Yes" value="yes">
+                </label>
+                <label>-1
+                  <input type="radio"  data-profit="negative" name="greed" class="info"
+                    id="greedn1No" value="no">
+                </label>
+ 
+                <div id="missedRGreedInput" class="inputText">
+                  <label>Missed gains by greed:</label>
+                  <input type="text" name="missedRGreed" class="info" id="missedRGreed" value="0">
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

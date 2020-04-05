@@ -399,7 +399,7 @@ nav ul li a:hover {
   background: white;
   border-radius: 0.25rem;
   cursor: pointer;
-  width: 50%;
+  width: 10%;
   padding: 0.5rem 0;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -411,7 +411,6 @@ nav ul li a:hover {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 15%;
   margin: 1rem 1rem;
   font-weight: bold;
   font-size: 1.1rem;
@@ -439,6 +438,7 @@ nav ul li a:hover {
 
 #container .pairsTabs ul li {
   background: #15191c;
+  padding: 0.95rem 0.25rem;
   margin: 1rem 0;
 }
 
@@ -636,6 +636,10 @@ nav ul li a:hover {
   left: 0;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+}
+
+#container #addtrade .improvements #greedDiv label {
+  margin: 0 1rem;
 }
 
 footer {
