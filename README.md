@@ -1,5 +1,10 @@
 # forex-alerts
-simple web app for forex alerts using html css js, localstorage + free api
+advanced web app, html css js
+
+- forex alerts from free forex api,
+- trades journaling,
+- statistic and charting.
+
 
 API:
 
