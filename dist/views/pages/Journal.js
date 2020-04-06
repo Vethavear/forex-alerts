@@ -1,6 +1,6 @@
 let Journal = {
-    render : async () => {
-        let view =  /*html*/`
+  render: async () => {
+    let view = `
         <section id="container">
         <div id="stats" class="hide">
           <h1>Daily stats</h1>
@@ -610,311 +610,326 @@ let Journal = {
         </div>
       </section>
         `
-        return view
-    },
-    
-    after_render: async () => {
+    return view
+  },
 
-        const UICtrl = (function () {
-            const selectors = {
-              pairContainer: document.querySelector("#pairpicker .pairsmenu"),
-              alertsContainer: document.querySelector(".alerts .table .container"),
-              inputField: document.getElementById("inputprice"),
-              addBtn: document.getElementById("add"),
-              currentPair: document.getElementById("currentpair"),
-              firedAlertsContainer: document.querySelector(".alertsfired ul"),
-              // Journal
-              addtrade: document.getElementById('addtrade'),
-              date: document.getElementById('date'),
-              currentTradeR: document.getElementById('result'),
-              dailytrades: document.getElementById('dailytrades'),
-              weeklytrades: document.getElementById('weeklytrades'),
-              gains: document.getElementById('R'),
-              journalPairsContainer: document.querySelector('.pairsTabs ul'),
-              journalCurrentPair: document.getElementById('pair'),
-              // Adding trade radios etc
-              journalRadios: document.querySelectorAll('.info'),
-              setup: document.getElementById('setup'),
-              greedDiv: document.getElementById('greedDiv'),
-              fill: document.getElementById('fill'),
-              continuation: document.getElementById('continuation'),
-              raid: document.getElementById('raid'),
-              basesContainer: document.getElementById('bases'),
-              raidsContainer: document.getElementById('raids'),
-              continuationStops: document.getElementById('continuationStops'),
-              continuationEntries: document.getElementById('continuationEntries'),
-              raidsStops: document.getElementById('raidsStops'),
-              raidsEntries: document.getElementById('raidsEntries'),
-              ifswingDiv: document.getElementById('ifswingDiv'),
-              ifSwingYes: document.getElementById('ifSwingYes'),
-              missedR: document.getElementById('missedR'),
-              ifSwingNo: document.getElementById('ifSwingNo'),
-              ifLTFDiv: document.getElementById('ifLTFDiv'),
-              ifWicksDiv: document.getElementById('ifWicksDiv'),
-              cuttedRStopDiv: document.getElementById('cuttedRStopDiv'),
-              // cuttedREntryCloseDiv: document.getElementById('cuttedREntryCloseDiv'),
-              // cuttedREntryMiddleDiv: document.getElementById('cuttedREntryMiddleDiv'),
-              // stopBasesYes: document.getElementById('stopBasesYes'),
-              //profit:
-              // // ifWicksCloseYes: document.getElementById('ifWicksCloseYes'),
-              // // ifWicksMiddleYes: document.getElementById('ifWicksMiddleYes'),
-              // // ifWickClosesNo: document.getElementById('ifWickClosesNo'),
-              // // ifWicksMiddleNo: document.getElementById('ifWicksMiddleNo'),
-              // ifLTFStopWorked: document.getElementById('ifLTFYes'),
-              // ifLTFStopDidntWork: document.getElementById('ifLTFNo'),
-              // loses
-              entryRaids65: document.getElementById('entryRaids65'),
-              entryRaids786: document.getElementById('entryRaids786'),
-              entryRaids88: document.getElementById('entryRaids88'),
-              tpn0236Raids: document.getElementById('tpn0236Raids'),
-              ifn065TpDiv: document.getElementById('ifn065TpDiv'),
-              tpn065Raids: document.getElementById('tpn065Raids'),
-              ifn1TpDiv: document.getElementById('ifn1TpDiv'),
-              tpn01Raids: document.getElementById('tpn01Raids'),
-              ifn0236TpDiv: document.getElementById('ifn0236TpDiv'),
-              ifn0236TpYes: document.getElementById('ifn0236TpYes'),
-              ifn065TpYes: document.getElementById('ifn065TpYes'),
-              entryRaidsYes: document.getElementById('entryRaidsYes'),
-              ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
-              if01Stop: document.getElementById('if01Stop'),
-              ifSwingStopRaidsDiv: document.getElementById('ifSwingStopRaidsDiv'),
-              // // ifFiboExtendedYes: document.getElementById('ifFiboExtendedYes'),
-              // missedR078Div: document.getElementById('missedR078Div'),
-              // // ifFiboExtendedNo: document.getElementById('ifFiboExtendedNo'),
-              // if01StopYes: document.getElementById('if01StopYes'),
-              // if01StopNo: document.getElementById('if01StopNo'),
-              missedR01Div: document.getElementById('missedR01Div'),
-              ifSwingStopRaidsDiv: document.getElementById('ifSwingStopRaidsDiv'),
-              // // ifSwingStopRaidsStopYes: document.getElementById('ifSwingStopRaidsStopYes'),
-              // missedRSwingDiv: document.getElementById('missedRSwingDiv'),
-              // ifSwingStopRaidsStopNo: document.getElementById('ifSwingStopRaidsStopNo'),
-              // profit
-              ifFiboDiv: document.getElementById('ifFiboDiv'),
-              // ifFiboYes: document.getElementById('ifFiboYes'),
-              // ifFiboNo: document.getElementById('ifFiboNo'),
-              // // cuttedR065x0786: document.getElementById('cuttedR065x0786'),
-              ifFibo088Div: document.getElementById('ifFibo088Div'),
-              // ifFibo088Yes: document.getElementById('ifFibo088Yes'),
-              // ifFibo088No: document.getElementById('ifFibo088No'),
-              // // cuttedR065x088: document.getElementById('cuttedR065x088'),
-              ifFibo078x088Div: document.getElementById('ifFibo078x088Div'),
-              // ifFibo078x088Yes: document.getElementById('ifFibo078x088Yes'),
-              // ifFibo078x088No: document.getElementById('ifFibo078x088No'),
-              // cuttedR078x088: document.getElementById('cuttedR078x088'),
-              ifFibo088x1Div: document.getElementById('ifFibo088x1Div'),
-              // Fibo088x1Yes: document.getElementById('Fibo088x1Yes'),
-              // Fibo088x1No: document.getElementById('Fibo088x1No'),
-              // cuttedR088x1: document.getElementById('cuttedR088x1'),
-              allInputs: document.getElementsByClassName('info')
+  after_render: async () => {
+
+    const UICtrl = (function () {
+      const selectors = {
+        // Journal
+        addTradeBtn: document.getElementById('addTradeBtn'),
+        addtrade: document.getElementById('addtrade'),
+        date: document.getElementById('date'),
+        currentTradeR: document.getElementById('result'),
+        dailytrades: document.getElementById('dailytrades'),
+        weeklytrades: document.getElementById('weeklytrades'),
+        gains: document.getElementById('R'),
+        journalPairsContainer: document.querySelector('.pairsTabs ul'),
+        journalCurrentPair: document.getElementById('pair'),
+        // Adding trade radios etc
+        journalRadios: document.querySelectorAll('.info'),
+        setup: document.getElementById('setup'),
+        greedDiv: document.getElementById('greedDiv'),
+        fill: document.getElementById('fill'),
+        continuation: document.getElementById('continuation'),
+        raid: document.getElementById('raid'),
+        basesContainer: document.getElementById('bases'),
+        raidsContainer: document.getElementById('raids'),
+        continuationStops: document.getElementById('continuationStops'),
+        continuationEntries: document.getElementById('continuationEntries'),
+        raidsStops: document.getElementById('raidsStops'),
+        raidsEntries: document.getElementById('raidsEntries'),
+        ifswingDiv: document.getElementById('ifswingDiv'),
+        ifSwingYes: document.getElementById('ifSwingYes'),
+        missedR: document.getElementById('missedR'),
+        ifSwingNo: document.getElementById('ifSwingNo'),
+        ifLTFDiv: document.getElementById('ifLTFDiv'),
+        ifWicksDiv: document.getElementById('ifWicksDiv'),
+        cuttedRStopDiv: document.getElementById('cuttedRStopDiv'),
+        // cuttedREntryCloseDiv: document.getElementById('cuttedREntryCloseDiv'),
+        // cuttedREntryMiddleDiv: document.getElementById('cuttedREntryMiddleDiv'),
+        // stopBasesYes: document.getElementById('stopBasesYes'),
+        //profit:
+        // // ifWicksCloseYes: document.getElementById('ifWicksCloseYes'),
+        // // ifWicksMiddleYes: document.getElementById('ifWicksMiddleYes'),
+        // // ifWickClosesNo: document.getElementById('ifWickClosesNo'),
+        // // ifWicksMiddleNo: document.getElementById('ifWicksMiddleNo'),
+        // ifLTFStopWorked: document.getElementById('ifLTFYes'),
+        // ifLTFStopDidntWork: document.getElementById('ifLTFNo'),
+        // loses
+        entryRaids65: document.getElementById('entryRaids65'),
+        entryRaids786: document.getElementById('entryRaids786'),
+        entryRaids88: document.getElementById('entryRaids88'),
+        tpn0236Raids: document.getElementById('tpn0236Raids'),
+        ifn065TpDiv: document.getElementById('ifn065TpDiv'),
+        tpn065Raids: document.getElementById('tpn065Raids'),
+        ifn1TpDiv: document.getElementById('ifn1TpDiv'),
+        tpn01Raids: document.getElementById('tpn01Raids'),
+        ifn0236TpDiv: document.getElementById('ifn0236TpDiv'),
+        ifn0236TpYes: document.getElementById('ifn0236TpYes'),
+        ifn065TpYes: document.getElementById('ifn065TpYes'),
+        entryRaidsYes: document.getElementById('entryRaidsYes'),
+        ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
+        if01Stop: document.getElementById('if01Stop'),
+        ifSwingStopRaidsDiv: document.getElementById('ifSwingStopRaidsDiv'),
+        // // ifFiboExtendedYes: document.getElementById('ifFiboExtendedYes'),
+        // missedR078Div: document.getElementById('missedR078Div'),
+        // // ifFiboExtendedNo: document.getElementById('ifFiboExtendedNo'),
+        // if01StopYes: document.getElementById('if01StopYes'),
+        // if01StopNo: document.getElementById('if01StopNo'),
+        missedR01Div: document.getElementById('missedR01Div'),
+        ifSwingStopRaidsDiv: document.getElementById('ifSwingStopRaidsDiv'),
+        // // ifSwingStopRaidsStopYes: document.getElementById('ifSwingStopRaidsStopYes'),
+        // missedRSwingDiv: document.getElementById('missedRSwingDiv'),
+        // ifSwingStopRaidsStopNo: document.getElementById('ifSwingStopRaidsStopNo'),
+        // profit
+        ifFiboDiv: document.getElementById('ifFiboDiv'),
+        // ifFiboYes: document.getElementById('ifFiboYes'),
+        // ifFiboNo: document.getElementById('ifFiboNo'),
+        // // cuttedR065x0786: document.getElementById('cuttedR065x0786'),
+        ifFibo088Div: document.getElementById('ifFibo088Div'),
+        // ifFibo088Yes: document.getElementById('ifFibo088Yes'),
+        // ifFibo088No: document.getElementById('ifFibo088No'),
+        // // cuttedR065x088: document.getElementById('cuttedR065x088'),
+        ifFibo078x088Div: document.getElementById('ifFibo078x088Div'),
+        // ifFibo078x088Yes: document.getElementById('ifFibo078x088Yes'),
+        // ifFibo078x088No: document.getElementById('ifFibo078x088No'),
+        // cuttedR078x088: document.getElementById('cuttedR078x088'),
+        ifFibo088x1Div: document.getElementById('ifFibo088x1Div'),
+        // Fibo088x1Yes: document.getElementById('Fibo088x1Yes'),
+        // Fibo088x1No: document.getElementById('Fibo088x1No'),
+        // cuttedR088x1: document.getElementById('cuttedR088x1'),
+        allInputs: document.querySelectorAll('.info')
+      };
+
+      return {
+        getSelectors: function () {
+          return selectors;
+        },
+
+        changeJournalPair: (pair, clickedTab) => {
+          selectors.journalCurrentPair.value = pair.toUpperCase();
+          const currentlyChecked = document.querySelector('.checked');
+          currentlyChecked.classList.remove('checked');
+          // add checked class to currently clicked class
+          clickedTab.setAttribute('class', 'checked');
+        },
+        hideContainer: (container, hide) => {
+          if (hide) {
+            container.classList.add('hide')
+          } else {
+            container.classList.remove('hide');
+          }
+        },
+        hide: (elementName, hide) => {
+          const element = document.getElementById(elementName);
+          if (hide) {
+            element.classList.add('hide')
+          } else {
+            element.classList.remove('hide');
+          }
+        },
+        initDate: () => {
+          let today = new Date();
+          selectors.date.valueAsDate = today;
+        }
+      };
+    })();
+
+    const JournalDataCtrl = (function (UICtrl) {
+
+      const selectors = UICtrl.getSelectors();
+      return {
+        collectData: () => {
+          
+          selectors.allInputs.forEach(element => {
+            console.log(`id: ${element.id} value ${element.value}`);
+          });
+        }
+      }
+
+    })(UICtrl);
+
+    const AppCtrl = (function (UICtrl, JournalDataCtrl) {
+
+      const selectors = UICtrl.getSelectors();
+
+      return {
+        init: async function () {
+          UICtrl.initDate();
+          // change Journal pair
+          selectors.journalPairsContainer.addEventListener("click", (e) => {
+            const target = e.target;
+            console.log(target.parentElement.classList);
+            if (target.matches('.change')) {
+              const pair = target.innerHTML.replace("/", "");
+              UICtrl.changeJournalPair(pair, target.parentElement);
             };
-          
-            return {
-              getSelectors: function () {
-                return selectors;
-              },
-        
-              changeJournalPair: (pair, clickedTab) => {
-                selectors.journalCurrentPair.value = pair.toUpperCase();
-                const currentlyChecked = document.querySelector('.checked');
-                currentlyChecked.classList.remove('checked');
-                // add checked class to currently clicked class
-                clickedTab.setAttribute('class', 'checked');
-              },
-              hideContainer: (container, hide) => {
-                if (hide) {
-                  container.classList.add('hide')
-                } else {
-                  container.classList.remove('hide');
-                }
-              },
-              hide: (elementName, hide) => {
-                const element = document.getElementById(elementName);
-                if (hide) {
-                  element.classList.add('hide')
-                } else {
-                  element.classList.remove('hide');
-                }
-              },
-              initDate: () => {
-                let today = new Date();
-                selectors.date.valueAsDate = today;
-              }
-            };
-          })();
-          
-          const AppCtrl = (function (UICtrl) {
+          });
 
-            const selectors = UICtrl.getSelectors();
- 
-            return {
-              init: async function () {
-                UICtrl.initDate();
+          // expand additional info on certain conditions
+          const currentTradeR = document.getElementById('result');
 
-                // change Journal pair
-                selectors.journalPairsContainer.addEventListener("click", (e) => {
-                  const target = e.target;
-                  console.log(target.parentElement.classList);
-                  if (target.matches('.change')) {
-                    const pair = target.innerHTML.replace("/", "");
-                    UICtrl.changeJournalPair(pair, target.parentElement);
-                  };
-                });
-          
-                // expand additional info on certain conditions
-                const currentTradeR = document.getElementById('result');
-          
-                currentTradeR.addEventListener('input', (e) => {
-                  UICtrl.hideContainer(selectors.setup, false);
-                })
-          
-                selectors.addtrade.addEventListener('click', element => {
-          
-                  if (element.target.type === 'radio') {
-          
-                    if (currentTradeR.value < 0) {
-          
-                      UICtrl.hideContainer(selectors.greedDiv, false);
-          
-                      if (element.target.dataset.profit === 'negative') {
-          
-                        if (element.target.dataset.show) {
-                          UICtrl.hide(element.target.dataset.show, false);
-                        }
-                        if (element.target.dataset.hide) {
-                          UICtrl.hide(element.target.dataset.hide, true);
-                        }
-          
-                      } else if (element.target.dataset.profit === 'positive') {
-                        UICtrl.hide(element.target.dataset.hide, true);
-          
-                      } else {
-                        if (element.target.dataset.show) {
-                          // if it has dataset
-                          UICtrl.hide(element.target.dataset.show, false);
-                        }
-                        if (element.target.dataset.hide) {
-                          // if it has dataset
-                          UICtrl.hide(element.target.dataset.hide, true);
-                        }
-                      }
-          
-                      //CLEARING OTHER MARKS IF MISTAKE:
-                      selectors.raidsStops.addEventListener('click', e => {
-                        if (e.target.matches('#stopRaidsYes')) {
-                          // if swing stop, hide all
-                          UICtrl.hideContainer(selectors.if01Stop, true);
-                          UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-                          UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                        }
-                        else if (e.target.matches('#stop078Raids')) {
-                          // if fibo entry
-                          UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                          UICtrl.hideContainer(selectors.if01Stop, true);
-                        } else if (e.target.matches('#stop088Raids')) {
-                          UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-                          UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                        } else if (e.target.matches('#stop1Raids')) {
-                          UICtrl.hideContainer(selectors.if01Stop, true);
-                          UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-                          UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                        } else if (e.target.matches('#stopRaidsGamble')) {
-                          UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                          UICtrl.hideContainer(selectors.if01Stop, true);
-                        }
-                      })
-          
-                    }
-                    else {
-          
-                      if (element.target.dataset.profit === 'positive') {
-          
-                        if (element.target.dataset.show) {
-                          UICtrl.hide(element.target.dataset.show, false);
-                        }
-                        if (element.target.dataset.hide) {
-                          UICtrl.hide(element.target.dataset.hide, true);
-                        }
-          
-                      } else if (element.target.dataset.profit === 'negative') {
-                        UICtrl.hide(element.target.dataset.hide, true);
-          
-                      } else {
-                        if (element.target.dataset.show) {
-                          UICtrl.hide(element.target.dataset.show, false);
-                        }
-                        if (element.target.dataset.hide) {
-                          UICtrl.hide(element.target.dataset.hide, true);
-                        }
-                      }
-          
-                      selectors.raidsStops.addEventListener('click', e => {
-          
-                        if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked) {
-                          // swing stop and middle of msb entry
-                          UICtrl.hideContainer(selectors.ifFiboDiv, false);
-                          UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                        } else if (e.target.matches('#stopRaidsYes') && selectors.entryRaids786.checked) {
-                          // swing stop and 0786 entry
-                          UICtrl.hideContainer(selectors.ifFiboDiv, true);
-                          UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
-                        } else if (e.target.matches('#stop078Raids') && selectors.entryRaids65.checked) {
-                          // everything done well - hide all
-                          UICtrl.hideContainer(selectors.ifFiboDiv, true);
-                          UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                        } else if (e.target.matches('#stop088Raids') && selectors.entryRaids786.checked) {
-                          //everything done well - hide all
-                          UICtrl.hideContainer(selectors.ifFiboDiv, true);
-                          UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                        }
-                        else {
-                          UICtrl.hideContainer(selectors.ifFiboDiv, false);
-                          UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
-                          UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                        }
-                      });
-                      selectors.raidsEntries.addEventListener('click', e => {
-          
-                        if (e.target.matches('#entryRaids65') || e.target.matches('entryRaids786') || e.target.matches('entryRaids88')) {
-                          // show take profits
-                          if (selectors.tpn0236Raids.checked) {
-                            UICtrl.hideContainer(selectors.ifn065TpDiv, false);
-                          } else if (selectors.tpn065Raids.checked) {
-                            UICtrl.hideContainer(selectors.ifn065TpDiv, true);
-                            UICtrl.hideContainer(selectors.ifn1TpDiv, false);
-                          } else if (selectors.tpn01Raids.checked) {
-                            UICtrl.hideContainer(selectors.ifn065TpDiv, true);
-                            UICtrl.hideContainer(selectors.ifn1TpDiv, true);
-                          }
-                        } else {
-                          UICtrl.hideContainer(selectors.ifn0236TpDiv, false);
-                        }
-                      });
-                      selectors.ifn0236TpYes.addEventListener('click', e => {
-                        UICtrl.hideContainer(selectors.ifn065TpDiv, false);
-                      })
-                      selectors.ifn065TpYes.addEventListener('click', e => {
-                        UICtrl.hideContainer(selectors.ifn1TpDiv, false);
-                      })
-                    }
+          currentTradeR.addEventListener('input', (e) => {
+            UICtrl.hideContainer(selectors.setup, false);
+          })
+
+          // collect data
+          selectors.addTradeBtn.addEventListener('click', JournalDataCtrl.collectData);
+
+          selectors.addtrade.addEventListener('click', element => {
+
+            if (element.target.type === 'radio') {
+
+              if (currentTradeR.value < 0) {
+
+                UICtrl.hideContainer(selectors.greedDiv, false);
+
+                if (element.target.dataset.profit === 'negative') {
+
+                  if (element.target.dataset.show) {
+                    UICtrl.hide(element.target.dataset.show, false);
+                  }
+                  if (element.target.dataset.hide) {
+                    UICtrl.hide(element.target.dataset.hide, true);
+                  }
+
+                } else if (element.target.dataset.profit === 'positive') {
+                  UICtrl.hide(element.target.dataset.hide, true);
+
+                } else {
+                  if (element.target.dataset.show) {
+                    // if it has dataset
+                    UICtrl.hide(element.target.dataset.show, false);
+                  }
+                  if (element.target.dataset.hide) {
+                    // if it has dataset
+                    UICtrl.hide(element.target.dataset.hide, true);
+                  }
+                }
+
+                //CLEARING OTHER MARKS IF MISTAKE:
+                selectors.raidsStops.addEventListener('click', e => {
+                  if (e.target.matches('#stopRaidsYes')) {
+                    // if swing stop, hide all
+                    UICtrl.hideContainer(selectors.if01Stop, true);
+                    UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+                    UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+                  }
+                  else if (e.target.matches('#stop078Raids')) {
+                    // if fibo entry
+                    UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+                    UICtrl.hideContainer(selectors.if01Stop, true);
+                  } else if (e.target.matches('#stop088Raids')) {
+                    UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+                    UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+                  } else if (e.target.matches('#stop1Raids')) {
+                    UICtrl.hideContainer(selectors.if01Stop, true);
+                    UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+                    UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+                  } else if (e.target.matches('#stopRaidsGamble')) {
+                    UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+                    UICtrl.hideContainer(selectors.if01Stop, true);
                   }
                 })
-              }
-            };
-          })(UICtrl);
-          
-          AppCtrl.init();
-          
 
-    }        
+              }
+              else {
+
+                if (element.target.dataset.profit === 'positive') {
+
+                  if (element.target.dataset.show) {
+                    UICtrl.hide(element.target.dataset.show, false);
+                  }
+                  if (element.target.dataset.hide) {
+                    UICtrl.hide(element.target.dataset.hide, true);
+                  }
+
+                } else if (element.target.dataset.profit === 'negative') {
+                  UICtrl.hide(element.target.dataset.hide, true);
+
+                } else {
+                  if (element.target.dataset.show) {
+                    UICtrl.hide(element.target.dataset.show, false);
+                  }
+                  if (element.target.dataset.hide) {
+                    UICtrl.hide(element.target.dataset.hide, true);
+                  }
+                }
+
+                selectors.raidsStops.addEventListener('click', e => {
+
+                  if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked) {
+                    // swing stop and middle of msb entry
+                    UICtrl.hideContainer(selectors.ifFiboDiv, false);
+                    UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+                  } else if (e.target.matches('#stopRaidsYes') && selectors.entryRaids786.checked) {
+                    // swing stop and 0786 entry
+                    UICtrl.hideContainer(selectors.ifFiboDiv, true);
+                    UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
+                  } else if (e.target.matches('#stop078Raids') && selectors.entryRaids65.checked) {
+                    // everything done well - hide all
+                    UICtrl.hideContainer(selectors.ifFiboDiv, true);
+                    UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+                  } else if (e.target.matches('#stop088Raids') && selectors.entryRaids786.checked) {
+                    //everything done well - hide all
+                    UICtrl.hideContainer(selectors.ifFiboDiv, true);
+                    UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+                  }
+                  else {
+                    UICtrl.hideContainer(selectors.ifFiboDiv, false);
+                    UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
+                    UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+                  }
+                });
+                selectors.raidsEntries.addEventListener('click', e => {
+
+                  if (e.target.matches('#entryRaids65') || e.target.matches('entryRaids786') || e.target.matches('entryRaids88')) {
+                    // show take profits
+                    if (selectors.tpn0236Raids.checked) {
+                      UICtrl.hideContainer(selectors.ifn065TpDiv, false);
+                    } else if (selectors.tpn065Raids.checked) {
+                      UICtrl.hideContainer(selectors.ifn065TpDiv, true);
+                      UICtrl.hideContainer(selectors.ifn1TpDiv, false);
+                    } else if (selectors.tpn01Raids.checked) {
+                      UICtrl.hideContainer(selectors.ifn065TpDiv, true);
+                      UICtrl.hideContainer(selectors.ifn1TpDiv, true);
+                    }
+                  } else {
+                    UICtrl.hideContainer(selectors.ifn0236TpDiv, false);
+                  }
+                });
+                selectors.ifn0236TpYes.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.ifn065TpDiv, false);
+                })
+                selectors.ifn065TpYes.addEventListener('click', e => {
+                  UICtrl.hideContainer(selectors.ifn1TpDiv, false);
+                })
+              }
+            }
+
+      
+
+          })
+
+        }
+      };
+    })(UICtrl, JournalDataCtrl);
+
+    AppCtrl.init();
+
+
+  }
 }
 
 export default Journal;
