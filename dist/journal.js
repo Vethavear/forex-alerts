@@ -102,16 +102,16 @@ const UICtrl = (function () {
     ifLTFDiv: document.getElementById('ifLTFDiv'),
     ifWicksDiv: document.getElementById('ifWicksDiv'),
     cuttedRStopDiv: document.getElementById('cuttedRStopDiv'),
-    cuttedREntryCloseDiv: document.getElementById('cuttedREntryCloseDiv'),
-    cuttedREntryMiddleDiv: document.getElementById('cuttedREntryMiddleDiv'),
-    stopBasesYes: document.getElementById('stopBasesYes'),
+    // cuttedREntryCloseDiv: document.getElementById('cuttedREntryCloseDiv'),
+    // cuttedREntryMiddleDiv: document.getElementById('cuttedREntryMiddleDiv'),
+    // stopBasesYes: document.getElementById('stopBasesYes'),
     //profit:
-    ifWicksCloseYes: document.getElementById('ifWicksCloseYes'),
-    ifWicksMiddleYes: document.getElementById('ifWicksMiddleYes'),
-    ifWickClosesNo: document.getElementById('ifWickClosesNo'),
-    ifWicksMiddleNo: document.getElementById('ifWicksMiddleNo'),
-    ifLTFStopWorked: document.getElementById('ifLTFYes'),
-    ifLTFStopDidntWork: document.getElementById('ifLTFNo'),
+    // // ifWicksCloseYes: document.getElementById('ifWicksCloseYes'),
+    // // ifWicksMiddleYes: document.getElementById('ifWicksMiddleYes'),
+    // // ifWickClosesNo: document.getElementById('ifWickClosesNo'),
+    // // ifWicksMiddleNo: document.getElementById('ifWicksMiddleNo'),
+    // ifLTFStopWorked: document.getElementById('ifLTFYes'),
+    // ifLTFStopDidntWork: document.getElementById('ifLTFNo'),
     // loses
     entryRaids65: document.getElementById('entryRaids65'),
     entryRaids786: document.getElementById('entryRaids786'),
@@ -128,34 +128,33 @@ const UICtrl = (function () {
     ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
     if01Stop: document.getElementById('if01Stop'),
     ifSwingStopRaidsDiv: document.getElementById('ifSwingStopRaidsDiv'),
-    ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
-    ifFiboExtendedYes: document.getElementById('ifFiboExtendedYes'),
-    missedR078Div: document.getElementById('missedR078Div'),
-    ifFiboExtendedNo: document.getElementById('ifFiboExtendedNo'),
-    if01StopYes: document.getElementById('if01StopYes'),
-    if01StopNo: document.getElementById('if01StopNo'),
+    // // ifFiboExtendedYes: document.getElementById('ifFiboExtendedYes'),
+    // missedR078Div: document.getElementById('missedR078Div'),
+    // // ifFiboExtendedNo: document.getElementById('ifFiboExtendedNo'),
+    // if01StopYes: document.getElementById('if01StopYes'),
+    // if01StopNo: document.getElementById('if01StopNo'),
     missedR01Div: document.getElementById('missedR01Div'),
     ifSwingStopRaidsDiv: document.getElementById('ifSwingStopRaidsDiv'),
-    ifSwingStopRaidsStopYes: document.getElementById('ifSwingStopRaidsStopYes'),
-    missedRSwingDiv: document.getElementById('missedRSwingDiv'),
-    ifSwingStopRaidsStopNo: document.getElementById('ifSwingStopRaidsStopNo'),
+    // // ifSwingStopRaidsStopYes: document.getElementById('ifSwingStopRaidsStopYes'),
+    // missedRSwingDiv: document.getElementById('missedRSwingDiv'),
+    // ifSwingStopRaidsStopNo: document.getElementById('ifSwingStopRaidsStopNo'),
     // profit
     ifFiboDiv: document.getElementById('ifFiboDiv'),
-    ifFiboYes: document.getElementById('ifFiboYes'),
-    ifFiboNo: document.getElementById('ifFiboNo'),
-    cuttedR065x0786: document.getElementById('cuttedR065x0786'),
+    // ifFiboYes: document.getElementById('ifFiboYes'),
+    // ifFiboNo: document.getElementById('ifFiboNo'),
+    // // cuttedR065x0786: document.getElementById('cuttedR065x0786'),
     ifFibo088Div: document.getElementById('ifFibo088Div'),
-    ifFibo088Yes: document.getElementById('ifFibo088Yes'),
-    ifFibo088No: document.getElementById('ifFibo088No'),
-    cuttedR065x088: document.getElementById('cuttedR065x088'),
+    // ifFibo088Yes: document.getElementById('ifFibo088Yes'),
+    // ifFibo088No: document.getElementById('ifFibo088No'),
+    // // cuttedR065x088: document.getElementById('cuttedR065x088'),
     ifFibo078x088Div: document.getElementById('ifFibo078x088Div'),
-    ifFibo078x088Yes: document.getElementById('ifFibo078x088Yes'),
-    ifFibo078x088No: document.getElementById('ifFibo078x088No'),
-    cuttedR078x088: document.getElementById('cuttedR078x088'),
+    // ifFibo078x088Yes: document.getElementById('ifFibo078x088Yes'),
+    // ifFibo078x088No: document.getElementById('ifFibo078x088No'),
+    // cuttedR078x088: document.getElementById('cuttedR078x088'),
     ifFibo088x1Div: document.getElementById('ifFibo088x1Div'),
-    Fibo088x1Yes: document.getElementById('Fibo088x1Yes'),
-    Fibo088x1No: document.getElementById('Fibo088x1No'),
-    cuttedR088x1: document.getElementById('cuttedR088x1'),
+    // Fibo088x1Yes: document.getElementById('Fibo088x1Yes'),
+    // Fibo088x1No: document.getElementById('Fibo088x1No'),
+    // cuttedR088x1: document.getElementById('cuttedR088x1'),
     allInputs: document.getElementsByClassName('info')
   };
 
@@ -439,10 +438,10 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
                 UICtrl.hideContainer(selectors.ifn0236TpDiv, false);
               }
             });
-            selectors.ifn0236TpYes.addEventListener('click', e=>{
+            selectors.ifn0236TpYes.addEventListener('click', e => {
               UICtrl.hideContainer(selectors.ifn065TpDiv, false);
             })
-            selectors.ifn065TpYes.addEventListener('click', e=>{
+            selectors.ifn065TpYes.addEventListener('click', e => {
               UICtrl.hideContainer(selectors.ifn1TpDiv, false);
             })
           }
@@ -489,16 +488,16 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
       //       // entry at wick
       //       if (e.target.matches('#entryBasesWicks')) {
       //         UICtrl.hideContainer(selectors.ifWicksDiv, false);
-      //         selectors.ifWicksCloseYes.addEventListener('click', e => {
+      // selectors.ifWicksCloseYes.addEventListener('click', e => {
       //           UICtrl.hideContainer(selectors.cuttedREntryCloseDiv, false);
       //         });
       //         selectors.ifWickClosesNo.addEventListener('click', e => {
       //           UICtrl.hideContainer(selectors.cuttedREntryCloseDiv, true);
       //         });
-      //         selectors.ifWicksMiddleYes.addEventListener('click', e => {
+      // selectors.ifWicksMiddleYes.addEventListener('click', e => {
       //           UICtrl.hideContainer(selectors.cuttedREntryMiddleDiv, false);
-      //         });
-      //         selectors.ifWicksMiddleNo.addEventListener('click', e => {
+      // });
+      // selectors.ifWicksMiddleNo.addEventListener('click', e => {
       //           UICtrl.hideContainer(selectors.cuttedREntryMiddleDiv, true);
       //         });
       //       } else {
@@ -509,8 +508,8 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
       //     selectors.continuationStops.addEventListener('click', e => {
       //       if (e.target.matches('#stopBasesYes')) {
       //         UICtrl.hideContainer(selectors.ifLTFDiv, false);
-      //         selectors.ifLTFStopWorked.addEventListener('click', e => {
-      //           // NIE POJAWIA SIE INPUT
+      // selectors.ifLTFStopWorked.addEventListener('click', e => {
+      // NIE POJAWIA SIE INPUT
       //           UICtrl.hideContainer(selectors.cuttedRStopDiv, false);
       //         });
       //         selectors.ifLTFStopDidntWork.addEventListener('click', e => {
@@ -577,7 +576,7 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
       //   }
 
       //       // cases always true:
-      //       selectors.ifFiboExtendedYes.addEventListener('click', e => {
+      // selectors.ifFiboExtendedYes.addEventListener('click', e => {
       //         UICtrl.hideContainer(selectors.missedR078Div, false);
 
       //         // hide rest if mistake
@@ -585,7 +584,7 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
       //         UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
 
       //       })
-      //       selectors.ifFiboExtendedNo.addEventListener('click', e => {
+      // selectors.ifFiboExtendedNo.addEventListener('click', e => {
       //         UICtrl.hideContainer(selectors.missedR078Div, true);
       //         // then did stop above minor liq hunt line worked out?
       //         UICtrl.hideContainer(selectors.if01Stop, false);
@@ -601,7 +600,7 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
       //         // then did swing stop worked out?
       //         UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, false);
       //       })
-      //       selectors.ifSwingStopRaidsStopYes.addEventListener('click', e => {
+      // selectors.ifSwingStopRaidsStopYes.addEventListener('click', e => {
       //         UICtrl.hideContainer(selectors.missedRSwingDiv, false);
       //       })
       //       selectors.ifSwingStopRaidsStopNo.addEventListener('click', e => {
@@ -631,22 +630,22 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
 
       //     // always true listeners
       //     selectors.ifFiboYes.addEventListener('click', e => {
-      //       UICtrl.hideContainer(selectors.cuttedR065x0786, false);
+      // UICtrl.hideContainer(selectors.cuttedR065x0786, false);
 
       //     })
       //     selectors.ifFiboNo.addEventListener('click', e => {
-      //       UICtrl.hideContainer(selectors.cuttedR065x0786, true);
+      // UICtrl.hideContainer(selectors.cuttedR065x0786, true);
       //       // show next
       //       UICtrl.hideContainer(selectors.ifFibo088Div, false);
 
       //     })
       //     selectors.ifFibo088Yes.addEventListener('click', e => {
-      //       UICtrl.hideContainer(selectors.cuttedR065x088, false);
+      // UICtrl.hideContainer(selectors.cuttedR065x088, false);
       //       UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
 
       //     })
       //     selectors.ifFibo088No.addEventListener('click', e => {
-      //       UICtrl.hideContainer(selectors.cuttedR065x088, true);
+      // UICtrl.hideContainer(selectors.cuttedR065x088, true);
 
       //     })
       //     selectors.ifFibo078x088Yes.addEventListener('click', e => {

@@ -229,7 +229,8 @@ const AppCtrl = (function(PairCtrl, UICtrl) {
             });
           }
         }
-      }, 60000);
+        console.log('pobrano '+ Date.now());
+      }, 300000);
     }
   };
 })(PairCtrl, UICtrl);
