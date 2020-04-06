@@ -85,6 +85,7 @@ const UICtrl = (function () {
     // Adding trade radios etc
     journalRadios: document.querySelectorAll('.info'),
     setup: document.getElementById('setup'),
+    greedDiv: document.getElementById('greedDiv'),
     fill: document.getElementById('fill'),
     continuation: document.getElementById('continuation'),
     raid: document.getElementById('raid'),
@@ -114,6 +115,15 @@ const UICtrl = (function () {
     // loses
     entryRaids65: document.getElementById('entryRaids65'),
     entryRaids786: document.getElementById('entryRaids786'),
+    entryRaids88: document.getElementById('entryRaids88'),
+    tpn0236Raids: document.getElementById('tpn0236Raids'),
+    ifn065TpDiv: document.getElementById('ifn065TpDiv'),
+    tpn065Raids: document.getElementById('tpn065Raids'),
+    ifn1TpDiv: document.getElementById('ifn1TpDiv'),
+    tpn01Raids: document.getElementById('tpn01Raids'),
+    ifn0236TpDiv: document.getElementById('ifn0236TpDiv'),
+    ifn0236TpYes: document.getElementById('ifn0236TpYes'),
+    ifn065TpYes: document.getElementById('ifn065TpYes'),
     entryRaidsYes: document.getElementById('entryRaidsYes'),
     ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
     if01Stop: document.getElementById('if01Stop'),
@@ -295,346 +305,372 @@ const AppCtrl = (function (PairCtrl, UICtrl) {
       const currentTradeR = document.getElementById('result');
 
       currentTradeR.addEventListener('input', (e) => {
-
-
-        selectors.addtrade.addEventListener('click', element => {
-
-          if (element.target.type === 'radio') {
-
-            if (currentTradeR.value < 0) {
-
-              if (element.target.dataset.profit === 'negative') {
-
-                if (element.target.dataset.show) {
-                  UICtrl.hide(element.target.dataset.show, false);
-                }
-                if (element.target.dataset.hide) {
-                  UICtrl.hide(element.target.dataset.hide, true);
-                }
-
-              } else if (element.target.dataset.profit === 'positive') {
-                UICtrl.hide(element.target.dataset.hide, true);
-
-              } else {
-                if (element.target.dataset.show) {
-                  // if it has dataset
-                  UICtrl.hide(element.target.dataset.show, false);
-                }
-                if (element.target.dataset.hide) {
-                  // if it has dataset
-                  UICtrl.hide(element.target.dataset.hide, true);
-                }
-              }
-
-              //CLEARING OTHER MARKS IF MISTAKE:
-              selectors.raidsStops.addEventListener('click', e => {
-                if (e.target.matches('#stopRaidsYes')) {
-                  // if swing stop, hide all
-                  UICtrl.hideContainer(selectors.if01Stop, true);
-                  UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-                  UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                }
-                else if (e.target.matches('#stop078Raids')) {
-                  // if fibo entry
-                  UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                  UICtrl.hideContainer(selectors.if01Stop, true);
-                } else if (e.target.matches('#stop088Raids')) {
-                  UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-                  UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                } else if (e.target.matches('#stop1Raids')) {
-                  UICtrl.hideContainer(selectors.if01Stop, true);
-                  UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-                  UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                } else if (e.target.matches('#stopRaidsGamble')) {
-                  UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-                  UICtrl.hideContainer(selectors.if01Stop, true);
-                }
-              })
-
-            }
-            else {
-
-              if (element.target.dataset.profit === 'positive') {
-
-                if (element.target.dataset.show) {
-                  UICtrl.hide(element.target.dataset.show, false);
-                }
-                if (element.target.dataset.hide) {
-                  UICtrl.hide(element.target.dataset.hide, true);
-                }
-
-              } else if (element.target.dataset.profit === 'negative') {
-                UICtrl.hide(element.target.dataset.hide, true);
-
-              } else {
-                if (element.target.dataset.show) {
-                  UICtrl.hide(element.target.dataset.show, false);
-                }
-                if (element.target.dataset.hide) {
-                  UICtrl.hide(element.target.dataset.hide, true);
-                }
-              }
-
-              selectors.raidsStops.addEventListener('click', e => {
-
-                if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked) {
-                  // swing stop and middle of msb entry
-                  UICtrl.hideContainer(selectors.ifFiboDiv, false);
-                  UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                } else if (e.target.matches('#stopRaidsYes') && selectors.entryRaids786.checked) {
-                  // swing stop and 0786 entry
-                  UICtrl.hideContainer(selectors.ifFiboDiv, true);
-                  UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
-                } else if (e.target.matches('#stop078Raids') && selectors.entryRaids65.checked) {
-                  // everything done well - hide all
-                  UICtrl.hideContainer(selectors.ifFiboDiv, true);
-                  UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                } else if (e.target.matches('#stop088Raids') && selectors.entryRaids786.checked) {
-                  //everything done well - hide all
-                  UICtrl.hideContainer(selectors.ifFiboDiv, true);
-                  UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                }
-                else {
-                  UICtrl.hideContainer(selectors.ifFiboDiv, false);
-                  UICtrl.hideContainer(selectors.ifFibo088Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
-                  UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
-                }
-              });
-            }
-          }
-        })
-
         UICtrl.hideContainer(selectors.setup, false);
-        UICtrl.hideContainer(selectors.fill, true);
-
-
-
-
-        // setup picker
-        // selectors.continuation.addEventListener('click', (e) => {
-        //   // CONTINUATION SETUPS
-        //   UICtrl.hideContainer(selectors.basesContainer, false);
-        //   // If mistake
-        //   selectors.raid.addEventListener('click', (e) => {
-        //     UICtrl.hideContainer(selectors.basesContainer, true);
-        //   });
-
-        //   if (currentTradeR.value < 0) {
-        //     // swing stop
-
-        //     // lose
-        //     selectors.continuationStops.addEventListener('click', e => {
-        //       if (e.target.matches('#stopBasesGamble') || (e.target.matches('#stopBasesLTF'))) {
-        //         // stopped but used tighter stop, possibility of mistake
-        //         UICtrl.hideContainer(selectors.ifswingDiv, false);
-        //         console.log('elo');
-        //         selectors.ifSwingYes.addEventListener('click', e => {
-        //           UICtrl.hideContainer(selectors.missedR, false);
-        //         })
-        //         selectors.ifSwingNo.addEventListener('click', e => {
-        //           UICtrl.hideContainer(selectors.missedR, true);
-        //         })
-        //       } else {
-        //         UICtrl.hideContainer(selectors.ifswingDiv, true);
-        //       }
-        //     })
-        //   } else {
-        //     // win, check if stop  and entry could be better
-        //     // entries
-        //     selectors.continuationEntries.addEventListener('click', e => {
-        //       // entry at wick
-        //       if (e.target.matches('#entryBasesWicks')) {
-        //         UICtrl.hideContainer(selectors.ifWicksDiv, false);
-        //         selectors.ifWicksCloseYes.addEventListener('click', e => {
-        //           UICtrl.hideContainer(selectors.cuttedREntryCloseDiv, false);
-        //         });
-        //         selectors.ifWickClosesNo.addEventListener('click', e => {
-        //           UICtrl.hideContainer(selectors.cuttedREntryCloseDiv, true);
-        //         });
-        //         selectors.ifWicksMiddleYes.addEventListener('click', e => {
-        //           UICtrl.hideContainer(selectors.cuttedREntryMiddleDiv, false);
-        //         });
-        //         selectors.ifWicksMiddleNo.addEventListener('click', e => {
-        //           UICtrl.hideContainer(selectors.cuttedREntryMiddleDiv, true);
-        //         });
-        //       } else {
-        //         UICtrl.hideContainer(selectors.ifLTFDiv, true);
-        //       }
-        //     })
-        //     // stops
-        //     selectors.continuationStops.addEventListener('click', e => {
-        //       if (e.target.matches('#stopBasesYes')) {
-        //         UICtrl.hideContainer(selectors.ifLTFDiv, false);
-        //         selectors.ifLTFStopWorked.addEventListener('click', e => {
-        //           // NIE POJAWIA SIE INPUT
-        //           UICtrl.hideContainer(selectors.cuttedRStopDiv, false);
-        //         });
-        //         selectors.ifLTFStopDidntWork.addEventListener('click', e => {
-        //           UICtrl.hideContainer(selectors.cuttedRStopDiv, true);
-        //         });
-
-        //       } else {
-        //         UICtrl.hideContainer(selectors.ifLTFDiv, true);
-        //       }
-        //     })
-        //   }
-        // })
-
-        // selectors.raid.addEventListener('click', e => {
-        //   // RAIDS SETUPS
-        //   UICtrl.hideContainer(selectors.raidsContainer, false);
-        //   // If mistake
-        //   selectors.continuation.addEventListener('click', e => {
-        //     UICtrl.hideContainer(selectors.raidsContainer, true);
-        //   });
-        //   selectors.raidsEntries.addEventListener('click', e => {
-        //     UICtrl.hideContainer(selectors.raidsStops, false);
-        //     UICtrl.hideContainer(selectors.if01Stop, true);
-        //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-        //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-        //   })
-
-        //   // if loss
-        //   if (currentTradeR.value < 0) {
-        // selectors.raidsStops.addEventListener('click', e => {
-        //   if (e.target.matches('#stopRaidsYes')) {
-        //     // if swing stop, hide all
-        //     // if (selectors.entryRaids65.checked) {
-        //     // 0.78 stop, check if 0.88 and swing worked out
-        //     UICtrl.hideContainer(selectors.if01Stop, true);
-        //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-        //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-        //   }
-        //   else if (e.target.matches('#stop078Raids')) {
-        //     // if fibo entry
-        //     // if (selectors.entryRaids65.checked) {
-        //     // 0.78 stop, check if 0.88 and swing worked out
-        //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, false);
-        //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-        //     UICtrl.hideContainer(selectors.if01Stop, true);
-
-        //   } else if (e.target.matches('#stop088Raids')) {
-        //     UICtrl.hideContainer(selectors.if01Stop, false);
-
-        //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-        //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-
-        //   } else if (e.target.matches('#stop1Raids')) {
-
-        //     UICtrl.hideContainer(selectors.if01Stop, true);
-        //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
-        //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-        //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, false);
-        //   } else if (e.target.matches('#stopRaidsGamble')) {
-        //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, false);
-        //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-        //     UICtrl.hideContainer(selectors.if01Stop, true);
-
-        //   }
-
-        //       // cases always true:
-        //       selectors.ifFiboExtendedYes.addEventListener('click', e => {
-        //         UICtrl.hideContainer(selectors.missedR078Div, false);
-
-        //         // hide rest if mistake
-        //         UICtrl.hideContainer(selectors.if01Stop, true);
-        //         UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-
-        //       })
-        //       selectors.ifFiboExtendedNo.addEventListener('click', e => {
-        //         UICtrl.hideContainer(selectors.missedR078Div, true);
-        //         // then did stop above minor liq hunt line worked out?
-        //         UICtrl.hideContainer(selectors.if01Stop, false);
-        //       })
-        //       selectors.if01StopYes.addEventListener('click', e => {
-        //         UICtrl.hideContainer(selectors.missedR01Div, false);
-        //         // hide rest if mistake
-        //         UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
-
-        //       })
-        //       selectors.if01StopNo.addEventListener('click', e => {
-        //         UICtrl.hideContainer(selectors.missedR01Div, true);
-        //         // then did swing stop worked out?
-        //         UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, false);
-        //       })
-        //       selectors.ifSwingStopRaidsStopYes.addEventListener('click', e => {
-        //         UICtrl.hideContainer(selectors.missedRSwingDiv, false);
-        //       })
-        //       selectors.ifSwingStopRaidsStopNo.addEventListener('click', e => {
-        //         UICtrl.hideContainer(selectors.missedRSwingDiv, true);
-        //       })
-        //     })
-        //   } else {
-        //     // gain RAIDS
-
-        // selectors.raidsStops.addEventListener('click', e => {
-
-        //   if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked) {
-        //     // swing stop and middle of msb entry
-        //     UICtrl.hideContainer(selectors.ifFiboDiv, false);
-
-        //   } else if (e.target.matches('#stopRaidsYes') && selectors.entry1Raids786.checked) {
-        //     // swing stop and 0786 entry
-        //     UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
-        //   } else if (e.target.matches('#stop078Raids') && selectors.entryRaids65.checked) {
-        //     // everything done well
-        //     // UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
-        //   }
-        //   else {
-        //     UICtrl.hideContainer(selectors.ifFiboDiv, false);
-        //   }
-        // });
-
-        //     // always true listeners
-        //     selectors.ifFiboYes.addEventListener('click', e => {
-        //       UICtrl.hideContainer(selectors.cuttedR065x0786, false);
-
-        //     })
-        //     selectors.ifFiboNo.addEventListener('click', e => {
-        //       UICtrl.hideContainer(selectors.cuttedR065x0786, true);
-        //       // show next
-        //       UICtrl.hideContainer(selectors.ifFibo088Div, false);
-
-        //     })
-        //     selectors.ifFibo088Yes.addEventListener('click', e => {
-        //       UICtrl.hideContainer(selectors.cuttedR065x088, false);
-        //       UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
-
-        //     })
-        //     selectors.ifFibo088No.addEventListener('click', e => {
-        //       UICtrl.hideContainer(selectors.cuttedR065x088, true);
-
-        //     })
-        //     selectors.ifFibo078x088Yes.addEventListener('click', e => {
-        //       UICtrl.hideContainer(selectors.cuttedR078x088, false);
-
-        //     })
-        //     selectors.ifFibo078x088No.addEventListener('click', e => {
-        //       UICtrl.hideContainer(selectors.cuttedR078x088, true);
-        //       UICtrl.hideContainer(selectors.ifFibo088x1Div, false);
-
-        //     })
-        //     selectors.Fibo088x1Yes.addEventListener('click', e => {
-        //       UICtrl.hideContainer(selectors.cuttedR088x1, false);
-
-        //     })
-        //     selectors.Fibo088x1No.addEventListener('click', e => {
-        //       UICtrl.hideContainer(selectors.cuttedR088x1, true);
-
-        //     })
-
-        // }
-        // })
       })
+
+      selectors.addtrade.addEventListener('click', element => {
+
+        if (element.target.type === 'radio') {
+
+          if (currentTradeR.value < 0) {
+
+            UICtrl.hideContainer(selectors.greedDiv, false);
+
+            if (element.target.dataset.profit === 'negative') {
+
+              if (element.target.dataset.show) {
+                UICtrl.hide(element.target.dataset.show, false);
+              }
+              if (element.target.dataset.hide) {
+                UICtrl.hide(element.target.dataset.hide, true);
+              }
+
+            } else if (element.target.dataset.profit === 'positive') {
+              UICtrl.hide(element.target.dataset.hide, true);
+
+            } else {
+              if (element.target.dataset.show) {
+                // if it has dataset
+                UICtrl.hide(element.target.dataset.show, false);
+              }
+              if (element.target.dataset.hide) {
+                // if it has dataset
+                UICtrl.hide(element.target.dataset.hide, true);
+              }
+            }
+
+            //CLEARING OTHER MARKS IF MISTAKE:
+            selectors.raidsStops.addEventListener('click', e => {
+              if (e.target.matches('#stopRaidsYes')) {
+                // if swing stop, hide all
+                UICtrl.hideContainer(selectors.if01Stop, true);
+                UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+              }
+              else if (e.target.matches('#stop078Raids')) {
+                // if fibo entry
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+                UICtrl.hideContainer(selectors.if01Stop, true);
+              } else if (e.target.matches('#stop088Raids')) {
+                UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+              } else if (e.target.matches('#stop1Raids')) {
+                UICtrl.hideContainer(selectors.if01Stop, true);
+                UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+              } else if (e.target.matches('#stopRaidsGamble')) {
+                UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+                UICtrl.hideContainer(selectors.if01Stop, true);
+              }
+            })
+
+          }
+          else {
+
+            if (element.target.dataset.profit === 'positive') {
+
+              if (element.target.dataset.show) {
+                UICtrl.hide(element.target.dataset.show, false);
+              }
+              if (element.target.dataset.hide) {
+                UICtrl.hide(element.target.dataset.hide, true);
+              }
+
+            } else if (element.target.dataset.profit === 'negative') {
+              UICtrl.hide(element.target.dataset.hide, true);
+
+            } else {
+              if (element.target.dataset.show) {
+                UICtrl.hide(element.target.dataset.show, false);
+              }
+              if (element.target.dataset.hide) {
+                UICtrl.hide(element.target.dataset.hide, true);
+              }
+            }
+
+            selectors.raidsStops.addEventListener('click', e => {
+
+              if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked) {
+                // swing stop and middle of msb entry
+                UICtrl.hideContainer(selectors.ifFiboDiv, false);
+                UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
+                UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+              } else if (e.target.matches('#stopRaidsYes') && selectors.entryRaids786.checked) {
+                // swing stop and 0786 entry
+                UICtrl.hideContainer(selectors.ifFiboDiv, true);
+                UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+                UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
+              } else if (e.target.matches('#stop078Raids') && selectors.entryRaids65.checked) {
+                // everything done well - hide all
+                UICtrl.hideContainer(selectors.ifFiboDiv, true);
+                UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
+                UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+              } else if (e.target.matches('#stop088Raids') && selectors.entryRaids786.checked) {
+                //everything done well - hide all
+                UICtrl.hideContainer(selectors.ifFiboDiv, true);
+                UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
+                UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+              }
+              else {
+                UICtrl.hideContainer(selectors.ifFiboDiv, false);
+                UICtrl.hideContainer(selectors.ifFibo088Div, true);
+                UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
+                UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+              }
+            });
+            selectors.raidsEntries.addEventListener('click', e => {
+
+              if (e.target.matches('#entryRaids65') || e.target.matches('entryRaids786') || e.target.matches('entryRaids88')) {
+                // show take profits
+                if (selectors.tpn0236Raids.checked) {
+                  UICtrl.hideContainer(selectors.ifn065TpDiv, false);
+                } else if (selectors.tpn065Raids.checked) {
+                  UICtrl.hideContainer(selectors.ifn065TpDiv, true);
+                  UICtrl.hideContainer(selectors.ifn1TpDiv, false);
+                } else if (selectors.tpn01Raids.checked) {
+                  UICtrl.hideContainer(selectors.ifn065TpDiv, true);
+                  UICtrl.hideContainer(selectors.ifn1TpDiv, true);
+                }
+              } else {
+                UICtrl.hideContainer(selectors.ifn0236TpDiv, false);
+              }
+            });
+            selectors.ifn0236TpYes.addEventListener('click', e=>{
+              UICtrl.hideContainer(selectors.ifn065TpDiv, false);
+            })
+            selectors.ifn065TpYes.addEventListener('click', e=>{
+              UICtrl.hideContainer(selectors.ifn1TpDiv, false);
+            })
+          }
+        }
+      })
+
+
+
+
+
+
+      // setup picker
+      // selectors.continuation.addEventListener('click', (e) => {
+      //   // CONTINUATION SETUPS
+      //   UICtrl.hideContainer(selectors.basesContainer, false);
+      //   // If mistake
+      //   selectors.raid.addEventListener('click', (e) => {
+      //     UICtrl.hideContainer(selectors.basesContainer, true);
+      //   });
+
+      //   if (currentTradeR.value < 0) {
+      //     // swing stop
+
+      //     // lose
+      //     selectors.continuationStops.addEventListener('click', e => {
+      //       if (e.target.matches('#stopBasesGamble') || (e.target.matches('#stopBasesLTF'))) {
+      //         // stopped but used tighter stop, possibility of mistake
+      //         UICtrl.hideContainer(selectors.ifswingDiv, false);
+      //         console.log('elo');
+      //         selectors.ifSwingYes.addEventListener('click', e => {
+      //           UICtrl.hideContainer(selectors.missedR, false);
+      //         })
+      //         selectors.ifSwingNo.addEventListener('click', e => {
+      //           UICtrl.hideContainer(selectors.missedR, true);
+      //         })
+      //       } else {
+      //         UICtrl.hideContainer(selectors.ifswingDiv, true);
+      //       }
+      //     })
+      //   } else {
+      //     // win, check if stop  and entry could be better
+      //     // entries
+      //     selectors.continuationEntries.addEventListener('click', e => {
+      //       // entry at wick
+      //       if (e.target.matches('#entryBasesWicks')) {
+      //         UICtrl.hideContainer(selectors.ifWicksDiv, false);
+      //         selectors.ifWicksCloseYes.addEventListener('click', e => {
+      //           UICtrl.hideContainer(selectors.cuttedREntryCloseDiv, false);
+      //         });
+      //         selectors.ifWickClosesNo.addEventListener('click', e => {
+      //           UICtrl.hideContainer(selectors.cuttedREntryCloseDiv, true);
+      //         });
+      //         selectors.ifWicksMiddleYes.addEventListener('click', e => {
+      //           UICtrl.hideContainer(selectors.cuttedREntryMiddleDiv, false);
+      //         });
+      //         selectors.ifWicksMiddleNo.addEventListener('click', e => {
+      //           UICtrl.hideContainer(selectors.cuttedREntryMiddleDiv, true);
+      //         });
+      //       } else {
+      //         UICtrl.hideContainer(selectors.ifLTFDiv, true);
+      //       }
+      //     })
+      //     // stops
+      //     selectors.continuationStops.addEventListener('click', e => {
+      //       if (e.target.matches('#stopBasesYes')) {
+      //         UICtrl.hideContainer(selectors.ifLTFDiv, false);
+      //         selectors.ifLTFStopWorked.addEventListener('click', e => {
+      //           // NIE POJAWIA SIE INPUT
+      //           UICtrl.hideContainer(selectors.cuttedRStopDiv, false);
+      //         });
+      //         selectors.ifLTFStopDidntWork.addEventListener('click', e => {
+      //           UICtrl.hideContainer(selectors.cuttedRStopDiv, true);
+      //         });
+
+      //       } else {
+      //         UICtrl.hideContainer(selectors.ifLTFDiv, true);
+      //       }
+      //     })
+      //   }
+      // })
+
+      // selectors.raid.addEventListener('click', e => {
+      //   // RAIDS SETUPS
+      //   UICtrl.hideContainer(selectors.raidsContainer, false);
+      //   // If mistake
+      //   selectors.continuation.addEventListener('click', e => {
+      //     UICtrl.hideContainer(selectors.raidsContainer, true);
+      //   });
+      //   selectors.raidsEntries.addEventListener('click', e => {
+      //     UICtrl.hideContainer(selectors.raidsStops, false);
+      //     UICtrl.hideContainer(selectors.if01Stop, true);
+      //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+      //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+      //   })
+
+      //   // if loss
+      //   if (currentTradeR.value < 0) {
+      // selectors.raidsStops.addEventListener('click', e => {
+      //   if (e.target.matches('#stopRaidsYes')) {
+      //     // if swing stop, hide all
+      //     // if (selectors.entryRaids65.checked) {
+      //     // 0.78 stop, check if 0.88 and swing worked out
+      //     UICtrl.hideContainer(selectors.if01Stop, true);
+      //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+      //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+      //   }
+      //   else if (e.target.matches('#stop078Raids')) {
+      //     // if fibo entry
+      //     // if (selectors.entryRaids65.checked) {
+      //     // 0.78 stop, check if 0.88 and swing worked out
+      //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, false);
+      //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+      //     UICtrl.hideContainer(selectors.if01Stop, true);
+
+      //   } else if (e.target.matches('#stop088Raids')) {
+      //     UICtrl.hideContainer(selectors.if01Stop, false);
+
+      //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+      //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+
+      //   } else if (e.target.matches('#stop1Raids')) {
+
+      //     UICtrl.hideContainer(selectors.if01Stop, true);
+      //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, true);
+      //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+      //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, false);
+      //   } else if (e.target.matches('#stopRaidsGamble')) {
+      //     UICtrl.hideContainer(selectors.ifFiboExtendedDiv, false);
+      //     UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+      //     UICtrl.hideContainer(selectors.if01Stop, true);
+
+      //   }
+
+      //       // cases always true:
+      //       selectors.ifFiboExtendedYes.addEventListener('click', e => {
+      //         UICtrl.hideContainer(selectors.missedR078Div, false);
+
+      //         // hide rest if mistake
+      //         UICtrl.hideContainer(selectors.if01Stop, true);
+      //         UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+
+      //       })
+      //       selectors.ifFiboExtendedNo.addEventListener('click', e => {
+      //         UICtrl.hideContainer(selectors.missedR078Div, true);
+      //         // then did stop above minor liq hunt line worked out?
+      //         UICtrl.hideContainer(selectors.if01Stop, false);
+      //       })
+      //       selectors.if01StopYes.addEventListener('click', e => {
+      //         UICtrl.hideContainer(selectors.missedR01Div, false);
+      //         // hide rest if mistake
+      //         UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, true);
+
+      //       })
+      //       selectors.if01StopNo.addEventListener('click', e => {
+      //         UICtrl.hideContainer(selectors.missedR01Div, true);
+      //         // then did swing stop worked out?
+      //         UICtrl.hideContainer(selectors.ifSwingStopRaidsDiv, false);
+      //       })
+      //       selectors.ifSwingStopRaidsStopYes.addEventListener('click', e => {
+      //         UICtrl.hideContainer(selectors.missedRSwingDiv, false);
+      //       })
+      //       selectors.ifSwingStopRaidsStopNo.addEventListener('click', e => {
+      //         UICtrl.hideContainer(selectors.missedRSwingDiv, true);
+      //       })
+      //     })
+      //   } else {
+      //     // gain RAIDS
+
+      // selectors.raidsStops.addEventListener('click', e => {
+
+      //   if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked) {
+      //     // swing stop and middle of msb entry
+      //     UICtrl.hideContainer(selectors.ifFiboDiv, false);
+
+      //   } else if (e.target.matches('#stopRaidsYes') && selectors.entry1Raids786.checked) {
+      //     // swing stop and 0786 entry
+      //     UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
+      //   } else if (e.target.matches('#stop078Raids') && selectors.entryRaids65.checked) {
+      //     // everything done well
+      //     // UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
+      //   }
+      //   else {
+      //     UICtrl.hideContainer(selectors.ifFiboDiv, false);
+      //   }
+      // });
+
+      //     // always true listeners
+      //     selectors.ifFiboYes.addEventListener('click', e => {
+      //       UICtrl.hideContainer(selectors.cuttedR065x0786, false);
+
+      //     })
+      //     selectors.ifFiboNo.addEventListener('click', e => {
+      //       UICtrl.hideContainer(selectors.cuttedR065x0786, true);
+      //       // show next
+      //       UICtrl.hideContainer(selectors.ifFibo088Div, false);
+
+      //     })
+      //     selectors.ifFibo088Yes.addEventListener('click', e => {
+      //       UICtrl.hideContainer(selectors.cuttedR065x088, false);
+      //       UICtrl.hideContainer(selectors.ifFibo078x088Div, false);
+
+      //     })
+      //     selectors.ifFibo088No.addEventListener('click', e => {
+      //       UICtrl.hideContainer(selectors.cuttedR065x088, true);
+
+      //     })
+      //     selectors.ifFibo078x088Yes.addEventListener('click', e => {
+      //       UICtrl.hideContainer(selectors.cuttedR078x088, false);
+
+      //     })
+      //     selectors.ifFibo078x088No.addEventListener('click', e => {
+      //       UICtrl.hideContainer(selectors.cuttedR078x088, true);
+      //       UICtrl.hideContainer(selectors.ifFibo088x1Div, false);
+
+      //     })
+      //     selectors.Fibo088x1Yes.addEventListener('click', e => {
+      //       UICtrl.hideContainer(selectors.cuttedR088x1, false);
+
+      //     })
+      //     selectors.Fibo088x1No.addEventListener('click', e => {
+      //       UICtrl.hideContainer(selectors.cuttedR088x1, true);
+
+      //     })
+
+      // }
+      // })
+      // selectors on input tutaj listener:
+      // })
       // let prices;
       // // Get prices from API
       // // EURGBP,USDJPY,EURUSD, GBPUSD, AUDUSD, USDCHF, USDCAD

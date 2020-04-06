@@ -249,7 +249,7 @@ nav {
     background: white;
     border-radius: 0.25rem;
     cursor: pointer;
-    width: 50%;
+    width: 10%;
     padding: 0.5rem 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -262,7 +262,6 @@ nav {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 15%;
     margin: 1rem 1rem;
     font-weight: bold;
     font-size: 1.1rem;
@@ -283,7 +282,7 @@ nav {
         }
         background: $primary-color;
         // margin: 0.7rem 0;
-        // padding: 0.95rem 0.25rem;
+        padding: 0.95rem 0.25rem;
         margin: 1rem 0;
         button {
           width: 100%;
@@ -422,6 +421,11 @@ nav {
           top: 0;
           left: 0;
           transition: all 0.5s;
+        }
+      }
+      #greedDiv{
+        label{
+          margin: 0 1rem;
         }
       }
     }
