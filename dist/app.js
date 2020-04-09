@@ -1,6 +1,6 @@
 "use strict";
 
-import Alerts from "./views/pages/Alerts.js";
+import { Alerts } from "./views/pages/Alerts.js";
 import Journal from "./views/pages/Journal.js";
 import Db from "./services/Db.js";
 // import Error404 from './views/pages/Error404.js'
@@ -34,7 +34,7 @@ const router = async () => {
   // If the parsed URL is not in our list of supported routes, select the 404 page instead
   let page = routes[parsedURL] ? routes[parsedURL] : Error404;
   content.innerHTML = await page.render();
-
+  Alerts.after_render();
   await page.after_render();
   Db.init();
 };

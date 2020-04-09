@@ -22,7 +22,8 @@ textarea {
 body {
   min-height: 100vh;
   overflow: visible;
-  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover no-repeat;
+  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover
+    no-repeat;
 }
 button,
 i {
@@ -71,13 +72,41 @@ nav {
   }
 }
 
+.slideIn {
+  left: 0 !important;
+  animation: slideIn 0.4s ease-in-out;
+}
+.slideOut {
+  animation: slideOut 0.4s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    left: -1500px;
+  }
+  to {
+    left: 0;
+  }
+}
+@keyframes slideOut {
+  from {
+    left: 0;
+  }
+  to {
+    left: -1500px;
+  }
+}
+
 #pairpicker {
   display: flex;
   justify-content: center;
   margin: 5rem 0;
-
+  position: absolute;
+  z-index: 100;
+  left: -1500px;
+  width: 100%;
   .pairsmenu {
-    position: fixed;
+    position: relative;
     left: 0;
     background: $primary-color;
     border-top-right-radius: 25px;
@@ -92,7 +121,8 @@ nav {
       list-style-type: none;
       li {
         button {
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
           font-weight: bold;
           color: $primary-color;
           background: white;
@@ -189,7 +219,7 @@ nav {
 
   .alertsfired {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    position: fixed;
+    position: relative;
     right: 0;
     background: $primary-color;
     border-top-left-radius: 25px;
@@ -200,6 +230,16 @@ nav {
     grid-template-columns: 1fr;
     gap: 0.5rem;
     justify-items: center;
+    #exit {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      height: 20px;
+      width: 20px;
+      z-index: 101;
+      background: url("../img/icon-remove.svg") no-repeat center center/cover;
+      cursor: pointer;
+    }
     .labels {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -256,7 +296,8 @@ nav {
     align-self: center;
     &:hover {
       background: $hover-color;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
     }
 
     position: absolute;
@@ -423,8 +464,8 @@ nav {
           transition: all 0.5s;
         }
       }
-      #greedDiv{
-        label{
+      #greedDiv {
+        label {
           margin: 0 1rem;
         }
       }

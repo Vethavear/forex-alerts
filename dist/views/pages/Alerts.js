@@ -1,82 +1,7 @@
-import Utils from "../../services/Utils.js";
-
 let Alerts = {
   render: async () => {
     let view = /*html*/ `
       
-
-        <section id="pairpicker">
-        <div class="pairsmenu">
-          <ul>
-            <h2 class="p1 center">Pairs</h4>
-              <li class="p1">
-                <button class="changepair">EUR/USD</button>
-              </li>
-              <li class="p1">
-                <button class="changepair">EUR/GBP</button>
-              </li>
-              <li class="p1">
-                <button class="changepair">GBP/USD</button>
-              </li>
-              <li class="p1">
-                <button class="changepair">USD/JPY</button>
-              </li>
-              <li class="p1">
-                <button class="changepair">AUD/USD</button>
-              </li>
-              <li class="p1">
-                <button class="changepair">USD/CHF</button>
-              </li>
-              <li class="p1">
-                <button class="changepair">USD/CAD</button>
-              </li>
-          </ul>
-        </div>
-    
-        <div class="alerts">
-          <h1 id="currentpair" class="my-1">GBPUSD</h1>
-          <div class="addalert my-1">
-            <input type="text" name="inputprice" id="inputprice" placeholder="1.2303">
-            <button id="add">Add</button>
-          </div>
-          <div class="radio-container">
-            <label for="short">Short</label>
-            <input type="radio" name="direction" id="short" value="short">
-            <label for="long">Long</label>
-            <input type="radio" name="direction" id="long" value="long">
-          </div>
-    
-          <div class="table">
-            <div class="row">
-              <h3>Price</h3>
-              <h3>Time</h3>
-              <h3>Delete</h3>
-            </div>
-            <div class="container">
-              <!-- <div class="row">
-              <p>2000</p>
-              <p>10:23</p>
-              <button id="delete"><i class="fas fa-times-circle"></i></button>
-            </div>
-            <div class="row">
-              <p>2000</p>
-              <p>10:23</p>
-              <button id="delete"><i class="fas fa-times-circle"></i></button>
-            </div> -->
-            </div>
-          </div>
-        </div>
-        <div class="alertsfired">
-          <h2 class="p1 center">Recently fired alerts</h4>
-            <div class="labels">
-              <h3>Pair</h3>
-              <h3>Price</h3>
-              <h3>Time</h3>
-            </div>
-            <ul>
-            </ul>
-        </div>
-      </section>
         `;
     return view;
   },
@@ -232,11 +157,25 @@ let Alerts = {
         UICtrl.removeAlert(alert.id);
         audioCtrl.play();
       }
+
+      function showAlerts(e) {
+        e.preventDefault();
+        if (pairpicker.classList.contains("slideIn")) {
+          pairpicker.classList.remove("slideIn");
+          pairpicker.classList.add("slideOut");
+        } else {
+          pairpicker.classList.remove("slideOut");
+          pairpicker.classList.add("slideIn");
+        }
+      }
+
       return {
         init: async function () {
           addAlerts();
           const audioCtrl = prepareAudio(); // Prepare alert audio
 
+          alertsModal.addEventListener("click", showAlerts);
+          exit.addEventListener("click", showAlerts);
           // Remove Alert
           selectors.alertsContainer.addEventListener("click", function (e) {
             const target = e.target;
@@ -288,11 +227,6 @@ let Alerts = {
           // Get prices from API
           // EURGBP,USDJPY,EURUSD, GBPUSD, AUDUSD, USDCHF, USDCAD
           setInterval(async () => {
-            let request = Utils.parseRequestURL();
-            let parsedURL =
-              (request.resource ? "/" + request.resource : "/") +
-              (request.id ? "/:id" : "") +
-              (request.verb ? "/" + request.verb : "");
             let pairs = "";
             for (let key in alerts) {
               if (alerts[key].length > 0) {
@@ -315,15 +249,12 @@ let Alerts = {
                       el.direction == "short") ||
                     (prices[pair].rate <= el.price && el.direction == "long")
                   ) {
-                    if (parsedURL != "/") {
-                      audioCtrl.play();
-                      PairCtrl.removeAlert(pair.toLowerCase(), alertId);
-                      alert(
-                        `${pair} price on liq (${el.direction}, ${el.price})`
-                      );
-                    } else {
-                      clearUI(pair.toLowerCase(), alertId);
-                    }
+                    audioCtrl.play();
+                    PairCtrl.removeAlert(pair.toLowerCase(), alertId);
+                    alert(
+                      `${pair} price on liq (${el.direction}, ${el.price})`
+                    );
+                    clearUI(pair.toLowerCase(), alertId);
                   }
                 });
               }
@@ -337,4 +268,4 @@ let Alerts = {
   },
 };
 
-export default Alerts;
+export { Alerts };
