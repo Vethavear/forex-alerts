@@ -2,6 +2,7 @@
 
 import Alerts from './views/pages/Alerts.js'
 import Journal from './views/pages/Journal.js'
+import Db from './services/Db.js'
 // import Error404 from './views/pages/Error404.js'
 // import PostShow from './views/pages/PostShow.js'
 // import Register from './views/pages/Register.js'
@@ -33,6 +34,10 @@ const router = async () => {
     let page = routes[parsedURL] ? routes[parsedURL] : Error404
     content.innerHTML = await page.render();
     await page.after_render();
+
+
+    Db.init();
+    
 
 }
 
