@@ -1,20 +1,43 @@
 "use strict";
 
 import { Alerts } from "./views/pages/Alerts.js";
+import Login from "./views/pages/Login.js";
+import Signup from "./views/pages/Signup.js";
+import Reset from "./views/pages/Reset.js";
 import Journal from "./views/pages/Journal.js";
 import Db from "./services/Db.js";
+import Auth from "./services/Authentication.js";
 // import Error404 from './views/pages/Error404.js'
-// import PostShow from './views/pages/PostShow.js'
-// import Register from './views/pages/Register.js'
 import Utils from "./services/Utils.js";
 
+
+
 // List of supported routes. Any url other than these routes will throw a 404 error
-const routes = {
+const LoggedInroutes = {
   "/": Alerts,
   "/journal": Journal,
   // , '/p/:id': PostShow
   // , '/register': Register
 };
+// when logged out
+const routes = {
+  "/": Alerts,
+  "/journal": Login,
+  "/login": Login,
+  "/signup": Signup,
+  "/reset": Reset,
+  // , '/p/:id': PostShow
+
+};
+
+// global auth object
+const initApp = function () {
+  Db.init();
+  Alerts.after_render()
+};
+initApp();
+
+const authManager =  new Auth();
 
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.
 const router = async () => {
@@ -32,11 +55,17 @@ const router = async () => {
 
   // Get the page from our hash of supported routes.
   // If the parsed URL is not in our list of supported routes, select the 404 page instead
-  let page = routes[parsedURL] ? routes[parsedURL] : Error404;
+  // CHECK CREDENTIALS:
+  let page;
+  console.log(authManager.logged);
+  if (authManager.logged) {
+    page = LoggedInroutes[parsedURL] ? LoggedInroutes[parsedURL] : Error404;
+  } else {
+    page = routes[parsedURL] ? routes[parsedURL] : Error404;
+  }
+  // page = LoggedInroutes[parsedURL] ? LoggedInroutes[parsedURL] : Error404;
   content.innerHTML = await page.render();
-  Alerts.after_render();
   await page.after_render();
-  Db.init();
 };
 
 // Listen on hash change:
@@ -44,3 +73,6 @@ window.addEventListener("hashchange", router);
 
 // Listen on page load:
 window.addEventListener("load", router);
+
+
+export default authManager;
