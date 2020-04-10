@@ -251,16 +251,16 @@ let Alerts = {
                   ) {
                     audioCtrl.play();
                     PairCtrl.removeAlert(pair.toLowerCase(), alertId);
-                    alert(
-                      `${pair} price on liq (${el.direction}, ${el.price})`
-                    );
+                    // alert(
+                    //   `${pair} price on liq (${el.direction}, ${el.price})`
+                    // );
                     clearUI(pair.toLowerCase(), alertId);
                   }
                 });
               }
             }
             console.log("pobrano " + Date.now());
-          }, 10000);
+          }, 300000);
         },
       };
     })(PairCtrl, UICtrl);
