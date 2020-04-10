@@ -51,26 +51,28 @@ class Auth {
     signin() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+        firebase.auth().signInWithEmailAndPassword(email, password).then(result => {
+            document.location.href = '';
+        }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             // ...
         });
-        document.location.href = '';
 
     }
 
     signup() {
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(result => {
+            document.location.href = '';
+        }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
             // ...
-        });
-        document.location.href = '';
+        })
     }
     resetPassword() {
         const email = document.getElementById('resetEmail').value;
