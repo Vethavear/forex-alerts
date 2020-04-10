@@ -2,7 +2,7 @@ class Auth {
 
     constructor() {
 
-         firebase.auth().onAuthStateChanged((user) => {
+        firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log('logged');
                 // User is signed in.
@@ -24,17 +24,29 @@ class Auth {
         });
 
     };
+    async  IsLoggedIn() {
+        try {
+            await new Promise((resolve, reject) =>
+                firebase.auth().onAuthStateChanged(
+                    user => {
+                        if (user) {
+                            // User is signed in.
+                            resolve(user)
+                        } else {
+                            // No user is signed in.
+                            reject('no user logged in')
+                        }
+                    },
+                    // Prevent console error
+                    error => reject(error)
+                )
+            )
+            return true
+        } catch (error) {
+            return false
+        }
+    }
 
-    // isLogged() {
-
-    //     firebase.auth().onAuthStateChanged(function (user) {
-    //         if (user) {
-    //             return true;
-    //         } else {
-    //             return false;
-    //         }
-    //     });
-    // }
 
     signin() {
         const email = document.getElementById('email').value;
@@ -45,6 +57,8 @@ class Auth {
             var errorMessage = error.message;
             // ...
         });
+        document.location.href = '';
+
     }
 
     signup() {
@@ -56,6 +70,7 @@ class Auth {
             var errorMessage = error.message;
             // ...
         });
+        document.location.href = '';
     }
     resetPassword() {
         const email = document.getElementById('resetEmail').value;
@@ -67,7 +82,8 @@ class Auth {
         });
     }
     signout() {
-
+        document.location.href = '';
+        firebase.auth().signOut();
     }
 
 }
