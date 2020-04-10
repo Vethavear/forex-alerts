@@ -13,7 +13,6 @@ const Db = {
     
     init: function () {
         firebase.initializeApp(this.firebaseConfig);
-        
         firebase.analytics();
     },
     addTrade: function (trade, pair) {

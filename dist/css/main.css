@@ -741,3 +741,87 @@ footer {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
+
+.authContainer {
+  border-radius: 25px;
+  background: #15191c;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.authContainer .row {
+  position: relative;
+}
+
+.authContainer .row input {
+  border-radius: 0.25rem;
+  border: 1px solid gray;
+  background: #15191c;
+  margin: 2rem;
+  padding: 0 0.25rem;
+  height: 30px;
+  width: 209px;
+  color: white;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: lighter;
+}
+
+.authContainer .row input:focus, .authContainer .row input:hover {
+  border-color: #55def1;
+}
+
+.authContainer .row label {
+  font-size: 1.2rem;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.authContainer .row button {
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  font-weight: bold;
+  color: #15191c;
+  background: white;
+  padding: 0.5rem 2rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.authContainer .row button:hover {
+  background: #55def1;
+}

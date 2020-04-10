@@ -3,6 +3,8 @@
 $primary-color: #15191c;
 $hover-color: #55def1;
 $text-color: white;
+$shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
 button:focus,
 input:focus,
 textarea:focus,
@@ -22,8 +24,7 @@ textarea {
 body {
   min-height: 100vh;
   overflow: visible;
-  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover
-    no-repeat;
+  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover no-repeat;
 }
 button,
 i {
@@ -38,7 +39,7 @@ label {
 //utils
 .checked {
   background: black !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: $shadow;
   button {
     color: $hover-color !important;
   }
@@ -48,7 +49,7 @@ label {
 }
 
 nav {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: $shadow;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -121,8 +122,7 @@ nav {
       list-style-type: none;
       li {
         button {
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-            0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: $shadow;
           font-weight: bold;
           color: $primary-color;
           background: white;
@@ -139,7 +139,7 @@ nav {
   }
 
   .alerts {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: $shadow;
     padding: 5rem;
     color: $text-color;
     border-radius: 25px;
@@ -159,7 +159,7 @@ nav {
         padding: 0 0.25rem;
       }
       button {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        box-shadow: $shadow;
         font-weight: bold;
         color: $primary-color;
         background: white;
@@ -218,7 +218,7 @@ nav {
   }
 
   .alertsfired {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: $shadow;
     position: relative;
     right: 0;
     background: $primary-color;
@@ -291,13 +291,12 @@ nav {
     cursor: pointer;
     width: 10%;
     padding: 0.5rem 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: $shadow;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     align-self: center;
     &:hover {
       background: $hover-color;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-        0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
 
     position: absolute;
@@ -347,7 +346,7 @@ nav {
     //   text-align: center;
     // }
     display: flex;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: $shadow;
     color: $text-color;
     background: rgba(21, 25, 28, 0.9);
 
@@ -502,5 +501,68 @@ footer {
     top: 0;
     left: 0;
     transition: all 0.5s;
+  }
+}
+
+//login
+
+.authContainer {
+  border-radius: 25px;
+  background: $primary-color;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: $shadow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .row {
+    position: relative;
+    input {
+      border-radius: 0.25rem;
+      border: 1px solid gray;
+      background: $primary-color;
+      margin: 2rem;
+      padding: 0 0.25rem;
+      height: 30px;
+      width: 209px;
+      color: white;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      font-weight: lighter;
+      &:focus,
+      &:hover {
+        border-color: $hover-color;
+      }
+    }
+    label {
+      font-size: 1.2rem;
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: all 0.5s;
+    }
+    button {
+      box-shadow: $shadow;
+      font-weight: bold;
+      color: $primary-color;
+      background: white;
+      padding: 0.5rem 2rem;
+      margin: 1rem;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      &:hover {
+        background: $hover-color;
+      }
+    }
   }
 }
