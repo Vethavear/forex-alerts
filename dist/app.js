@@ -37,7 +37,7 @@ const initApp = function () {
 };
 initApp();
 
-const authManager =  new Auth();
+const authManager = new Auth();
 
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.
 const router = async () => {
@@ -57,8 +57,8 @@ const router = async () => {
   // If the parsed URL is not in our list of supported routes, select the 404 page instead
   // CHECK CREDENTIALS:
   let page;
-  console.log(authManager.logged);
-  if (authManager.logged) {
+  console.log(await authManager.IsLoggedIn());
+  if (await authManager.IsLoggedIn()) {
     page = LoggedInroutes[parsedURL] ? LoggedInroutes[parsedURL] : Error404;
   } else {
     page = routes[parsedURL] ? routes[parsedURL] : Error404;
@@ -74,5 +74,5 @@ window.addEventListener("hashchange", router);
 // Listen on page load:
 window.addEventListener("load", router);
 
-
+document.getElementById('signout').addEventListener('click',authManager.signout);
 export default authManager;

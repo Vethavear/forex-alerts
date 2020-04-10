@@ -259,7 +259,7 @@ let Alerts = {
                 });
               }
             }
-            console.log("pobrano " + Date.now());
+            console.log("pobrano " + Date.now().getMinutes())
           }, 300000);
         },
       };
