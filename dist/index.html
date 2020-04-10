@@ -20,13 +20,12 @@
   <nav>
     <h1 class="px-2">Forex Alerts</h1>
     <ul>
-      <li class="p1"><a href="index.html">Home</a></li>
-      <li class="p1"><a href="journal.html">Journal</a></li>
+      <!-- <li class="p1"><a href="#/">Home</a></li> -->
+      <li class="p1"><a href="#/journal">Journal</a></li>
+      <li class="p1" ><a href="#/" id="alertsModal">Alerts</a></li>
+      <li class="p1" ><button id="signout">Sign out</button></li>
     </ul>
   </nav>
-  <!-- pair picker -->
-
-  <!-- table with already set up alerts -->
   <section id="pairpicker">
     <div class="pairsmenu">
       <ul>
@@ -89,6 +88,9 @@
       </div>
     </div>
     <div class="alertsfired">
+      <div id="exit">
+
+      </div>
       <h2 class="p1 center">Recently fired alerts</h4>
         <div class="labels">
           <h3>Pair</h3>
@@ -100,15 +102,26 @@
     </div>
   </section>
 
+  <div id="pageContent">
 
-  <!-- world markets trading hours? Open or not?  we need to add source! -->
+  </div>
+
   <a href="https://www.freeforexapi.com">
     <img alt="Free Forex API" src="https://www.freeforexapi.com/Images/link.png" height="20">
   </a>
 </body>
-<script src="script.js"></script>
+<script type="module" src="app.js"></script>
+<!-- <script src="script.js"></script> -->
 <script src="https://kit.fontawesome.com/86d05de8a6.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
 </html>
