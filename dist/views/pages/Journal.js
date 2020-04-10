@@ -259,7 +259,7 @@ let Journal = {
                   <div id="raidsTps" class="cont">
                     <p>Takeprofit</p>
                     <label>First liq pool
-                      <input type="radio" data-show="ifMajorPoolTpDiv" 
+                      <input type="radio" data-show="ifMajorPoolTpDiv" data-profit="positive"
                         name="tp" class="info" id="tpLiqPoolRaids" value="First liq pool">
                     </label>
                     <label>Major liq pool
@@ -267,19 +267,19 @@ let Journal = {
                         class="info" id="tpMliqPoolRaids" value="Major liq pool">
                     </label>
                     <label>First untested base
-                      <input type="radio" data-show="ifFirstPoolTpDiv"  name="tp" class="info"
+                      <input type="radio" data-show="ifFirstPoolTpDiv"  data-profit="positive" name="tp" class="info"
                         id="tpBaseRaids" value="First untested base">
                     </label>
                     <label>Opposite signal occured
-                      <input type="radio" data-show="ifFirstPoolTpDiv"  name="tp" class="info"
+                      <input type="radio" data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
                         id="tpOppositeSignalRaids" value="Opposite signal occured">
                     </label>
                     <label>-0.236
-                      <input type="radio" data-show="ifn065TpDiv"  name="tp" class="info"
+                      <input type="radio" data-show="ifn065TpDiv" data-profit="positive" name="tp" class="info"
                         id="tpn0236Raids" value="-0.236">
                     </label>
                     <label>-0.65
-                      <input type="radio" data-show="ifn1TpDiv"  name="tp" class="info "
+                      <input type="radio" data-show="ifn1TpDiv" data-profit="positive" name="tp" class="info "
                         id="tpn065Raids" value="-0.65">
                     </label>
                     <label>-1
