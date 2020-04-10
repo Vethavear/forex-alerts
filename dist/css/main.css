@@ -156,7 +156,7 @@ nav ul li a:hover {
 }
 
 .slideIn {
-  left: 0 !important;
+  top: 0 !important;
   -webkit-animation: slideIn 0.4s ease-in-out;
           animation: slideIn 0.4s ease-in-out;
 }
@@ -168,37 +168,37 @@ nav ul li a:hover {
 
 @-webkit-keyframes slideIn {
   from {
-    left: -1500px;
+    top: -1500px;
   }
   to {
-    left: 0;
+    top: 0;
   }
 }
 
 @keyframes slideIn {
   from {
-    left: -1500px;
+    top: -1500px;
   }
   to {
-    left: 0;
+    top: 0;
   }
 }
 
 @-webkit-keyframes slideOut {
   from {
-    left: 0;
+    top: 0;
   }
   to {
-    left: -1500px;
+    top: -1500px;
   }
 }
 
 @keyframes slideOut {
   from {
-    left: 0;
+    top: 0;
   }
   to {
-    left: -1500px;
+    top: -1500px;
   }
 }
 
@@ -212,7 +212,7 @@ nav ul li a:hover {
   margin: 5rem 0;
   position: absolute;
   z-index: 100;
-  left: -1500px;
+  top: -1500px;
   width: 100%;
 }
 

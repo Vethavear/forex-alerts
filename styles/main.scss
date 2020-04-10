@@ -73,7 +73,7 @@ nav {
 }
 
 .slideIn {
-  left: 0 !important;
+  top: 0 !important;
   animation: slideIn 0.4s ease-in-out;
 }
 .slideOut {
@@ -82,18 +82,18 @@ nav {
 
 @keyframes slideIn {
   from {
-    left: -1500px;
+    top: -1500px;
   }
   to {
-    left: 0;
+    top: 0;
   }
 }
 @keyframes slideOut {
   from {
-    left: 0;
+    top: 0;
   }
   to {
-    left: -1500px;
+    top: -1500px;
   }
 }
 
@@ -103,7 +103,7 @@ nav {
   margin: 5rem 0;
   position: absolute;
   z-index: 100;
-  left: -1500px;
+  top: -1500px;
   width: 100%;
   .pairsmenu {
     position: relative;
