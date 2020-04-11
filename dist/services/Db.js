@@ -29,8 +29,10 @@ const Db = {
             });
     },
     removeTrade: function (trade) {
+
     },
     modifyTrade: function (trade) {
+        
     },
     getAllTrades: function () {
     },
