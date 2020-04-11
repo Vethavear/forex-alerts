@@ -18,10 +18,9 @@ const Db = {
 
         firebase.analytics();
     },
-    addTrade: function (trade, pair) {
-        delete trade.pair;
-
-        firebase.firestore().collection("trades").doc(`${authManager.uid}`).collection("pairs").doc(`${pair}`).collection("trades").doc().set(Object.assign({}, trade))
+    addTrade: function (trade) {
+  
+        firebase.firestore().collection("users").doc(`${authManager.uid}`).collection("trades").doc().set(Object.assign({}, trade))
             .then(function () {
                 console.log("Document successfully written!");
             })
