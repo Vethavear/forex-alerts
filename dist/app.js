@@ -30,14 +30,13 @@ const routes = {
   "/trades": Login,
 };
 
-// global auth object
-const initApp = function () {
-  Db.init();
-  Alerts.after_render();
-};
-initApp();
 
-const authManager = new Auth();
+// inits
+Alerts.after_render();
+export const dbManager = new Db();
+export const authManager = new Auth();
+
+
 
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.
 const router = async () => {
@@ -74,7 +73,7 @@ window.addEventListener("hashchange", router);
 // Listen on page load:
 window.addEventListener("load", router);
 
-document
-  .getElementById("signout")
-  .addEventListener("click", authManager.signout);
+
+document.getElementById('signout').addEventListener('click', authManager.signout);
+
 export default authManager;

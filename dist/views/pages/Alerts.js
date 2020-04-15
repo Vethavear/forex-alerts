@@ -259,7 +259,6 @@ let Alerts = {
                 });
               }
             }
-            console.log("pobrano " + Date.now().getMinutes())
           }, 300000);
         },
       };
