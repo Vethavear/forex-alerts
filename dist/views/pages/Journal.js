@@ -1,5 +1,6 @@
-import Trade from '../../models/Trade.js';
+import Pairs from '../components/Pairs.js';
 import Db from '../../services/Db.js';
+import { dbManager } from '../../app.js';
 let Journal = {
   render: async () => {
     let view = `
@@ -25,29 +26,12 @@ let Journal = {
         </div>
       </div>
       <div class="pairsTabs">
-        <ul>
+        <ul id="userpairs">
           <li class="checked">
             <button class="change">EUR/USD</button>
           </li>
           <li>
-            <button class="change">EUR/GBP</button>
-          </li>
-          <li>
-            <button class="change">GBP/USD</button>
-          </li>
-          <li>
-            <button class="change">USD/JPY</button>
-          </li>
-          <li>
-            <button class="change">AUD/USD</button>
-          </li>
-          <li>
-            <button class="change">USD/CHF</button>
-          </li>
-          <li>
-            <button class="change">USD/CAD</button>
-          </li>
-          <li>
+            <input type="text" placeholder ="pair name" id="pairname">
             <button id="addpair">Add <i class="fas fa-plus-square"></i></button>
           </li>
         </ul>
@@ -631,6 +615,7 @@ let Journal = {
     const UICtrl = (function () {
       const selectors = {
         // Journal
+        addpair: document.getElementById('addpair'),
         addTradeBtn: document.getElementById('addTradeBtn'),
         addtrade: document.getElementById('addtrade'),
         date: document.getElementById('date'),
@@ -760,14 +745,14 @@ let Journal = {
           selectors.allInputs.forEach(element => {
             if (element.type === 'radio' && element.checked) {
               data[element.name] = element.value;
-            } else if ((element.type === 'text' || element.type ==='date') && element.value != '0') {
+            } else if ((element.type === 'text' || element.type === 'date') && element.value != '0') {
               data[element.name] = element.value;
             }
           });
           // make new object, send this data to it, then in object in Trade.js define assignments!!
           console.log(data);
-          
-          Db.addTrade(data, data.pair);
+
+          dbManager.addTrade(data, data.pair);
         }
 
       }
@@ -790,6 +775,8 @@ let Journal = {
               UICtrl.changeJournalPair(pair, target.parentElement);
             };
           });
+
+          selectors.addpair.addEventListener('click', Pairs.addPair);
 
           // expand additional info on certain conditions
           const currentTradeR = document.getElementById('result');

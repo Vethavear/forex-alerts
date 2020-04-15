@@ -1,8 +1,11 @@
 import authManager from '../app.js';
+import Pairs from '../views/components/Pairs.js';
 
-const Db = {
 
-    firebaseConfig: {
+class Db {
+
+
+    firebaseConfig = {
         apiKey: "AIzaSyBxVp8ahKiNFnEFTN7y8NUvMxw4j-iVihU",
         authDomain: "envoy-journal.firebaseapp.com",
         databaseURL: "https://envoy-journal.firebaseio.com",
@@ -11,15 +14,17 @@ const Db = {
         messagingSenderId: "848247662625",
         appId: "1:848247662625:web:00ee4b9afb3dcbedb11b60",
         measurementId: "G-32L1PFTM63"
-    },
+    };
 
-    init: function () {
+    constructor() {
         firebase.initializeApp(this.firebaseConfig);
-
         firebase.analytics();
-    },
-    addTrade: function (trade) {
-  
+
+    }
+
+
+    addTrade(trade) {
+
         firebase.firestore().collection("users").doc(`${authManager.uid}`).collection("trades").doc().set(Object.assign({}, trade))
             .then(function () {
                 console.log("Document successfully written!");
@@ -27,19 +32,56 @@ const Db = {
             .catch(function (error) {
                 console.error("Error writing document: ", error);
             });
-    },
-    removeTrade: function (trade) {
+            firebase.firestore().collection("alltrades").doc().set(Object.assign({}, trade))
+            .then(function () {
+                console.log("Document successfully written!");
+            })
+            .catch(function (error) {
+                console.error("Error writing document: ", error);
+            });
+    };
+    removeTrade(trade) {
 
-    },
-    modifyTrade: function (trade) {
-        
-    },
-    getAllTrades: function () {
-    },
-    getPairTrades: function (pair) {
-    },
-    getTrade: function (pair, id) {
-    },
+    };
+    modifyTrade(trade) {
+
+    };
+    getAllTrades() {
+    };
+    getPairTrades(pair) {
+    };
+    getTrade(pair, id) {
+    };
+
+    addPair(pair) {
+
+        // adding for specific user
+
+        firebase.firestore().collection("users").doc(`${authManager.uid}`).set({ pairs: ['GBPUSD', 'EURUSD'] })
+            .then(function () {
+                console.log("Pair added!");
+            })
+            .catch(function (error) {
+                console.error("Error writing document: ", error);
+            });
+
+            // all to all trades
+
+
+    };
+    removePair(pair) {
+    };
+    getPairs() {
+
+        firebase.firestore().collection("users").doc(`${authManager.uid}`).collection("pairs").get()
+            .then(function (pairs) {
+                this.pairs = pairs;
+                // querySnapshot.forEach(function (doc) {
+                //     // doc.data() is never undefined for query doc snapshots
+                //     console.log(doc.id, " => ", doc.data());
+                // });
+            });
+    }
 }
 
 export default Db;
