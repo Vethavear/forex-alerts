@@ -1,5 +1,4 @@
 import Db from "../../services/Db.js";
-import authManager from "../../app.js";
 
 let Trades = {
   render: async () => {
@@ -32,14 +31,22 @@ let Trades = {
 
   after_render: async () => {
     const docs = await Db.getAllTrades();
-    docs.forEach(addTrade);
-
+    const globalTrades = await Db.getGlobalTrades();
     const tradeSection = document.querySelector(".type-container");
-    tradeSection.insertAdjacentHTML("afterbegin", raidTrades());
+
+    docs.forEach(addTrade);
+    tradeSection.insertAdjacentHTML(
+      "afterbegin",
+      raidTrades(globalTrades, "Global Raids")
+    );
+    tradeSection.insertAdjacentHTML(
+      "afterbegin",
+      contunationTrades(globalTrades, "Global Continuation")
+    );
+    tradeSection.insertAdjacentHTML("afterbegin", raidTrades(docs));
     tradeSection.insertAdjacentHTML("afterbegin", contunationTrades(docs));
 
     tradeSection.addEventListener("click", expandType);
-    // global trades
   },
 };
 
@@ -66,11 +73,11 @@ function expandType(e) {
   type.style.height = (isCollapsed || noHeightSet ? sh : 0) + "px";
 }
 
-function contunationTrades(docs, global = false) {
+function contunationTrades(docs, global = "Continuation") {
   let markup = /*html*/ `
   <div class="type p1">
     <div class ="header" >
-      <h1>Continuation </h1> 
+      <h1>${global} </h1> 
       <div>
         <i class="fas fa-plus"></i>
       </div>
@@ -81,26 +88,91 @@ function contunationTrades(docs, global = false) {
           <tr>
             <th>Base Type</th>
             <th>Entry</th>
-            <th>Stop Lose</th>
+            <th>Stop</th>
             <th>Take Profit</th>
             <th>Time Frame</th>
             <th>Visible on HTF</th>
-            <th>LFT SL</th>
-            <th>TP on MLP</th>
+            <th>Base on the left</th>
           </tr>
         </thead>
         <tbody>  
           <tr>
-          <td>Wicky: x%<br> Blocky: y%</td>
-            <td>Body: ${calculateStats(docs, "entry", "body")} %
-            <br> Wicks: ${calculateStats(docs, "entry", "wicks")} %
-            <br> MoB: ${calculateStats(docs, "entry", "middle of base")} %</td>
-            <td>Wicky: x%<br> Blocky: y%</td>
-            <td>Wicky: x%<br> Blocky: y%</td>
-            <td>Wicky: x%<br> Blocky: y%</td>
-            <td>Wicky: x%<br> Blocky: y%</td>
-            <td>Wicky: x%<br> Blocky: y%</td>
-            <td>Wicky: x%<br> Blocky: y%</td>
+            <td>
+              Wicky: ${calculateStats(
+                docs,
+                "question1",
+                "Base type: wicky"
+              )}% <br> 
+              Blocky: ${calculateStats(docs, "question1", "Base type: blocky")}%
+            </td>
+            <td>
+              Body: ${calculateStats(docs, "entry", "body")} % <br>
+              Wicks: ${calculateStats(docs, "entry", "wicks")} % <br> 
+              MoB: ${calculateStats(docs, "entry", "middle of base")} %
+            </td>
+            <td>
+              Swing: ${calculateStats(docs, "stop", "swing")}% <br> 
+              Minor High on LFT: ${calculateStats(
+                docs,
+                "stop",
+                "stop above minor hight on LFT"
+              )}% <br>
+              Gamble: ${calculateStats(docs, "stop", "gambling stop")}%
+            </td>
+            <td>
+              First liq pool: ${calculateStats(
+                docs,
+                "tp",
+                "first liq pool"
+              )}% <br>
+              Major liq pool: ${calculateStats(
+                docs,
+                "tp",
+                "major liq pool"
+              )}% <br>
+              First untested base: ${calculateStats(
+                docs,
+                "tp",
+                "first untested base"
+              )}% <br>
+              Opposite signal: ${calculateStats(
+                docs,
+                "tp",
+                "opposite signal occured"
+              )}%
+            </td>
+            <td>
+              5m: ${calculateStats(docs, "timeframe", "5m")}% <br>
+              15m: ${calculateStats(docs, "timeframe", "15m")}% <br>
+              30m: ${calculateStats(docs, "timeframe", "30m")}% <br>
+              1h: ${calculateStats(docs, "timeframe", "1h")}% <br>
+              2h: ${calculateStats(docs, "timeframe", "2h")}% <br>
+              4h: ${calculateStats(docs, "timeframe", "4h")}%
+            </td>
+            <td>
+              Yes: ${calculateStats(
+                docs,
+                "question2",
+                "Visible on higher tf?:yes"
+              )}% <br>
+              No: ${calculateStats(
+                docs,
+                "question2",
+                "Visible on higher tf?:no"
+              )}%
+            </td>
+            <td>
+            Yes: ${calculateStats(
+              docs,
+              "question3",
+              "Was there bigger base on the left?:yes"
+            )}% <br>
+            No: ${calculateStats(
+              docs,
+              "question3",
+              "Was there bigger base on the left?:no"
+            )}%
+            </td>
           </tr>
         </tbody>
       </table>
@@ -110,11 +182,11 @@ function contunationTrades(docs, global = false) {
   return markup;
 }
 
-function raidTrades() {
+function raidTrades(docs, global = "Raids") {
   let markup = /*html*/ `
   <div class="type p1">
     <div class ="header" >
-      <h1>Raids </h1>
+      <h1>${global} </h1>
       <div>
         <i class="fas fa-plus"></i>
       </div>
@@ -123,17 +195,103 @@ function raidTrades() {
       <table>
         <thead>
           <tr>
-            <th>Base Type</th>
+            <th>MSB Type</th>
             <th>Entry</th>
             <th>Stop Lose</th>
             <th>Take Profit</th>
             <th>Time Frame</th>
-            <th>Visible on HTF</th>
-            <th>LFT SL</th>
-            <th>TP on MLP</th>
+            <th>Clear MSB on HTF</th>
+            <th>Pool Type</th>
           </tr>
         </thead>
         <tbody>
+          <td>
+            Origin: ${calculateStats(
+              docs,
+              "question1",
+              "msb type: origin"
+            )}% <br>
+            Shady: ${calculateStats(docs, "question1", "msb type: shady")}%
+          </td>
+          <td>
+            Middle between MSB and minor liq hunt: ${calculateStats(
+              docs,
+              "entry",
+              "msb type: Middle between MSB and minor liq hunt"
+            )}% <br>
+            0.65: ${calculateStats(docs, "entry", "0.65")}% <br>
+            0.78: ${calculateStats(docs, "entry", "0.78")}% <br>
+            0.88: ${calculateStats(docs, "entry", "0.88")}%
+          </td>
+          <td>
+            Stop behind 1 (minor liq line): ${calculateStats(
+              docs,
+              "stop",
+              "Stop behind 1 (minor liq line)"
+            )}% <br>
+            Swing: ${calculateStats(docs, "stop", "swing")}% <br>
+            0.78 stop: ${calculateStats(docs, "stop", "0.78 stop")}% <br>
+            0.88 stop: ${calculateStats(docs, "stop", "0.88 stop")}% <br>
+            Gamble: ${calculateStats(docs, "stop", "gambling stop")}%
+          </td>
+          <td>
+            First liq pool: ${calculateStats(
+              docs,
+              "profit",
+              "First liq pool"
+            )}% <br>
+            Major liq pool: ${calculateStats(
+              docs,
+              "profit",
+              "Major liq pool"
+            )}% <br>
+            First untested base: ${calculateStats(
+              docs,
+              "profit",
+              "First untested base"
+            )}% <br>
+            Oposite signal: ${calculateStats(
+              docs,
+              "profit",
+              "Oposite signal occured"
+            )}% <br>
+            -0.236: ${calculateStats(docs, "tp", "-0.236")}% <br>
+            -0.65: ${calculateStats(docs, "tp", "-0.65")}% <br>
+            -1: ${calculateStats(docs, "tp", "-1")}% <br>
+           </td>
+          <td>
+            5m: ${calculateStats(docs, "timeframe", "5m")}% <br>
+            15m: ${calculateStats(docs, "timeframe", "15m")}% <br>
+            30m: ${calculateStats(docs, "timeframe", "30m")}% <br>
+            1h: ${calculateStats(docs, "timeframe", "1h")}% <br>
+            2h: ${calculateStats(docs, "timeframe", "2h")}% <br>
+            4h: ${calculateStats(docs, "timeframe", "4h")}%
+          </td>
+          <td>
+           Yes: ${calculateStats(
+             docs,
+             "question2",
+             "clear msb on higher timeframe?: yes"
+           )}% <br>
+           No: ${calculateStats(
+             docs,
+             "question2",
+             "clear msb on higher timeframe?: no"
+           )}%
+          </td>
+          <td>
+            Shady: ${calculateStats(
+              docs,
+              "question3",
+              "pool type: shady"
+            )}% <br>
+            Minor: ${calculateStats(
+              docs,
+              "question3",
+              "pool type: minor"
+            )}% <br>
+            Major: ${calculateStats(docs, "question3", "pool type: major")}% 
+          </td>
         </tbody>
       </table>
     </div>
@@ -141,18 +299,22 @@ function raidTrades() {
   return markup;
 }
 
+function roundToTwo(num) {
+  return +(Math.round(num + "e+2") + "e-2");
+}
+
 function calculateStats(docs, key, filter) {
   let allTrades = 0;
   let profitableTrades = 0;
   docs.forEach((el) => {
-    if (el[key].toLowerCase() == filter) {
+    if (el[key].toLowerCase() == filter.toLowerCase()) {
       if (el.profit > 0) {
         profitableTrades += 1;
       }
       allTrades += 1;
     }
   });
-  return allTrades > 0 ? (profitableTrades * 100) / allTrades : 0;
+  return allTrades > 0 ? roundToTwo((profitableTrades * 100) / allTrades) : 0;
 }
 
 function addTrade(trade) {
