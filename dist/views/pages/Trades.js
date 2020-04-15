@@ -1,4 +1,4 @@
-import Db from "../../services/Db.js";
+import { dbManager } from "../../app.js";
 
 let Trades = {
   render: async () => {
@@ -30,21 +30,25 @@ let Trades = {
   },
 
   after_render: async () => {
-    const docs = await Db.getAllTrades();
-    const globalTrades = await Db.getGlobalTrades();
+    const docs = await dbManager.getAllTrades();
+    const globalTrades = await dbManager.getGlobalTrades();
     const tradeSection = document.querySelector(".type-container");
 
-    docs.forEach(addTrade);
-    tradeSection.insertAdjacentHTML(
-      "afterbegin",
-      raidTrades(globalTrades, "Global Raids")
-    );
-    tradeSection.insertAdjacentHTML(
-      "afterbegin",
-      contunationTrades(globalTrades, "Global Continuation")
-    );
-    tradeSection.insertAdjacentHTML("afterbegin", raidTrades(docs));
-    tradeSection.insertAdjacentHTML("afterbegin", contunationTrades(docs));
+    if (globalTrades.length > 0) {
+      tradeSection.insertAdjacentHTML(
+        "afterbegin",
+        raidTrades(globalTrades, "Global Raids")
+      );
+      tradeSection.insertAdjacentHTML(
+        "afterbegin",
+        contunationTrades(globalTrades, "Global Continuation")
+      );
+    }
+    if (docs.length > 0) {
+      docs.forEach(addTrade);
+      tradeSection.insertAdjacentHTML("afterbegin", raidTrades(docs));
+      tradeSection.insertAdjacentHTML("afterbegin", contunationTrades(docs));
+    }
 
     tradeSection.addEventListener("click", expandType);
   },
