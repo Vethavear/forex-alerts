@@ -24,7 +24,8 @@ textarea {
 body {
   min-height: 100vh;
   overflow: visible;
-  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover no-repeat;
+  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover
+    no-repeat;
 }
 button,
 i {
@@ -296,7 +297,8 @@ nav {
     align-self: center;
     &:hover {
       background: $hover-color;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
     }
 
     position: absolute;
@@ -563,6 +565,69 @@ footer {
       &:hover {
         background: $hover-color;
       }
+    }
+  }
+}
+
+#trades {
+  display: flex;
+  flex-direction: column;
+  .header {
+    display: flex;
+    color: #fff;
+    div {
+      position: relative;
+      i {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        background: #0086b9;
+        box-shadow: $shadow;
+        color: #fff;
+        padding: 0.2rem;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  .tab-wrapper {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s;
+  }
+  table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    font-size: 14px;
+    td,
+    th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    td {
+      overflow: hidden;
+      font-size: 12px;
+      text-align: center;
+    }
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      background: #0086b9;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    tbody tr:nth-child(odd) {
+      background: #fff;
+    }
+    tbody tr:hover {
+      background-color: #ddd;
+    }
+    a {
+      color: #0086b9;
     }
   }
 }

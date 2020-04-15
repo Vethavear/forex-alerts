@@ -1,3 +1,4 @@
+
 import authManager from '../app.js';
 import Pairs from '../views/components/Pairs.js';
 
@@ -40,6 +41,26 @@ class Db {
                 console.error("Error writing document: ", error);
             });
     };
+
+async getGlobalTrades() {
+    let docs = [];
+    await firebase
+      .firestore()
+      .collection("alltrades")
+      .get()
+      .then(function (snapshot) {
+        console.log("Got the documents");
+        snapshot.forEach((doc) => docs.push(doc.data()));
+      })
+      .catch(function (err) {
+        console.error(`Error getting documents: ${err}`);
+      });
+    return docs;
+  },
+  getPairTrades: function (pair) {},
+  getTrade: function (pair, id) {},
+};
+
     removeTrade(trade) {
 
     };

@@ -5,17 +5,17 @@ import Login from "./views/pages/Login.js";
 import Signup from "./views/pages/Signup.js";
 import Reset from "./views/pages/Reset.js";
 import Journal from "./views/pages/Journal.js";
+import Trades from "./views/pages/Trades.js";
 import Db from "./services/Db.js";
 import Auth from "./services/Authentication.js";
 // import Error404 from './views/pages/Error404.js'
 import Utils from "./services/Utils.js";
 
-
-
 // List of supported routes. Any url other than these routes will throw a 404 error
 const LoggedInroutes = {
   "/": Alerts,
   "/journal": Journal,
+  "/trades": Trades,
   // , '/p/:id': PostShow
   // , '/register': Register
 };
@@ -26,14 +26,16 @@ const routes = {
   "/login": Login,
   "/signup": Signup,
   "/reset": Reset,
-  // , '/p/:id': PostShow
-
+  // , '/p/:id': PostShow,
+  "/trades": Login,
 };
+
 
 // inits
 Alerts.after_render();
 export const dbManager = new Db();
 export const authManager = new Auth();
+
 
 
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.
@@ -71,5 +73,7 @@ window.addEventListener("hashchange", router);
 // Listen on page load:
 window.addEventListener("load", router);
 
+
 document.getElementById('signout').addEventListener('click', authManager.signout);
+
 export default authManager;

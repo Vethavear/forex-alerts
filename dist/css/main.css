@@ -825,3 +825,88 @@ footer {
 .authContainer .row button:hover {
   background: #55def1;
 }
+
+#trades {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#trades .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #fff;
+}
+
+#trades .header div {
+  position: relative;
+}
+
+#trades .header div i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  background: #0086b9;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  color: #fff;
+  padding: 0.2rem;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+#trades .tab-wrapper {
+  overflow: hidden;
+  height: 0;
+  -webkit-transition: height 0.3s;
+  transition: height 0.3s;
+}
+
+#trades table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 14px;
+}
+
+#trades table td,
+#trades table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#trades table td {
+  overflow: hidden;
+  font-size: 12px;
+  text-align: center;
+}
+
+#trades table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background: #0086b9;
+  color: white;
+}
+
+#trades table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#trades table tbody tr:nth-child(odd) {
+  background: #fff;
+}
+
+#trades table tbody tr:hover {
+  background-color: #ddd;
+}
+
+#trades table a {
+  color: #0086b9;
+}
