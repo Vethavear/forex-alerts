@@ -80,6 +80,12 @@ let Journal = {
                 </label>
                 <p>Timeframe</p>
                 <div class="tf">
+                  <label>1m
+                    <input type="radio" name="timeframe" id="tf1" value="1m" class="info">
+                  </label>
+                  <label>3m
+                    <input type="radio" name="timeframe" id="tf3" value="3m" class="info">
+                  </label>
                   <label>5m
                     <input type="radio" name="timeframe" id="tf5" value="5m" class="info">
                   </label>
@@ -555,15 +561,15 @@ let Journal = {
                   </label>
                   <label>First liq pool
                     <input type="radio"  data-profit="negative" name="Takeprofit which would work" class="info"
-                      id="greedFirstLiqPoolYes" value="First liq poo">
+                      id="greedFirstLiqPoolYes" value="First liq pool">
                   </label>
-                  <label>-0.236
+                  <label>-0.231
                     <input type="radio"  data-profit="negative" name="Takeprofit which would work" class="info"
-                      id="greedn0236No" value="-0.236">
+                      id="greedn0236No" value="-0.231">
                   </label>
-                  <label>-0.65
+                  <label>-0.61
                     <input type="radio"  data-profit="negative" name="Takeprofit which would work" class="info"
-                      id="greedn065Yes" value="-0.65">
+                      id="greedn065Yes" value="-0.61">
                   </label>
                   <label>-1
                     <input type="radio"  data-profit="negative" name="Takeprofit which would work" class="info"
