@@ -52,6 +52,7 @@ class Db {
       .collection("users")
       .doc(`${authManager.uid}`)
       .collection("trades")
+      .orderBy("date", "desc")
       .get()
       .then(function (snapshot) {
         console.log("Got the documents");

@@ -48,6 +48,7 @@ let Trades = {
       docs.forEach(addTrade);
       tradeSection.insertAdjacentHTML("afterbegin", raidTrades(docs));
       tradeSection.insertAdjacentHTML("afterbegin", contunationTrades(docs));
+      marklastOfFriday();
     }
 
     tradeSection.addEventListener("click", expandType);
@@ -326,39 +327,17 @@ function addTrade(trade) {
   let row =
     /*html*/
     `
-    <td> 
-      ${trade.pair}
-    </td>
-    <td> 
-      ${trade.setup}
-    </td>
-    <td> 
-      ${trade.stop}
-    </td>
-    <td> 
-     ${trade.profit}
-    </td>
-    <td> 
-     ${trade.entry}
-    </td>
-    <td> 
-      ${trade.tp}
-    </td>
-    <td> 
-      <a href="${trade.chart}" target="_blank">tradingview...</a>
-    </td>
-    <td> 
-      ${trade.question1}
-    </td>
-    <td> 
-      ${trade.question2}
-    </td>
-    <td> 
-      ${trade.question3}
-    </td>
-    <td> 
-      ${trade.date}
-    </td>
+    <td>${trade.pair}</td>
+    <td>${trade.setup}</td>
+    <td>${trade.stop}</td>
+    <td>${trade.profit}</td>
+    <td>${trade.entry}</td>
+    <td>${trade.tp}</td>
+    <td><a href="${trade.chart}" target="_blank">tradingview...</a></td>
+    <td>${trade.question1}</td>
+    <td>${trade.question2}</td>
+    <td>${trade.question3}</td>
+    <td class="date">${trade.date}</td>
   `;
 
   let markup =
@@ -369,4 +348,21 @@ function addTrade(trade) {
     </tr>
     `;
   table.insertAdjacentHTML("beforeend", markup);
+}
+
+function marklastOfFriday() {
+  const list = [];
+  Array.from(document.querySelectorAll(".date")).forEach((el) => {
+    const id = list.findIndex((item) => item.innerHTML == el.innerHTML);
+    if (id == -1) {
+      list.push(el);
+    }
+  });
+  list.forEach((el) => {
+    const s = el.innerHTML.split("-");
+    const date = new Date(s);
+    if (date.getDay() == 5) {
+      el.parentElement.style.background = "#55def1";
+    }
+  });
 }
