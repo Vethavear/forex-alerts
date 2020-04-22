@@ -398,6 +398,7 @@ footer a {
       grid-template-columns: 1fr;
   gap: 0.5rem;
   justify-items: center;
+  text-align: center;
 }
 
 #pairpicker .alertsfired #exit {

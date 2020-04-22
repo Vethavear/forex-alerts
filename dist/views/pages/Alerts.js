@@ -151,13 +151,6 @@ let Alerts = {
         };
       }
 
-      function clearUI(pair, alertId) {
-        PairCtrl.removeAlert(pair.toLowerCase(), alertId);
-        UICtrl.addAlertToFiredAlerts(alert, pair);
-        UICtrl.removeAlert(alert.id);
-        audioCtrl.play();
-      }
-
       function showAlerts(e) {
         e.preventDefault();
         if (pairpicker.classList.contains("slideIn")) {
@@ -250,16 +243,17 @@ let Alerts = {
                     (prices[pair].rate <= el.price && el.direction == "long")
                   ) {
                     audioCtrl.play();
+                    UICtrl.addAlertToFiredAlerts(
+                      alerts[pair.toLowerCase()][alertId],
+                      pair
+                    );
+                    UICtrl.removeAlert(alerts[pair.toLowerCase()][alertId].id);
                     PairCtrl.removeAlert(pair.toLowerCase(), alertId);
-                    // alert(
-                    //   `${pair} price on liq (${el.direction}, ${el.price})`
-                    // );
-                    clearUI(pair.toLowerCase(), alertId);
                   }
                 });
               }
             }
-          }, 300000);
+          }, 1000);
         },
       };
     })(PairCtrl, UICtrl);
