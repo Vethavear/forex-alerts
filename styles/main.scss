@@ -52,6 +52,7 @@ label {
 nav {
   box-shadow: $shadow;
   display: flex;
+  height:7vh;
   justify-content: space-between;
   align-items: center;
   background: $primary-color;
@@ -71,6 +72,15 @@ nav {
         }
       }
     }
+  }
+}
+footer{
+  position: fixed;
+  bottom:0;
+  left:0;
+  a{
+    color: black;
+
   }
 }
 
@@ -261,9 +271,8 @@ nav {
 #container {
   transition: all 0.5s;
   width: 100%;
-  margin-top: 1vh;
   display: flex;
-  height: 100%;
+  min-height: 93vh;
 
   label,
   p {
@@ -340,6 +349,7 @@ nav {
   }
   #addtrade {
     position: relative;
+    
     padding-top: 2rem;
     padding-left: 3rem;
     width: 100%;
