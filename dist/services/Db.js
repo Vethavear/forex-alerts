@@ -19,7 +19,7 @@ class Db {
   }
 
   async addTrade(trade) {
-   await firebase
+    await firebase
       .firestore()
       .collection("users")
       .doc(`${authManager.uid}`)
@@ -27,13 +27,14 @@ class Db {
       .doc()
       .set(Object.assign({}, trade))
       .then(function () {
-        
+
         console.log("Document successfully written!");
       })
       .catch(function (error) {
+        alert("Error with saving to database. Try again later.");
         console.error("Error writing document: ", error);
       });
-   await firebase
+    await firebase
       .firestore()
       .collection("alltrades")
       .doc()
@@ -42,6 +43,7 @@ class Db {
         console.log("Document successfully written!");
       })
       .catch(function (error) {
+        alert("Error with saving to database. Try again later.");
         console.error("Error writing document: ", error);
       });
   }

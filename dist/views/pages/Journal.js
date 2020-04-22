@@ -745,8 +745,6 @@ let Journal = {
 
       const clearForm = () => {
         location.reload();
-
-
       }
       const selectors = UICtrl.getSelectors();
       return {
