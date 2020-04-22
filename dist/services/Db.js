@@ -18,8 +18,8 @@ class Db {
     firebase.analytics();
   }
 
-  addTrade(trade) {
-    firebase
+  async addTrade(trade) {
+   await firebase
       .firestore()
       .collection("users")
       .doc(`${authManager.uid}`)
@@ -27,12 +27,13 @@ class Db {
       .doc()
       .set(Object.assign({}, trade))
       .then(function () {
+        
         console.log("Document successfully written!");
       })
       .catch(function (error) {
         console.error("Error writing document: ", error);
       });
-    firebase
+   await firebase
       .firestore()
       .collection("alltrades")
       .doc()
@@ -79,13 +80,13 @@ class Db {
     return docs;
   }
 
-  getPairTrades(pair) {}
-  getTrade(pair, id) {}
+  getPairTrades(pair) { }
+  getTrade(pair, id) { }
 
-  removeTrade(trade) {}
-  modifyTrade(trade) {}
-  getPairTrades(pair) {}
-  getTrade(pair, id) {}
+  removeTrade(trade) { }
+  modifyTrade(trade) { }
+  getPairTrades(pair) { }
+  getTrade(pair, id) { }
 
   addPair(pair) {
     // adding for specific user
@@ -104,7 +105,7 @@ class Db {
 
     // all to all trades
   }
-  removePair(pair) {}
+  removePair(pair) { }
   getPairs() {
     firebase
       .firestore()

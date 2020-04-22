@@ -25,7 +25,7 @@ let Journal = {
           <p id="R">-24R</p>
         </div>
       </div>
-      <div class="pairsTabs">
+      <div class="pairsTabs hide">
         <ul id="userpairs">
           <li class="checked">
             <button class="change">EUR/USD</button>
@@ -37,7 +37,7 @@ let Journal = {
         </ul>
       </div>
       <div id="addtrade">
-  
+   
         <div class="basic">
           <h1>Core</h1>
           <div class="row">
@@ -582,12 +582,11 @@ let Journal = {
                   </div>
                 </div>
               </div>
-  
             </div>
           </div>
         </div>
   
-        <button id="addTradeBtn">Add</button>
+        <button type="submit" id="addTradeBtn">Add</button>
       </div>
       <div id="settings" class="hide">
         <h1>Weekly settings</h1>
@@ -651,6 +650,7 @@ let Journal = {
         ifLTFDiv: document.getElementById('ifLTFDiv'),
         ifWicksDiv: document.getElementById('ifWicksDiv'),
         cuttedRStopDiv: document.getElementById('cuttedRStopDiv'),
+        thoughts: document.getElementById('thoughts'),
         // cuttedREntryCloseDiv: document.getElementById('cuttedREntryCloseDiv'),
         // cuttedREntryMiddleDiv: document.getElementById('cuttedREntryMiddleDiv'),
         // stopBasesYes: document.getElementById('stopBasesYes'),
@@ -743,8 +743,14 @@ let Journal = {
 
     const JournalDataCtrl = (function (UICtrl) {
 
+      const clearForm = () => {
+        location.reload();
+
+
+      }
       const selectors = UICtrl.getSelectors();
       return {
+
         collectData: () => {
 
           const data = {};
@@ -757,10 +763,11 @@ let Journal = {
           });
           // make new object, send this data to it, then in object in Trade.js define assignments!!
           console.log(data);
-
-          dbManager.addTrade(data, data.pair);
+          data.thoughts = selectors.thoughts.value;
+          dbManager.addTrade(data, data.pair).then(done => {
+            clearForm();
+          });
         }
-
       }
 
     })(UICtrl);
