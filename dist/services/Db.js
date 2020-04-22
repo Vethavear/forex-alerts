@@ -19,33 +19,33 @@ class Db {
   }
 
   async addTrade(trade) {
-    await firebase
-      .firestore()
-      .collection("users")
-      .doc(`${authManager.uid}`)
-      .collection("trades")
-      .doc()
-      .set(Object.assign({}, trade))
-      .then(function () {
+    // await firebase
+    //   .firestore()
+    //   .collection("users")
+    //   .doc(`${authManager.uid}`)
+    //   .collection("trades")
+    //   .doc()
+    //   .set(Object.assign({}, trade))
+    //   .then(function () {
 
-        console.log("Document successfully written!");
-      })
-      .catch(function (error) {
-        alert("Error with saving to database. Try again later.");
-        console.error("Error writing document: ", error);
-      });
-    await firebase
-      .firestore()
-      .collection("alltrades")
-      .doc()
-      .set(Object.assign({}, trade))
-      .then(function () {
-        console.log("Document successfully written!");
-      })
-      .catch(function (error) {
-        alert("Error with saving to database. Try again later.");
-        console.error("Error writing document: ", error);
-      });
+    //     console.log("Document successfully written!");
+    //   })
+    //   .catch(function (error) {
+    //     alert("Error with saving to database. Try again later.");
+    //     console.error("Error writing document: ", error);
+    //   });
+    // await firebase
+    //   .firestore()
+    //   .collection("alltrades")
+    //   .doc()
+    //   .set(Object.assign({}, trade))
+    //   .then(function () {
+    //     console.log("Document successfully written!");
+    //   })
+    //   .catch(function (error) {
+    //     alert("Error with saving to database. Try again later.");
+    //     console.error("Error writing document: ", error);
+    //   });
   }
 
   async getAllTrades() {
