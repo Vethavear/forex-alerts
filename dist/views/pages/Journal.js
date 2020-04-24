@@ -1,5 +1,4 @@
 import Pairs from '../components/Pairs.js';
-import Db from '../../services/Db.js';
 import { dbManager } from '../../app.js';
 let Journal = {
   render: async () => {
@@ -36,13 +35,13 @@ let Journal = {
           </li>
         </ul>
       </div>
+      <form id="form">
       <div id="addtrade">
-   
         <div class="basic">
           <h1>Core</h1>
           <div class="row">
             <label for="pair">Pair</label>
-            <input type="text" name="pair" class="info" id="pair" value="EURUSD">
+            <input type="text" name="pair" class="info" id="pair" value="" required>
           </div>
           <div class="row">
             <label for="date">Date</label>
@@ -51,11 +50,11 @@ let Journal = {
   
           <div class="row">
             <label for="profit">Profit</label>
-            <input type="text" name="profit" id="result" class="info" placeholder="Fill this first">
+            <input type="text" name="profit" id="result" class="info" required placeholder="Fill this first">
           </div>
           <div class="row">
             <label for="chart">Chart</label>
-            <input type="text" name="chart" class="info" id="chart">
+            <input type="text" name="chart" class="info" required id="chart">
           </div>
           <div class="row">
             <label for="comment">Thoughts</label>
@@ -71,11 +70,11 @@ let Journal = {
               <div class="cont">
               <p>Setup</p>
                 <label>Continuation
-                  <input type="radio" data-show="bases" data-hide="raids" name="setup" id="continuation" class="info"
+                  <input type="radio" data-show="bases" data-hide="raids" name="setup" required id="continuation" class="info"
                     value="continuation">
                 </label>
                 <label>Raid
-                  <input type="radio" data-show="raids" data-hide="bases" name="setup" id="raid" class="info"
+                  <input type="radio" data-show="raids" data-hide="bases" name="setup" required id="raid" class="info"
                     value="raid">
                 </label>
                 <p>Timeframe</p>
@@ -111,72 +110,72 @@ let Journal = {
                   <div class="cont">
                     <p>Base type</p>
                     <label>Blocky
-                      <input type="radio" name="question1" class="info" id="blocky" value="Base type: blocky">
+                      <input type="radio" name="question1" class="info" id="blocky" required value="Base type: blocky">
                     </label>
                     <label>Wicky
-                      <input type="radio" name="question1" class="info" id="wicky" value="Base type: wicky">
+                      <input type="radio" name="question1" class="info" id="wicky" required value="Base type: wicky">
                     </label>
                     <p>Visible on higher timeframes?</p>
                     <label>Yes
-                      <input type="radio" name="question2" class="info" id="visibleYes" value="Visible on higher tf?: yes">
+                      <input type="radio" name="question2" class="info" id="visibleYes" required value="Visible on higher tf?: yes">
                     </label>
                     <label>No
-                      <input type="radio" name="question2" class="info" id="visibleNo" value="Visible on higher tf?: no">
+                      <input type="radio" name="question2" class="info" id="visibleNo" required value="Visible on higher tf?: no">
                     </label>
                     <p>Was there big base on the left?</p>
                     <label>Yes
-                      <input type="radio" name="question3" class="info" id="BigBaseLeftYes" value="Was there bigger base on the left?: yes">
+                      <input type="radio" name="question3" class="info" id="BigBaseLeftYes" required value="Was there bigger base on the left?: yes">
                     </label>
                     <label>No
-                      <input type="radio" name="question3" class="info" id="BigBaseLeftNo" value="Was there bigger base on the left?: no">
+                      <input type="radio" name="question3" class="info" id="BigBaseLeftNo" required value="Was there bigger base on the left?: no">
                     </label>
                   </div>
                   <div id="continuationEntries" class="cont">
                     <p>Entry</p>
                     <label>Body
-                      <input type="radio" data-hide="ifWicksDiv" data-profit="positive" name="entry" class="info"
+                      <input type="radio" data-hide="ifWicksDiv" data-profit="positive" required name="entry" class="info"
                         id="entryBasesYes" value="Body">
                     </label>
                     <label>Wicks
-                      <input type="radio" data-show="ifWicksDiv" data-profit="positive" name="entry" class="info"
+                      <input type="radio" data-show="ifWicksDiv" data-profit="positive" required name="entry" class="info"
                         id="entryBasesWicks" value="Wicks">
                     </label>
                     <label>Middle of base
-                      <input type="radio" data-hide="ifWicksDiv" data-profit="positive" name="entry" class="info"
+                      <input type="radio" data-hide="ifWicksDiv" data-profit="positive" required name="entry" class="info"
                         id="entryMiddle" value="Middle of base">
                     </label>
                   </div>
                   <div id="continuationStops" class="cont">
                     <p>Stoploss</p>
                     <label>Swing
-                      <input type="radio" data-show="ifLTFDiv" data-hide="ifswingDiv" data-profit="positive" name="stop"
+                      <input type="radio" data-show="ifLTFDiv" data-hide="ifswingDiv" required data-profit="positive" name="stop"
                         class="info" id="stopBasesYes" value="Swing">
                     </label>
                     <label>Stop above minor high on LTF
-                      <input type="radio" data-show="ifswingDiv" data-hide="ifLTFDiv" data-profit="negative" name="stop"
+                      <input type="radio" data-show="ifswingDiv" data-hide="ifLTFDiv" required data-profit="negative" name="stop"
                         class="info" id="stopBasesLTF" value="Stop above minor high on LTF">
                     </label>
                     <label>Gambling stop
-                      <input type="radio" data-show="ifswingDiv" name="stop" class="info"
+                      <input type="radio" data-show="ifswingDiv" required name="stop" class="info"
                         id="stopBasesGamble" value="Gambling stop">
                     </label>
                   </div>
                   <div id="continuationTps" class="cont">
                     <p>Takeprofit</p>
                     <label>First liq pool
-                      <input type="radio" data-show="ifMajorPoolTpDiv" data-profit="positive" name="tp" class="info"
+                      <input type="radio" data-show="ifMajorPoolTpDiv" required data-profit="positive" name="tp" class="info"
                         id="tpLiqPoolBases" value="First liq pool">
                     </label>
                     <label>Major liq pool
-                      <input type="radio" data-profit="positive" name="tp" class="info" id="tpMLiqPoolBases"
+                      <input type="radio" data-profit="positive" required name="tp" class="info" id="tpMLiqPoolBases"
                         value="Major Liq pool">
                     </label>
                     <label>First untested base
-                      <input type="radio" data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
+                      <input type="radio" data-show="ifFirstPoolTpDiv" required data-profit="positive" name="tp" class="info"
                         id="tpBaseBases" value="First untested base">
                     </label>
                     <label>Opposite signal occured
-                      <input type="radio" data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
+                      <input type="radio" data-show="ifFirstPoolTpDiv" required data-profit="positive" name="tp" class="info"
                         id="tpOppositeSignalBases" value="Opposite signal occured">
                     </label>
                   </div>
@@ -186,94 +185,94 @@ let Journal = {
                   <div class="cont">
                     <p>MSB type</p>
                     <label>Origin
-                      <input type="radio" name="question1" class="info" id="origin" value="MSB type: origin">
+                      <input type="radio" name="question1" required class="info" id="origin" value="MSB type: origin">
                     </label>
                     <label>Shady
-                      <input type="radio" name="question1" class="info" id="shady" value="MSB type: shady">
+                      <input type="radio" name="question1" required class="info" id="shady" value="MSB type: shady">
                     </label>
                     <p>Clear MSB on higher timeframe?</p>
                     <label>Yes
-                      <input type="radio" name="question2" class="info" id="clearMSBYes" value="Clear MSB on higher timeframe?: Yes">
+                      <input type="radio" name="question2" required class="info" id="clearMSBYes" value="Clear MSB on higher timeframe?: Yes">
                     </label>
                     <label>No
-                      <input type="radio" name="question2" class="info" id="clearMSBNo" value="Clear MSB on higher timeframe?: No">
+                      <input type="radio" name="question2" required class="info" id="clearMSBNo" value="Clear MSB on higher timeframe?: No">
                     </label>
                     <p>Pool type</p>
                     <label>Major
-                      <input type="radio" name="question3" class="info" id="origin" value="Pool type: major">
+                      <input type="radio" name="question3" required class="info" id="majorPool" value="Pool type: major">
                     </label>
                     <label>Minor
-                      <input type="radio" name="question3" class="info" id="shady" value="Pool type: minor">
+                      <input type="radio" name="question3" required class="info" id="minorPool" value="Pool type: minor">
                     </label>
                     <label>Shady
-                    <input type="radio" name="question3" class="info" id="shady" value="Pool type: shady">
+                    <input type="radio" name="question3" required class="info" id="shadyPool" value="Pool type: shady">
                   </label>
                   </div>
                   <div id="raidsEntries" class="cont">
                     <p>Entry</p>
                     <label>Middle between MSB and minor liq hunt
-                      <input type="radio" name="entry" class="info" id="entryRaidsYes" value="Middle between MSB and minor liq hunt">
+                      <input type="radio" name="entry" required class="info" id="entryRaidsYes" value="Middle between MSB and minor liq hunt">
                     </label>
                     <label>0.65
-                      <input type="radio" name="entry" class="info" id="entryRaids65" value="0.65">
+                      <input type="radio" name="entry" required class="info" id="entryRaids65" value="0.65">
                     </label>
                     <label>0.786
-                      <input type="radio" name="entry" class="info" id="entryRaids786" value="0.786">
+                      <input type="radio" name="entry" required class="info" id="entryRaids786" value="0.786">
                     </label>
                     <label>0.88
-                      <input type="radio" name="entry" class="info" id="entry1Raids88" value="0.88">
+                      <input type="radio" name="entry" required class="info" id="entry1Raids88" value="0.88">
                     </label>
                   </div>
                   <div id="raidsStops" class="cont">
                     <p>Stoploss</p>
                     <label>Swing
-                      <input type="radio" name="stop" class="info" id="stopRaidsYes" value="Swing">
+                      <input type="radio" name="stop" required class="info" id="stopRaidsYes" value="Swing">
                     </label>
                     <label>Stop behind 1 (minor liq line)
-                      <input type="radio" data-show="ifSwingStopRaidsDiv" data-hide="ifFibo078x088Div"
+                      <input type="radio" required data-show="ifSwingStopRaidsDiv" data-hide="ifFibo078x088Div"
                         data-profit="negative" name="stop" class="info" id="stop1Raids" value="Stop behind 1 (minor liq line)">
                     </label>
                     <label>0.78 stop
-                      <input type="radio" data-show="ifFiboExtendedDiv" data-hide="ifFiboDiv" data-profit="negative"
+                      <input type="radio" required data-show="ifFiboExtendedDiv" data-hide="ifFiboDiv" data-profit="negative"
                         name="stop" class="info" id="stop078Raids" value="0.78">
                     </label>
                     <label>0.88 stop
-                      <input type="radio" data-show="if01Stop" data-hide="ifFibo078x088Div" data-profit="negative"
+                      <input type="radio" required data-show="if01Stop" data-hide="ifFibo078x088Div" data-profit="negative"
                         name="stop" class="info" id="stop088Raids" value="0.88">
                     </label>
                     <label>Gambling stop
-                      <input type="radio" data-show="ifSwingStopRaidsDiv" data-hide="ifSwingStopRaidsDiv"
+                      <input type="radio" required data-show="ifSwingStopRaidsDiv" data-hide="ifSwingStopRaidsDiv"
                         data-profit="negative" name="stop" class="info" id="stopRaidsGamble" value="Gambling">
                     </label>
                   </div>
                   <div id="raidsTps" class="cont">
                     <p>Takeprofit</p>
                     <label>First liq pool
-                      <input type="radio" data-show="ifMajorPoolTpDiv" data-profit="positive"
+                      <input type="radio" required data-show="ifMajorPoolTpDiv" data-profit="positive"
                         name="tp" class="info" id="tpLiqPoolRaids" value="First liq pool">
                     </label>
                     <label>Major liq pool
-                      <input type="radio" name="tp"
+                      <input type="radio" required  name="tp"
                         class="info" id="tpMliqPoolRaids" value="Major liq pool">
                     </label>
                     <label>First untested base
-                      <input type="radio" data-show="ifFirstPoolTpDiv"  data-profit="positive" name="tp" class="info"
+                      <input type="radio" required data-show="ifFirstPoolTpDiv"  data-profit="positive" name="tp" class="info"
                         id="tpBaseRaids" value="First untested base">
                     </label>
                     <label>Opposite signal occured
-                      <input type="radio" data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
+                      <input type="radio" required data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
                         id="tpOppositeSignalRaids" value="Opposite signal occured">
                     </label>
                     <label>-0.236
-                      <input type="radio" data-show="ifn065TpDiv" data-profit="positive" name="tp" class="info"
+                      <input type="radio" required data-show="ifn065TpDiv" data-profit="positive" name="tp" class="info"
                         id="tpn0236Raids" value="-0.236">
                     </label>
                     <label>-0.65
-                      <input type="radio" data-show="ifn1TpDiv" data-profit="positive" name="tp" class="info "
+                      <input type="radio" required data-show="ifn1TpDiv" data-profit="positive" name="tp" class="info "
                         id="tpn065Raids" value="-0.65">
                     </label>
                     <label>-1
-                      <input type="radio"  name="tp" class="info"
+                      <input type="radio"  required name="tp" class="info"
                         id="tpn01Raids" value="-1">
                     </label>
                   </div>
@@ -585,9 +584,9 @@ let Journal = {
             </div>
           </div>
         </div>
-  
         <button type="submit" id="addTradeBtn">Add</button>
       </div>
+      </form>
       <div id="settings" class="hide">
         <h1>Weekly settings</h1>
   
@@ -620,6 +619,7 @@ let Journal = {
     const UICtrl = (function () {
       const selectors = {
         // Journal
+        form: document.getElementById('form'),
         addpair: document.getElementById('addpair'),
         addTradeBtn: document.getElementById('addTradeBtn'),
         addtrade: document.getElementById('addtrade'),
@@ -744,12 +744,15 @@ let Journal = {
     const JournalDataCtrl = (function (UICtrl) {
 
       const clearForm = () => {
-        location.reload();
+        // location.reload();
       }
       const selectors = UICtrl.getSelectors();
       return {
 
         collectData: () => {
+
+
+
 
           const data = {};
           selectors.allInputs.forEach(element => {
@@ -776,6 +779,8 @@ let Journal = {
 
       return {
         init: async function () {
+          // function handleForm(event) { event.preventDefault(); }
+          // form.addEventListener('submit', handleForm);
           UICtrl.initDate();
           // change Journal pair
           selectors.journalPairsContainer.addEventListener("click", (e) => {

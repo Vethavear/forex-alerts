@@ -272,9 +272,11 @@ footer{
 #container {
   transition: all 0.5s;
   width: 100%;
-  display: flex;
+  // display: flex;
   min-height: 93vh;
-
+form{
+  min-height:93vh;
+}
   label,
   p {
     font-size: 1.1rem;
@@ -350,6 +352,7 @@ footer{
   }
   #addtrade {
     position: relative;
+  min-height:93vh;
     
     padding-top: 2rem;
     padding-left: 3rem;

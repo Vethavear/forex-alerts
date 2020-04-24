@@ -438,9 +438,10 @@ footer a {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  min-height: 93vh;
+}
+
+#container form {
   min-height: 93vh;
 }
 
@@ -531,6 +532,7 @@ footer a {
 
 #container #addtrade {
   position: relative;
+  min-height: 93vh;
   padding-top: 2rem;
   padding-left: 3rem;
   width: 100%;
