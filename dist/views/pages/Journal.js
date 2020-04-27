@@ -35,7 +35,7 @@ let Journal = {
           </li>
         </ul>
       </div>
-      <form id="form">
+       <form id="form"> 
       <div id="addtrade">
         <div class="basic">
           <h1>Core</h1>
@@ -213,8 +213,11 @@ let Journal = {
                     <label>Middle between MSB and minor liq hunt
                       <input type="radio" name="entry" required class="info" id="entryRaidsYes" value="Middle between MSB and minor liq hunt">
                     </label>
-                    <label>0.65
-                      <input type="radio" name="entry" required class="info" id="entryRaids65" value="0.65">
+                    <label>Reclaim
+                      <input type="radio" name="entry" required class="info" id="entryRaidsReclaim" value="Reclaim">
+                    </label>
+                    <label>0.64
+                      <input type="radio" name="entry" required class="info" id="entryRaids65" value="0.64">
                     </label>
                     <label>0.786
                       <input type="radio" name="entry" required class="info" id="entryRaids786" value="0.786">
@@ -263,13 +266,13 @@ let Journal = {
                       <input type="radio" required data-show="ifFirstPoolTpDiv" data-profit="positive" name="tp" class="info"
                         id="tpOppositeSignalRaids" value="Opposite signal occured">
                     </label>
-                    <label>-0.236
+                    <label>-0.23
                       <input type="radio" required data-show="ifn065TpDiv" data-profit="positive" name="tp" class="info"
-                        id="tpn0236Raids" value="-0.236">
+                        id="tpn0236Raids" value="-0.23">
                     </label>
-                    <label>-0.65
+                    <label>-0.64
                       <input type="radio" required data-show="ifn1TpDiv" data-profit="positive" name="tp" class="info "
-                        id="tpn065Raids" value="-0.65">
+                        id="tpn065Raids" value="-0.64">
                     </label>
                     <label>-1
                       <input type="radio"  required name="tp" class="info"
@@ -399,32 +402,32 @@ let Journal = {
               <!-- raids -->
               <!--  wins -->
               <div id="ifFiboDiv" class="hide">
-                <p>Did 0.65 with 0.786 stop work out?</p>
+                <p>Did 0.64 with 0.786 stop work out?</p>
                 <label>Yes
                   <input type="radio" data-show="cuttedR065x0786" data-profit="positive" name="Entry which worked better" class="info"
-                    id="ifFiboYes" value="0.65 with 0.786 stop">
+                    id="ifFiboYes" value="0.64 with 0.786 stop">
                 </label>
                 <label>No
                   <input type="radio" data-show="ifFibo088Div" data-hide="cuttedR065x0786" data-profit="positive"
-                    name="Entry which worked better" class="" id="ifFiboNo" value="not 0.65 with 0.786 stop">
+                    name="Entry which worked better" class="" id="ifFiboNo" value="not 0.64 with 0.786 stop">
                 </label>
                 <div id="cuttedR065x0786" class="hide inputText">
-                  <label>0.65 with 0.786 would yield profit</label>
+                  <label>0.64 with 0.786 would yield profit</label>
                   <input type="text" name="cutted R by entry" class="info" id="cuttedR065x0786" value="0">
                 </div>
               </div>
               <div id="ifFibo088Div" class="hide">
-                <p>Did 0.65 with 0.88 stop work out?</p>
+                <p>Did 0.64 with 0.88 stop work out?</p>
                 <label>Yes
                   <input type="radio" data-show="cuttedR065x088" data-profit="positive" name="Entry which worked better" class="info"
-                    id="ifFibo088Yes" value="0.65 with 0.88 stop">
+                    id="ifFibo088Yes" value="0.64 with 0.88 stop">
                 </label>
                 <label>No
                   <input type="radio" data-show="ifFibo088x1Div" data-hide="cuttedR065x088" data-profit="positive"
-                    name="Entry which worked better" class="" id="ifFibo088No" value="not 0.65 with 0.88 stop">
+                    name="Entry which worked better" class="" id="ifFibo088No" value="not 0.64 with 0.88 stop">
                 </label>
                 <div id="cuttedR065x088" class="hide inputText">
-                  <label>0.65 with 0.88 would yield profit</label>
+                  <label>0.64 with 0.88 would yield profit</label>
                   <input type="text" name="cutted R by entry" class="info" id="cuttedR065x088" value="0">
                 </div>
               </div>
@@ -474,7 +477,7 @@ let Journal = {
                 </label>
                 <div id="cuttedifMajorPoolTp" class="hide inputText">
                   <label>Tp at major liq pool would yield profit</label>
-                  <input type="text" name="cutted R by takeprofit" class="info" id="cuttedifMajorPoolTp" value="0">
+                  <input type="text" name="cutted R by takeprofit (major pool)" class="info" id="cuttedifMajorPoolTp" value="0">
                 </div>
               </div>
               <div id="ifFirstPoolTpDiv" class="hide">
@@ -489,53 +492,53 @@ let Journal = {
                 </label>
                 <div id="cuttedifFirstPoolTp" class="hide inputText">
                   <label>Tp at first liq pool would yield profit</label>
-                  <input type="text" name="cutted R by takeprofit" class="info" id="cuttedifFirstPoolTp" value="0">
+                  <input type="text" name="cutted R by takeprofit (first pool)" class="info" id="cuttedifFirstPoolTp" value="0">
                 </div>
               </div>
               <!-- wins raids fibo -->
               <div id="ifn0236TpDiv" class="hide">
-                <p>Did tp -0.236 work out?</p>
+                <p>Did tp -0.23 work out?</p>
                 <label>Yes
                   <input type="radio" data-show="cuttedifn0236Tp" data-profit="positive" name="Fibo takeprofit which worked better" class="info"
-                    id="ifn0236TpYes" value="-0.236">
+                    id="ifn0236TpYes" value="-0.23">
                 </label>
                 <label>No
                   <input type="radio" data-hide="ifn0236TpDiv" data-profit="positive" name="Fibo takeprofit which worked better " class=""
-                    id="ifn0236TpNo" value="not -0.236">
+                    id="ifn0236TpNo" value="not -0.23">
                 </label>
                 <div id="cuttedifn0236Tp" class="hide inputText">
-                  <label>Tp at -0.236 would yield profit</label>
-                  <input type="text" name="cutted R by takeprofit " class="info" id="cuttedifn0236Tp" data-show="ifn1TpDiv" value="0">
+                  <label>Tp at -0.23 would yield profit</label>
+                  <input type="text" name="cutted R by takeprofit (-0.23)" class="info" id="cuttedifn0236Tp" data-show="ifn1TpDiv" value="0">
                 </div>
               </div>
               <div id="ifn065TpDiv" class="hide">
-                <p>Did tp -0.65 work out?</p>
+                <p>Did tp -0.61 work out?</p>
                 <label>Yes
                   <input type="radio" data-show="cuttedifn065Tp" data-profit="positive" name="Fibo takeprofit which worked even better" class="info"
-                    id="ifn065TpYes" value="-0.65">
+                    id="ifn065TpYes" value="-0.61">
                 </label>
                 <label>No
                   <input type="radio" data-hide="ifn065TpDiv" data-profit="positive" name="Fibo takeprofit which worked even better" class=""
-                    id="ifn065TpNo" value="not -0.65">
+                    id="ifn065TpNo" value="not -0.61">
                 </label>
                 <div id="cuttedifn065Tp" class="hide inputText">
-                  <label>Tp at -0.65 would yield profit</label>
-                  <input type="text" name="cutted R by takeprofit " class="info" id="cuttedifn065Tp" data-show="ifn1TpDiv" value="0">
+                  <label>Tp at -0.61 would yield profit</label>
+                  <input type="text" name="cutted R by takeprofit (-0.61)" class="info" id="cuttedifn065Tp" data-show="ifn1TpDiv" value="0">
                 </div>
               </div>
               <div id="ifn1TpDiv" class="hide">
                 <p>Did tp -1 work out?</p>
                 <label>Yes
-                  <input type="radio" data-show="cuttedifn1Tp" data-profit="positive" name="Fibo takeprofit which worked the best " class="info"
+                  <input type="radio" data-show="cuttedifn1Tp" data-profit="positive" name="Fibo takeprofit which worked the best" class="info"
                     id="ifn1TpYes" value="-1">
                 </label>
                 <label>No
-                  <input type="radio" data-hide="ifn1TpDiv" data-profit="positive" name="Fibo takeprofit which worked the best " class=""
+                  <input type="radio" data-hide="ifn1TpDiv" data-profit="positive" name="Fibo takeprofit which worked the best" class=""
                     id="ifn1TpNo" value="not -1">
                 </label>
                 <div id="cuttedifn1Tp" class="hide inputText">
                   <label>Tp at -1 would yield profit</label>
-                  <input type="text" name="cutted R by takeprofit " class="info" id="cuttedifn1Tp" value="0">
+                  <input type="text" name="cutted R by takeprofit (-1)" class="info" id="cuttedifn1Tp" value="0">
                 </div>
               </div>
               <!-- if lost BY GREED -->
@@ -562,9 +565,9 @@ let Journal = {
                     <input type="radio"  data-profit="negative" name="Takeprofit which would work" class="info"
                       id="greedFirstLiqPoolYes" value="First liq pool">
                   </label>
-                  <label>-0.231
+                  <label>-0.23
                     <input type="radio"  data-profit="negative" name="Takeprofit which would work" class="info"
-                      id="greedn0236No" value="-0.231">
+                      id="greedn0236No" value="-0.23">
                   </label>
                   <label>-0.61
                     <input type="radio"  data-profit="negative" name="Takeprofit which would work" class="info"
@@ -586,7 +589,7 @@ let Journal = {
         </div>
         <button type="submit" id="addTradeBtn">Add</button>
       </div>
-      </form>
+      </form> 
       <div id="settings" class="hide">
         <h1>Weekly settings</h1>
   
@@ -674,6 +677,7 @@ let Journal = {
         ifn0236TpYes: document.getElementById('ifn0236TpYes'),
         ifn065TpYes: document.getElementById('ifn065TpYes'),
         entryRaidsYes: document.getElementById('entryRaidsYes'),
+        entryRaidsReclaim: document.getElementById('entryRaidsReclaim'),
         ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
         if01Stop: document.getElementById('if01Stop'),
         ifSwingStopRaidsDiv: document.getElementById('ifSwingStopRaidsDiv'),
@@ -744,28 +748,32 @@ let Journal = {
     const JournalDataCtrl = (function (UICtrl) {
 
       const clearForm = () => {
-        // location.reload();
+        location.reload();
       }
       const selectors = UICtrl.getSelectors();
       return {
 
         collectData: () => {
 
+          const allFields = document.querySelectorAll('.info');
+          let dataObj = {};
+          allFields.forEach(element => {
+            dataObj[element.name] = '';
+          })
+          console.log(dataObj);
 
 
-
-          const data = {};
           selectors.allInputs.forEach(element => {
             if (element.type === 'radio' && element.checked) {
-              data[element.name] = element.value;
+              dataObj[element.name] = element.value;
             } else if ((element.type === 'text' || element.type === 'date') && element.value != '0') {
-              data[element.name] = element.value;
+              dataObj[element.name] = element.value;
             }
           });
-          // make new object, send this data to it, then in object in Trade.js define assignments!!
-          console.log(data);
-          data.thoughts = selectors.thoughts.value;
-          dbManager.addTrade(data, data.pair).then(done => {
+          // make new object, send this dataObj to it, then in object in Trade.js define assignments!!
+          console.log(dataObj);
+          dataObj.thoughts = selectors.thoughts.value;
+          dbManager.addTrade(dataObj, dataObj.pair).then(done => {
             clearForm();
           });
         }
@@ -779,8 +787,8 @@ let Journal = {
 
       return {
         init: async function () {
-          // function handleForm(event) { event.preventDefault(); }
-          // form.addEventListener('submit', handleForm);
+          function handleForm(event) { event.preventDefault(); }
+          form.addEventListener('submit', handleForm);
           UICtrl.initDate();
           // change Journal pair
           selectors.journalPairsContainer.addEventListener("click", (e) => {
@@ -791,6 +799,11 @@ let Journal = {
               UICtrl.changeJournalPair(pair, target.parentElement);
             };
           });
+
+
+
+
+
 
           selectors.addpair.addEventListener('click', Pairs.addPair);
 
@@ -886,7 +899,7 @@ let Journal = {
 
                 selectors.raidsStops.addEventListener('click', e => {
 
-                  if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked) {
+                  if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked || e.target.matches('#stopRaidsYes') && selectors.entryRaidsReclaim.checked) {
                     // swing stop and middle of msb entry
                     UICtrl.hideContainer(selectors.ifFiboDiv, false);
                     UICtrl.hideContainer(selectors.ifFibo088Div, true);
