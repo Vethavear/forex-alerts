@@ -119,10 +119,11 @@ footer{
   width: 100%;
   .pairsmenu {
     position: relative;
+    box-shadow: $shadow;
     left: 0;
     background: $primary-color;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
     color: $text-color;
     padding: 2rem;
     display: grid;
@@ -153,7 +154,6 @@ footer{
     box-shadow: $shadow;
     padding: 5rem;
     color: $text-color;
-    border-radius: 25px;
     background: $primary-color;
     display: flex;
     flex-direction: column;
@@ -233,8 +233,8 @@ footer{
     position: relative;
     right: 0;
     background: $primary-color;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
     color: $text-color;
     padding: 2rem;
     display: grid;

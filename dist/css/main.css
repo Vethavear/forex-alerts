@@ -229,10 +229,12 @@ footer a {
 
 #pairpicker .pairsmenu {
   position: relative;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   left: 0;
   background: #15191c;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
   color: white;
   padding: 2rem;
   display: -ms-grid;
@@ -268,7 +270,6 @@ footer a {
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 5rem;
   color: white;
-  border-radius: 25px;
   background: #15191c;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -388,8 +389,8 @@ footer a {
   position: relative;
   right: 0;
   background: #15191c;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
   color: white;
   padding: 2rem;
   display: -ms-grid;
