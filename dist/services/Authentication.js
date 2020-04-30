@@ -1,11 +1,18 @@
 class Auth {
 
+
+    signoutSelector = document.getElementById('signout');
+
     constructor() {
+
+        this.signoutSelector.addEventListener('click', this.signout);
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log('logged');
                 // User is signed in.
+                this.signoutSelector.classList.remove('hide');
+
                 this.logged = true;
                 this.displayName = user.displayName;
                 this.email = user.email;
@@ -30,6 +37,7 @@ class Auth {
                 firebase.auth().onAuthStateChanged(
                     user => {
                         if (user) {
+                            this.signoutSelector.classList.remove('hide');
                             // User is signed in.
                             resolve(user)
                         } else {
@@ -52,6 +60,7 @@ class Auth {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         firebase.auth().signInWithEmailAndPassword(email, password).then(result => {
+            this.signoutSelector.classList.remove('hide');
             document.location.href = '';
         }).catch(function (error) {
             // Handle Errors here.
@@ -63,6 +72,7 @@ class Auth {
     }
 
     signup() {
+
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
         firebase.auth().createUserWithEmailAndPassword(email, password).then(result => {
@@ -84,6 +94,7 @@ class Auth {
         });
     }
     signout() {
+        this.signoutSelector.classList.add('hide');
         document.location.href = '';
         firebase.auth().signOut();
     }

@@ -74,6 +74,4 @@ window.addEventListener("hashchange", router);
 window.addEventListener("load", router);
 
 
-document.getElementById('signout').addEventListener('click', authManager.signout);
-
 export default authManager;
