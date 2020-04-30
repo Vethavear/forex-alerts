@@ -71,8 +71,22 @@ nav {
           color: $hover-color;
         }
       }
+      #signout{
+        box-shadow: $shadow;
+        font-weight: bold;
+        color: $primary-color;
+        background: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        &:hover {
+          background: $hover-color;
+        }
+      }
     }
   }
+ 
 }
 footer{
   position: fixed;
