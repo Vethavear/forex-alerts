@@ -1,18 +1,17 @@
 class Auth {
 
 
-    signoutSelector = document.getElementById('signout');
+
 
     constructor() {
 
-        this.signoutSelector.addEventListener('click', this.signout);
+        document.getElementById('signout').addEventListener('click', this.signout);
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log('logged');
                 // User is signed in.
-                this.signoutSelector.classList.remove('hide');
-
+                document.getElementById('signout').classList.remove('hide');
                 this.logged = true;
                 this.displayName = user.displayName;
                 this.email = user.email;
@@ -25,6 +24,7 @@ class Auth {
             } else {
                 // User is signed out.
                 console.log('logged out');
+                document.getElementById('signout').classList.add('hide');
                 this.logged = false;
                 // ...
             }
@@ -37,11 +37,11 @@ class Auth {
                 firebase.auth().onAuthStateChanged(
                     user => {
                         if (user) {
-                            this.signoutSelector.classList.remove('hide');
+                            document.getElementById('signout').classList.remove('hide');
                             // User is signed in.
                             resolve(user)
                         } else {
-                            // No user is signed in.
+                            document.getElementById('signout').classList.add('hide');
                             reject('no user logged in')
                         }
                     },
@@ -94,7 +94,7 @@ class Auth {
         });
     }
     signout() {
-        this.signoutSelector.classList.add('hide');
+        document.getElementById('signout').classList.add('hide');
         document.location.href = '';
         firebase.auth().signOut();
     }
