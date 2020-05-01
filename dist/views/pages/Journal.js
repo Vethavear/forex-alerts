@@ -769,8 +769,6 @@ let Journal = {
             dataObj[element.name] = '';
           })
           console.log(dataObj);
-
-
           selectors.allInputs.forEach(element => {
             if (element.type === 'radio' && element.checked) {
               dataObj[element.name] = element.value;
