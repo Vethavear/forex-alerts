@@ -247,7 +247,11 @@ let Alerts = {
                       alerts[pair.toLowerCase()][alertId],
                       pair
                     );
-                    UICtrl.removeAlert(alerts[pair.toLowerCase()][alertId].id);
+                    if (selectors.currentPair == pair) {
+                      UICtrl.removeAlert(
+                        alerts[pair.toLowerCase()][alertId].id
+                      );
+                    }
                     PairCtrl.removeAlert(pair.toLowerCase(), alertId);
                   }
                 });
