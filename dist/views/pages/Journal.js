@@ -50,7 +50,7 @@ let Journal = {
   
           <div class="row">
             <label for="profit">Profit</label>
-            <input type="number" step="0.1" name="profit" id="result" class="info" required placeholder="Fill this first">
+            <input type="text"  name="profit" id="result" class="info" required placeholder="Fill this first">
           </div>
           <div class="row">
             <label for="chart">Chart</label>
