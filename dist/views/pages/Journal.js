@@ -50,7 +50,7 @@ let Journal = {
   
           <div class="row">
             <label for="profit">Profit</label>
-            <input type="text" name="profit" id="result" class="info" required placeholder="Fill this first">
+            <input type="text"  name="profit" id="result" class="info" required placeholder="Fill this first">
           </div>
           <div class="row">
             <label for="chart">Chart</label>
@@ -821,7 +821,7 @@ let Journal = {
           })
 
           // collect data
-          selectors.addTradeBtn.addEventListener('click', JournalDataCtrl.collectData);
+          selectors.form.addEventListener('submit', JournalDataCtrl.collectData);
 
           selectors.addtrade.addEventListener('click', element => {
 
@@ -935,6 +935,7 @@ let Journal = {
                     UICtrl.hideContainer(selectors.ifFibo088Div, true);
                     UICtrl.hideContainer(selectors.ifFibo078x088Div, true);
                     UICtrl.hideContainer(selectors.ifFibo088x1Div, true);
+                    
                   }
                 });
                 selectors.raidsEntries.addEventListener('click', e => {
