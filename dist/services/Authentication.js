@@ -1,12 +1,8 @@
 class Auth {
 
-
-
-
     constructor() {
 
         document.getElementById('signout').addEventListener('click', this.signout);
-
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in.
@@ -56,19 +52,18 @@ class Auth {
     }
 
     adjustDisplayName(user) {
-
-        if(user){
-
+        if (user) {
             this.displayName = user.email.split('@').shift();
             this.displayName = this.displayName.charAt(0).toUpperCase() + this.displayName.slice(1);
             document.getElementById('username').innerHTML = `<p>Welcome ${this.displayName}</p>`;
         }
-        }
+    }
     signin() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         firebase.auth().signInWithEmailAndPassword(email, password).then(result => {
             location.reload();
+
 
         }).catch(function (error) {
             // Handle Errors here.
