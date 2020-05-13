@@ -44,13 +44,14 @@ let Alerts = {
           const alert = {
             id: Date.now() + Math.random(),
             price: parseFloat(price),
-            date: `${date.getFullYear()}-${("0" + date.getMonth() + 1).slice(
+            date: `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(
               -2
             )}-${("0" + date.getDate()).slice(-2)}`,
             direction: direction,
           };
           alerts[pair.toLowerCase()].push(alert);
           StorageCtrl.updateStorage(alerts);
+          console.log(alert);
           return alert;
         },
         getPricesFromApi: async function (pairs) {
