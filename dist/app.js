@@ -27,13 +27,9 @@ const routes = {
   "/trades": Login,
 };
 
-
 // inits
-Alerts.after_render();
 export const dbManager = new Db();
 export const authManager = new Auth();
-
-
 
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.
 const router = async () => {
@@ -69,6 +65,5 @@ window.addEventListener("hashchange", router);
 
 // Listen on page load:
 window.addEventListener("load", router);
-
 
 export default authManager;
