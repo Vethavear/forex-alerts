@@ -9,11 +9,9 @@ class Auth {
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log('logged');
                 // User is signed in.
                 document.getElementById('signout').classList.remove('hide');
                 this.logged = true;
-                this.displayName = user.displayName;
                 this.email = user.email;
                 this.emailVerified = user.emailVerified;
                 this.photoURL = user.photoURL;
@@ -37,10 +35,12 @@ class Auth {
                 firebase.auth().onAuthStateChanged(
                     user => {
                         if (user) {
+                            this.adjustDisplayName(user);
                             document.getElementById('signout').classList.remove('hide');
                             // User is signed in.
                             resolve(user)
                         } else {
+                            this.adjustDisplayName(user);
                             document.getElementById('signout').classList.add('hide');
                             reject('no user logged in')
                         }
@@ -55,12 +55,19 @@ class Auth {
         }
     }
 
+    adjustDisplayName(user) {
 
+        if(user){
+
+            this.displayName = user.email.split('@').shift();
+            this.displayName = this.displayName.charAt(0).toUpperCase() + this.displayName.slice(1);
+            document.getElementById('username').innerHTML = `<p>Welcome ${this.displayName}</p>`;
+        }
+        }
     signin() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         firebase.auth().signInWithEmailAndPassword(email, password).then(result => {
-            this.signoutSelector.classList.remove('hide');
             location.reload();
 
         }).catch(function (error) {

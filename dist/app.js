@@ -16,8 +16,6 @@ const LoggedInroutes = {
   "/": Alerts,
   "/journal": Journal,
   "/trades": Trades,
-  // , '/p/:id': PostShow
-  // , '/register': Register
 };
 // when logged out
 const routes = {
@@ -26,7 +24,6 @@ const routes = {
   "/login": Login,
   "/signup": Signup,
   "/reset": Reset,
-  // , '/p/:id': PostShow,
   "/trades": Login,
 };
 

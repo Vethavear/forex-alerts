@@ -62,7 +62,12 @@ nav {
   ul {
     list-style-type: none;
     display: flex;
+    align-items: center;
     li {
+     p{
+       font-size: 1.1rem;
+       color: $text-color;
+     }
       a {
         font-weight: bold;
         color: $text-color;
