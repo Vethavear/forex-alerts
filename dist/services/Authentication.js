@@ -61,7 +61,8 @@ class Auth {
         const password = document.getElementById('password').value;
         firebase.auth().signInWithEmailAndPassword(email, password).then(result => {
             this.signoutSelector.classList.remove('hide');
-            document.location.href = '';
+            location.reload();
+
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -76,7 +77,7 @@ class Auth {
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
         firebase.auth().createUserWithEmailAndPassword(email, password).then(result => {
-            document.location.href = '';
+            location.reload();
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -95,7 +96,7 @@ class Auth {
     }
     signout() {
         document.getElementById('signout').classList.add('hide');
-        document.location.href = '';
+        location.reload();
         firebase.auth().signOut();
     }
 

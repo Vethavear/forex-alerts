@@ -28,7 +28,6 @@ let Signup = {
   },
 
   after_render: async () => {
-    document.getElementById('signupBtn').addEventListener('click', authManager.signup)
   }
 
 }
