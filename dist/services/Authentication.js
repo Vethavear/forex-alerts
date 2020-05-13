@@ -9,7 +9,6 @@ class Auth {
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log('logged');
                 // User is signed in.
                 document.getElementById('signout').classList.remove('hide');
                 this.logged = true;
@@ -69,8 +68,8 @@ class Auth {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         firebase.auth().signInWithEmailAndPassword(email, password).then(result => {
-            this.signoutSelector.classList.remove('hide');
             location.reload();
+
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
