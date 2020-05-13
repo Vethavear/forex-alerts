@@ -63,7 +63,8 @@ nav {
     list-style-type: none;
     display: flex;
     li {
-      a {
+     
+      a,p {
         font-weight: bold;
         color: $text-color;
         font-size: 1.2rem;
