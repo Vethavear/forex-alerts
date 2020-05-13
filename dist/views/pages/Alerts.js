@@ -51,7 +51,6 @@ let Alerts = {
           };
           alerts[pair.toLowerCase()].push(alert);
           StorageCtrl.updateStorage(alerts);
-          console.log(alert);
           return alert;
         },
         getPricesFromApi: async function (pairs) {
