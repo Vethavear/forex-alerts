@@ -6,6 +6,7 @@ import Signup from "./views/pages/Signup.js";
 import Reset from "./views/pages/Reset.js";
 import Journal from "./views/pages/Journal.js";
 import Trades from "./views/pages/Trades.js";
+import Home from "./views/pages/Home.js";
 import Db from "./services/Db.js";
 import Auth from "./services/Authentication.js";
 // import Error404 from './views/pages/Error404.js'
@@ -13,13 +14,13 @@ import Utils from "./services/Utils.js";
 
 // List of supported routes. Any url other than these routes will throw a 404 error
 const LoggedInroutes = {
-  "/": Alerts,
+  "/": Home,
   "/journal": Journal,
   "/trades": Trades,
 };
 // when logged out
 const routes = {
-  "/": Alerts,
+  "/": Home,
   "/journal": Login,
   "/login": Login,
   "/signup": Signup,
@@ -28,6 +29,7 @@ const routes = {
 };
 
 // inits
+Alerts.after_render();
 export const dbManager = new Db();
 export const authManager = new Auth();
 
