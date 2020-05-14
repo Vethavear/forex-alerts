@@ -675,6 +675,9 @@ footer {
   color: $text-color;
   background: rgba(21, 25, 28, 0.9);
 
+  h2{
+    padding-bottom:1rem;
+  }
   table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -698,15 +701,6 @@ footer {
       background: $primary-color;
       color: white;
     }
-    tr:nth-child(even) {
-    }
-    tbody tr:nth-child(odd) {
-    }
-    tbody tr:hover {
-    }
-    a {
-      color: #0086b9;
-    }
   }
   input {
     border-radius: 0.25rem;
@@ -726,41 +720,30 @@ footer {
       border-color: $hover-color;
     }
   }
-  label {
-    font-size: 1.2rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all 0.5s;
-    color: $text-color;
-  }
+
   .row {
     position: relative;
-
-    textarea {
-      // border: 2px solid white;
-      border: 1px solid gray;
-      background: $primary-color;
-      border-radius: 0.5rem;
-      width: 209px;
-      color: white;
-      padding: 0.5rem;
-      font-size: 1rem;
-      margin: 2rem;
-
-      &:hover {
-        border: 1px solid $hover-color;
-      }
+    label {
+      font-size: 1.2rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: all 0.5s;
+      color: $text-color;
     }
   }
+
   .stats {
+  
     flex: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    .userstats {
-    }
+    .userstats,
     .globalstats {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     }
   }
   .weeklystats {
