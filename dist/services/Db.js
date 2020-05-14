@@ -1,5 +1,4 @@
 import authManager from "../app.js";
-import Pairs from "../views/components/Pairs.js";
 
 class Db {
   firebaseConfig = {
@@ -83,8 +82,6 @@ class Db {
     return docs;
   }
 
-  getPairTrades(pair) { }
-  getTrade(pair, id) { }
 
   removeTrade(trade) { }
   modifyTrade(trade) { }
