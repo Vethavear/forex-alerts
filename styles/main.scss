@@ -24,8 +24,7 @@ textarea {
 body {
   min-height: 100vh;
   overflow: visible;
-  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover
-    no-repeat;
+  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover no-repeat;
 }
 button,
 i {
@@ -52,7 +51,7 @@ label {
 nav {
   box-shadow: $shadow;
   display: flex;
-  height:7vh;
+  height: 7vh;
   justify-content: space-between;
   align-items: center;
   background: $primary-color;
@@ -64,10 +63,10 @@ nav {
     display: flex;
     align-items: center;
     li {
-     p{
-       font-size: 1.1rem;
-       color: $text-color;
-     }
+      p {
+        font-size: 1.1rem;
+        color: $text-color;
+      }
       a {
         font-weight: bold;
         color: $text-color;
@@ -76,7 +75,7 @@ nav {
           color: $hover-color;
         }
       }
-      #signout{
+      #signout {
         box-shadow: $shadow;
         font-weight: bold;
         color: $primary-color;
@@ -91,15 +90,13 @@ nav {
       }
     }
   }
- 
 }
-footer{
+footer {
   position: fixed;
-  bottom:0;
-  left:0;
-  a{
+  bottom: 0;
+  left: 0;
+  a {
     color: black;
-
   }
 }
 
@@ -293,9 +290,9 @@ footer{
   width: 100%;
   // display: flex;
   min-height: 93vh;
-form{
-  min-height:93vh;
-}
+  form {
+    min-height: 93vh;
+  }
   label,
   p {
     font-size: 1.1rem;
@@ -328,8 +325,7 @@ form{
     align-self: center;
     &:hover {
       background: $hover-color;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-        0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
 
     position: absolute;
@@ -371,8 +367,8 @@ form{
   }
   #addtrade {
     position: relative;
-  min-height:93vh;
-    
+    min-height: 93vh;
+
     padding-top: 2rem;
     padding-left: 3rem;
     width: 100%;
@@ -662,5 +658,115 @@ footer {
     a {
       color: #0086b9;
     }
+  }
+}
+
+// stats
+
+#statsContainer {
+  position: relative;
+  min-height: 93vh;
+  padding-top: 2rem;
+  padding-left: 3rem;
+  width: 100%;
+  overflow: visible;
+  display: flex;
+  box-shadow: $shadow;
+  color: $text-color;
+  background: rgba(21, 25, 28, 0.9);
+
+  table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    // width: 100%;
+    table-layout: fixed;
+    font-size: 1.1rem;
+
+    td,
+    th {
+      border: 1px solid gray;
+      padding: 8px;
+    }
+    td {
+      overflow: hidden;
+      text-align: center;
+    }
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      background: $primary-color;
+      color: white;
+    }
+    tr:nth-child(even) {
+    }
+    tbody tr:nth-child(odd) {
+    }
+    tbody tr:hover {
+    }
+    a {
+      color: #0086b9;
+    }
+  }
+  input {
+    border-radius: 0.25rem;
+    // border: none;
+    border: 1px solid gray;
+    background: $primary-color;
+    margin: 2rem;
+    padding: 0 0.25rem;
+    height: 30px;
+    width: 209px;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    font-weight: lighter;
+    &:focus,
+    &:hover {
+      border-color: $hover-color;
+    }
+  }
+  label {
+    font-size: 1.2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.5s;
+    color: $text-color;
+  }
+  .row {
+    position: relative;
+
+    textarea {
+      // border: 2px solid white;
+      border: 1px solid gray;
+      background: $primary-color;
+      border-radius: 0.5rem;
+      width: 209px;
+      color: white;
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin: 2rem;
+
+      &:hover {
+        border: 1px solid $hover-color;
+      }
+    }
+  }
+  .stats {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .userstats {
+    }
+    .globalstats {
+    }
+  }
+  .weeklystats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
   }
 }
