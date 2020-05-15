@@ -216,6 +216,9 @@ let Journal = {
                     <label>Middle between MSB and swing
                       <input type="radio" name="entry" required class="info" id="entryRaidsMS" value="Middle between MSB and swing">
                     </label>
+                    <label>0.25 between MSB and swing
+                      <input type="radio" name="entry" required class="info" id="entryRaids025S" value="0.25 between MSB and swing">
+                    </label>
                     <label>Ballin in da pool
                       <input type="radio" name="entry" required class="info" id="entryRaidsRaid" value="Raids raid">
                     </label>
@@ -685,6 +688,7 @@ let Journal = {
         entryRaidsYes: document.getElementById('entryRaidsYes'),
         entryRaidsReclaim: document.getElementById('entryRaidsReclaim'),
         entryRaidsMS: document.getElementById('entryRaidsMS'),
+        entryRaids025S: document.getElementById('entryRaids025S'),
         entryRaidsRaid: document.getElementById('entryRaidsRaid'),
         ifFiboExtendedDiv: document.getElementById('ifFiboExtendedDiv'),
         if01Stop: document.getElementById('if01Stop'),
@@ -905,7 +909,8 @@ let Journal = {
 
                 selectors.raidsStops.addEventListener('click', e => {
 
-                  if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked || e.target.matches('#stopRaidsYes') && selectors.entryRaidsReclaim.checked || e.target.matches('#stopRaidsYes') && selectors.entryRaidsMS.checked || e.target.matches('#stopRaidsYes') && selectors.entryRaidsRaid.checked) {
+                  if (e.target.matches('#stopRaidsYes') && selectors.entryRaidsYes.checked || e.target.matches('#stopRaidsYes') && selectors.entryRaidsReclaim.checked || e.target.matches('#stopRaidsYes') && selectors.entryRaidsMS.checked
+                  || e.target.matches('#stopRaidsYes') && selectors.entryRaids025S.checked || e.target.matches('#stopRaidsYes') && selectors.entryRaidsRaid.checked) {
                     // swing stop and middle of msb entry
                     UICtrl.hideContainer(selectors.ifFiboDiv, false);
                     UICtrl.hideContainer(selectors.ifFibo088Div, true);
