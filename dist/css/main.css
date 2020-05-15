@@ -811,6 +811,10 @@ footer {
   position: relative;
 }
 
+.authContainer .row h2 {
+  color: white;
+}
+
 .authContainer .row input {
   border-radius: 0.25rem;
   border: 1px solid gray;
