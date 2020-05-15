@@ -553,6 +553,9 @@ footer {
   align-items: center;
   .row {
     position: relative;
+    h2{
+      color: $text-color;
+    }
     input {
       border-radius: 0.25rem;
       border: 1px solid gray;

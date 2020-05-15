@@ -5,22 +5,10 @@ let Signup = {
     let view = /*html*/ `
     <div class="authContainer">
     <div class="row">
-      <label for="email">E-mail</label>
-      <input type="email" name="email" id="signupEmail">
+    <h2> Contact Veth or Dzordz to sing up! </h2>
     </div>
     <div class="row">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="signupPassword">
-    </div>
-    <div class="row">
-      <label for="password">Repeat password</label>
-      <input type="password" name="password" id="signupPassword2">
-    </div>
-    <div class="row">
-  <button id="signupBtn">Sign up</button>
-    </div>
-    <div class="row">
-    <button><a href="#/signin">Or Sign In</a></button>
+    <button><a href="#/login">Sign in if you have account</a></button>
       </div>
   </div>
         `;
