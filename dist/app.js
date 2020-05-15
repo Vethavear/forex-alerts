@@ -5,6 +5,7 @@ import Login from "./views/pages/Login.js";
 import Signup from "./views/pages/Signup.js";
 import Reset from "./views/pages/Reset.js";
 import Journal from "./views/pages/Journal.js";
+import Stats from "./views/pages/Stats.js";
 import Trades from "./views/pages/Trades.js";
 import Home from "./views/pages/Home.js";
 import Db from "./services/Db.js";
@@ -17,11 +18,13 @@ const LoggedInroutes = {
   "/": Home,
   "/journal": Journal,
   "/trades": Trades,
+  "/stats": Stats,
 };
 // when logged out
 const routes = {
   "/": Home,
   "/journal": Login,
+  "/stats": Login,
   "/login": Login,
   "/signup": Signup,
   "/reset": Reset,

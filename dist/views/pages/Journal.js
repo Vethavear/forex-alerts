@@ -50,7 +50,7 @@ let Journal = {
   
           <div class="row">
             <label for="profit">Profit</label>
-            <input type="text"  name="profit" id="result" class="info" required placeholder="Fill this first">
+            <input type="number" step="0.1"  name="profit" id="result" class="info" required placeholder="Fill this first">
           </div>
           <div class="row">
             <label for="chart">Chart</label>
@@ -772,7 +772,7 @@ let Journal = {
           selectors.allInputs.forEach(element => {
             if (element.type === 'radio' && element.checked) {
               dataObj[element.name] = element.value;
-            } else if ((element.type === 'text' || element.type === 'date') && element.value != '0') {
+            } else if ((element.type === 'text' || element.type === 'date' || element.type === 'number') && element.value != '0') {
               dataObj[element.name] = element.value;
             }
           });
