@@ -749,30 +749,35 @@ footer {
     align-items: center;
     }
   }
-  .weeklystats {
+  .weeklyStatsNsettings {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
     flex: 1;
-    .row{
-      display:flex;
+    .weeklystats, .settings{
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      button{
-        margin-bottom:1rem;
-        box-shadow: $shadow;
-        font-weight: bold;
-        color: $primary-color;
-        background: white;
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 0.25rem;
-        cursor: pointer;
-        &:hover {
-          background: $hover-color;
+      .row{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        button{
+          margin-bottom:1rem;
+          box-shadow: $shadow;
+          font-weight: bold;
+          color: $primary-color;
+          background: white;
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 0.25rem;
+          cursor: pointer;
+          &:hover {
+            background: $hover-color;
+          }
         }
       }
     }
-
+    
   }
 }

@@ -63,6 +63,7 @@ let Stats = {
         </table>
       </div>
     </div>
+    <div class="weeklyStatsNsettings">
     <div class="weeklystats">
       <h2>Weekly performance</h2>
       <form id="weeklyForm">
@@ -89,25 +90,46 @@ let Stats = {
           <tbody>
             <tr>
               <td>
-                <p id="weeklyTradesCount" class="weeklyData">55</p>
+                <p id="weeklyTradesCount" class="weeklyData"></p>
               </td>
               <td>
-                <p id="weeklyLoses" class="weeklyData">55</p>
+                <p id="weeklyLoses" class="weeklyData"></p>
               </td>
               <td>
-                <p id="weeklyWins" class="weeklyData">55</p>
+                <p id="weeklyWins" class="weeklyData"></p>
               </td>
               <td>
-                <p id="weeklyWinratio" class="weeklyData">55</p>
+                <p id="weeklyWinratio" class="weeklyData"></p>
               </td>
               <td>
-                <p id="weeklyR" class="weeklyData">55</p>
+                <p id="weeklyR" class="weeklyData"></p>
               </td>
             </tr>
           </tbody>
         </table>
+
       </div>
-    </div>;`
+      <div class="settings">
+      <h2>Account settings</h2>
+      <form id="settingsForm">
+        <div class="row">
+          <label for="account">Account size</label>
+          <input type="number" step="0.000001" name="account" id="account" required>
+        </div>
+        <div class="row">
+          <label for="risk">Risk %</label>
+          <input type="number" step="0.1" name="risk" id="risk" required>
+        </div>
+        <div class="row">
+          <label for="changesDate">Changes date</label>
+          <input type="date" name="changesDate" id="changesDate">
+        </div>
+        <div class="row">
+          <button type="submit">Adjust changes</button>
+        </div>
+      </form>
+    </div>
+    </div>`
     return view;
   },
 
@@ -128,6 +150,7 @@ let Stats = {
     const globalStats = calculateStats(globalTrades);
 
     initDate(selectors.dateFrom, selectors.dateTo);
+    fillWeeklyTrades();
 
     selectors.userCellsToFill.forEach(el => {
       const objKey = el.id.replace('user', '');
@@ -141,10 +164,12 @@ let Stats = {
 
     selectors.weeklyForm.addEventListener('submit', calculateWeeklyTrades);
 
-   async function calculateWeeklyTrades(event) {
+    async function calculateWeeklyTrades(event) {
       event.preventDefault();
-
-      const dateBasedTrades = await dbManager.getSpecificTrades('>=','<=','date',selectors.dateFrom.value,selectors.dateTo.value);
+      fillWeeklyTrades();
+    }
+    async function fillWeeklyTrades() {
+      const dateBasedTrades = await dbManager.getSpecificTrades('>=', '<=', 'date', selectors.dateFrom.value, selectors.dateTo.value);
 
       const weeklyStats = calculateStats(dateBasedTrades);
 
@@ -191,7 +216,7 @@ function calculateStats(trades) {
   });
   tradesData.Winratio = tradesData.TradesCount > 0 ? roundToTwo((tradesData.Wins * 100) / tradesData.TradesCount) : 0;
   tradesData.Loses = tradesData.TradesCount - tradesData.Wins;
-  
+
   return tradesData;
 }
 
