@@ -87,17 +87,18 @@
 
       </div>
     </div>
+    <div class="weeklyStatsNsettings">
 
-    <div class="weeklystats">
-      <h2>Weekly performance</h2>
+      <div class="weeklystats">
+        <h2>Weekly performance</h2>
 
-      <div class="row">
-        <label for="date">From</label>
-        <input type="date" name="date" id="date">
-      </div>
-      <div class="row">
-        <label for="date">To</label>
-        <input type="date" name="date" id="date">
+        <div class="row">
+          <label for="date">From</label>
+          <input type="date" name="date" id="date">
+        </div>
+        <div class="row">
+          <label for="date">To</label>
+          <input type="date" name="date" id="date">
         </div>
 
 
@@ -133,13 +134,33 @@
 
 
 
-
+      </div>
+      <div class="settings">
+        <h2>Account settings</h2>
+        <form id="settingsForm">
+          <div class="row">
+            <label for="account">Account size</label>
+            <input type="number" step="0.000001" name="account" id="account" required>
+          </div>
+          <div class="row">
+            <label for="risk">Risk %</label>
+            <input type="number" step="0.1" name="risk" id="risk" required>
+          </div>
+          <div class="row">
+            <label for="changesDate">Changes date</label>
+            <input type="date" name="changesDate" id="changesDate">
+          </div>
+          <div class="row">
+            <button type="submit">Adjust changes</button>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 
-    <a href="https://www.freeforexapi.com">
-      <img alt="Free Forex API" src="https://www.freeforexapi.com/Images/link.png" height="20">
-    </a>
+  <a href="https://www.freeforexapi.com">
+    <img alt="Free Forex API" src="https://www.freeforexapi.com/Images/link.png" height="20">
+  </a>
 </body>
 <script type="module" src="app.js"></script>
 <!-- <script src="script.js"></script> -->
