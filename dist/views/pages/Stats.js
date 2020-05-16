@@ -1,6 +1,9 @@
 import { dbManager } from "../../app.js";
 
+
+
 let Stats = {
+
   render: async () => {
     let view = /*html*/ `
     <div id="statsContainer">
@@ -62,14 +65,19 @@ let Stats = {
     </div>
     <div class="weeklystats">
       <h2>Weekly performance</h2>
+      <form id="weeklyForm">
       <div class="row">
         <label for="date">From</label>
-        <input type="date" name="date" id="date">
+        <input type="date" name="date" id="dateFrom" required>
       </div>
       <div class="row">
         <label for="date">To</label>
-        <input type="date" name="date" id="date">
+        <input type="date" name="date" id="dateTo" required>
         </div>
+        <div class="row">
+        <button type="submit">Search</button>
+      </div>
+        </form>
         <table>
           <thead>
             <th>Trades</th>
@@ -105,29 +113,62 @@ let Stats = {
 
   after_render: async () => {
 
+    const selectors = {
+      dateFrom: document.getElementById('dateFrom'),
+      dateTo: document.getElementById('dateTo'),
+      userCellsToFill: document.querySelectorAll('.userData'),
+      globalCellsToFill: document.querySelectorAll('.globalData'),
+      weeklyCellsToFill: document.querySelectorAll('.weeklyData'),
+      weeklyForm: document.getElementById('weeklyForm'),
+    }
+
     const userTrades = await dbManager.getAllTrades();
     const globalTrades = await dbManager.getGlobalTrades();
-    const userCellsToFill = document.querySelectorAll('.userData');
-    const globalCellsToFill = document.querySelectorAll('.globalData');
-    // const weeklyCellsToFill = document.querySelectorAll('.weeklyData');
-
     const userStats = calculateStats(userTrades);
     const globalStats = calculateStats(globalTrades);
-    // userStats = calculateStats(userTrades);
 
-    userCellsToFill.forEach(el => {
+    initDate(selectors.dateFrom, selectors.dateTo);
+
+    selectors.userCellsToFill.forEach(el => {
       const objKey = el.id.replace('user', '');
       el.innerHTML = userStats[objKey];
     })
-    globalCellsToFill.forEach(el => {
+    selectors.globalCellsToFill.forEach(el => {
       const objKey = el.id.replace('global', '');
       el.innerHTML = globalStats[objKey];
     })
 
+
+    selectors.weeklyForm.addEventListener('submit', calculateWeeklyTrades);
+
+   async function calculateWeeklyTrades(event) {
+      event.preventDefault();
+
+      const dateBasedTrades = await dbManager.getSpecificTrades('>=','<=','date',selectors.dateFrom.value,selectors.dateTo.value);
+
+      const weeklyStats = calculateStats(dateBasedTrades);
+
+      selectors.weeklyCellsToFill.forEach(el => {
+        const objKey = el.id.replace('weekly', '');
+        el.innerHTML = weeklyStats[objKey];
+      })
+    }
   },
 };
 
 export default Stats;
+
+
+function initDate(dateFrom, dateTo) {
+  let date = new Date();
+
+  const firstDayOfWeek = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+  const lastDayOfWeek = firstDayOfWeek + 6;
+
+  dateFrom.valueAsDate = new Date(date.setDate(firstDayOfWeek));
+  dateTo.valueAsDate = new Date(date.setDate(lastDayOfWeek));
+
+}
 
 
 function roundToTwo(num) {
@@ -139,17 +180,18 @@ function calculateStats(trades) {
   let tradesData = {};
   tradesData.Wins = 0;
   tradesData.TradesCount = 0;
+  tradesData.R = 0;
   trades.forEach(el => {
     if (el.profit > 0) {
       tradesData.Wins += 1;
     }
+    tradesData.R += Number.parseFloat(el.profit);
     tradesData.TradesCount += 1;
 
   });
-  console.log(tradesData.Wins);
   tradesData.Winratio = tradesData.TradesCount > 0 ? roundToTwo((tradesData.Wins * 100) / tradesData.TradesCount) : 0;
   tradesData.Loses = tradesData.TradesCount - tradesData.Wins;
-  console.log(tradesData);
+  
   return tradesData;
 }
 
