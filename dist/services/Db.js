@@ -79,6 +79,7 @@ class Db {
       .catch(function (err) {
         console.error(`Error getting documents: ${err}`);
       });
+
     return docs;
   }
 
@@ -105,22 +106,47 @@ class Db {
 
     // all to all trades
   }
-  removePair(pair) { }
-  getPairs() {
-    firebase
-      .firestore()
-      .collection("users")
-      .doc(`${authManager.uid}`)
-      .collection("pairs")
-      .get()
-      .then(function (pairs) {
-        this.pairs = pairs;
-        // querySnapshot.forEach(function (doc) {
-        //     // doc.data() is never undefined for query doc snapshots
-        //     console.log(doc.id, " => ", doc.data());
-        // });
-      });
-  }
+
+// stats
+
+async getSpecificTrades(condition1, condition2, field, data1, data2 ){
+
+  let docs = [];
+  await firebase
+    .firestore()
+    .collection("users")
+    .doc(`${authManager.uid}`)
+    .collection("trades")
+    .where(field, condition1, data1)
+    .where(field, condition2 || '>=', data2 || '')
+    .get()
+    .then(function (snapshot) {
+      console.log("Got the documents");
+      snapshot.forEach((doc) => docs.push(doc.data()));
+    })
+    .catch(function (err) {
+      console.error(`Error getting documents: ${err}`);
+    });
+  return docs;
+}
+
+
+
+  // getPairs() {
+  //   firebase
+  //     .firestore()
+  //     .collection("users")
+  //     .doc(`${authManager.uid}`)
+  //     .collection("pairs")
+  //     .get()
+  //     .then(function (pairs) {
+  //       this.pairs = pairs;
+  //       // querySnapshot.forEach(function (doc) {
+  //       //     // doc.data() is never undefined for query doc snapshots
+  //       //     console.log(doc.id, " => ", doc.data());
+  //       // });
+  //     });
+  // }
 }
 
 export default Db;
