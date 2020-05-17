@@ -24,7 +24,8 @@ textarea {
 body {
   min-height: 100vh;
   overflow: visible;
-  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover no-repeat;
+  background: url("../img/img-ly-AK66mYNrbk0-unsplash.jpg") center center/cover
+    no-repeat;
 }
 button,
 i {
@@ -325,7 +326,8 @@ footer {
     align-self: center;
     &:hover {
       background: $hover-color;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
     }
 
     position: absolute;
@@ -553,7 +555,7 @@ footer {
   align-items: center;
   .row {
     position: relative;
-    h2{
+    h2 {
       color: $text-color;
     }
     input {
@@ -641,6 +643,14 @@ footer {
       overflow: hidden;
       font-size: 12px;
       text-align: center;
+      span {
+        border-bottom: 1px solid #000;
+        width: 100%;
+        display: inline-block;
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
     }
     th {
       padding-top: 12px;
@@ -678,8 +688,8 @@ footer {
   color: $text-color;
   background: rgba(21, 25, 28, 0.9);
 
-  h2{
-    padding-bottom:1rem;
+  h2 {
+    padding-bottom: 1rem;
   }
   table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -737,16 +747,15 @@ footer {
   }
 
   .stats {
-  
     flex: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     .userstats,
     .globalstats {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
   .weeklyStatsNsettings {
@@ -754,16 +763,17 @@ footer {
     justify-content: space-around;
     flex-wrap: wrap;
     flex: 1;
-    .weeklystats, .settings{
+    .weeklystats,
+    .settings {
       display: flex;
       flex-direction: column;
       align-items: center;
-      .row{
-        display:flex;
+      .row {
+        display: flex;
         align-items: center;
         justify-content: center;
-        button{
-          margin-bottom:1rem;
+        button {
+          margin-bottom: 1rem;
           box-shadow: $shadow;
           font-weight: bold;
           color: $primary-color;
@@ -778,6 +788,5 @@ footer {
         }
       }
     }
-    
   }
 }
