@@ -1,5 +1,59 @@
 import { dbManager } from "../../app.js";
 
+const raid = {
+  question1: ["msb type: shady", "msb type: origin"],
+  entry: [
+    "Middle between MSB and minor liq hunt",
+    "Middle between MSB and swing",
+    "0.236 between MSB and swing",
+    "Ballin in da pool",
+    "Reclaim",
+    "0.64",
+    "0.786",
+    "0.88",
+  ],
+  stop: [
+    "Swing",
+    "0.78 stop",
+    "0.88 stop",
+    "gambling stop",
+    "Stop behind 1 (minor liq line)",
+  ],
+  tp: [
+    "First liq pool",
+    "Major liq pool",
+    "First untested base",
+    "Opposite signal occured",
+    "-0.236",
+    "-0.64",
+    "-1",
+  ],
+  timeframe: ["1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h"],
+  question2: [
+    "clear msb on higher timeframe?: yes",
+    "clear msb on higher timeframe?: no",
+  ],
+  question3: ["pool type: shady", "pool type: minor", "pool type: major"],
+};
+
+const continuation = {
+  question1: ["Base type: blocky", "Base type: wicky"],
+  entry: ["body", "wicks", "middle of base"],
+  stop: ["swing", "stop above minor hight on LFT", "gambling stop"],
+  tp: [
+    "First liq pool",
+    "Major liq pool",
+    "First untested base",
+    "Opposite signal occured",
+  ],
+  timeframe: ["1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h"],
+  question2: ["Visible on htf?: yes", "Visible on htf?:no"],
+  question3: [
+    "Was there bigger base on the left?:yes",
+    "Was there bigger base on the left?:no",
+  ],
+};
+
 let Trades = {
   render: async () => {
     let view = /*html*/ `
@@ -37,17 +91,24 @@ let Trades = {
     if (globalTrades.length > 0) {
       tradeSection.insertAdjacentHTML(
         "afterbegin",
-        raidTrades(globalTrades, "Global Raids")
+        addStatistics(globalTrades, "Global Raids", raid)
       );
       tradeSection.insertAdjacentHTML(
         "afterbegin",
-        contunationTrades(globalTrades, "Global Continuation")
+        addStatistics(globalTrades, "Global Continuation", continuation)
       );
     }
     if (docs.length > 0) {
       docs.forEach(addTrade);
-      tradeSection.insertAdjacentHTML("afterbegin", raidTrades(docs));
-      tradeSection.insertAdjacentHTML("afterbegin", contunationTrades(docs));
+      tradeSection.insertAdjacentHTML(
+        "afterbegin",
+        addStatistics(docs, "Raids", raid)
+      );
+      tradeSection.insertAdjacentHTML(
+        "afterbegin",
+        addStatistics(docs, "Continuation", continuation),
+        continuation
+      );
       marklastOfFriday();
     }
 
@@ -78,120 +139,29 @@ function expandType(e) {
   type.style.height = (isCollapsed || noHeightSet ? sh : 0) + "px";
 }
 
-function contunationTrades(docs, global = "Continuation") {
-  let markup = /*html*/ `
-  <div class="type p1">
-    <div class ="header" >
-      <h1>${global} </h1> 
-      <div>
-        <i class="fas fa-plus"></i>
-      </div>
-    </div>
-    <div class="tab-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>Base Type</th>
-            <th>Entry</th>
-            <th>Stop</th>
-            <th>Take Profit</th>
-            <th>Time Frame</th>
-            <th>Visible on HTF</th>
-            <th>Base on the left</th>
-          </tr>
-        </thead>
-        <tbody>  
-          <tr>
-            <td>
-              Wicky: ${calculateStats(
-                docs,
-                "question1",
-                "Base type: wicky"
-              )}% <br> 
-              Blocky: ${calculateStats(docs, "question1", "Base type: blocky")}%
-            </td>
-            <td>
-              Body: ${calculateStats(docs, "entry", "body")} % <br>
-              Wicks: ${calculateStats(docs, "entry", "wicks")} % <br> 
-              MoB: ${calculateStats(docs, "entry", "middle of base")} %
-            </td>
-            <td>
-              Swing: ${calculateStats(docs, "stop", "swing")}% <br> 
-              Minor High on LFT: ${calculateStats(
-                docs,
-                "stop",
-                "stop above minor hight on LFT"
-              )}% <br>
-              Gamble: ${calculateStats(docs, "stop", "gambling stop")}%
-            </td>
-            <td>
-              First liq pool: ${calculateStats(
-                docs,
-                "tp",
-                "first liq pool"
-              )}% <br>
-              Major liq pool: ${calculateStats(
-                docs,
-                "tp",
-                "major liq pool"
-              )}% <br>
-              First untested base: ${calculateStats(
-                docs,
-                "tp",
-                "first untested base"
-              )}% <br>
-              Opposite signal: ${calculateStats(
-                docs,
-                "tp",
-                "opposite signal occured"
-              )}%
-            </td>
-            <td>
-              5m: ${calculateStats(docs, "timeframe", "5m")}% <br>
-              15m: ${calculateStats(docs, "timeframe", "15m")}% <br>
-              30m: ${calculateStats(docs, "timeframe", "30m")}% <br>
-              1h: ${calculateStats(docs, "timeframe", "1h")}% <br>
-              2h: ${calculateStats(docs, "timeframe", "2h")}% <br>
-              4h: ${calculateStats(docs, "timeframe", "4h")}%
-            </td>
-            <td>
-              Yes: ${calculateStats(
-                docs,
-                "question2",
-                "Visible on higher tf?:yes"
-              )}% <br>
-              No: ${calculateStats(
-                docs,
-                "question2",
-                "Visible on higher tf?:no"
-              )}%
-            </td>
-            <td>
-            Yes: ${calculateStats(
-              docs,
-              "question3",
-              "Was there bigger base on the left?:yes"
-            )}% <br>
-            No: ${calculateStats(
-              docs,
-              "question3",
-              "Was there bigger base on the left?:no"
-            )}%
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  `;
-  return markup;
-}
+function addStatistics(docs, tradeType = "Raids", tradeProperties = {}) {
+  let columns = ``;
+  let tr = ``;
+  let columnName;
+  for (let key in tradeProperties) {
+    tr += "<td>";
+    if (key == "question1" || key == "question2" || key == "question3") {
+      columnName = tradeProperties[key][0].split(":")[0];
+    } else {
+      columnName = key;
+    }
+    columns += `<th> ${columnName} </th>`;
 
-function raidTrades(docs, global = "Raids") {
+    tradeProperties[key].forEach((el) => {
+      const type = el.split(":")[1] || el;
+      tr += `<span>${type}: ${calculateStats(docs, key, el)}%</span><br>`;
+    });
+    tr += "</td>";
+  }
   let markup = /*html*/ `
   <div class="type p1">
     <div class ="header" >
-      <h1>${global} </h1>
+      <h1>${tradeType} </h1>
       <div>
         <i class="fas fa-plus"></i>
       </div>
@@ -200,103 +170,11 @@ function raidTrades(docs, global = "Raids") {
       <table>
         <thead>
           <tr>
-            <th>MSB Type</th>
-            <th>Entry</th>
-            <th>Stop Lose</th>
-            <th>Take Profit</th>
-            <th>Time Frame</th>
-            <th>Clear MSB on HTF</th>
-            <th>Pool Type</th>
+            ${columns}
           </tr>
         </thead>
         <tbody>
-          <td>
-            Origin: ${calculateStats(
-              docs,
-              "question1",
-              "msb type: origin"
-            )}% <br>
-            Shady: ${calculateStats(docs, "question1", "msb type: shady")}%
-          </td>
-          <td>
-            Middle between MSB and minor liq hunt: ${calculateStats(
-              docs,
-              "entry",
-              "msb type: Middle between MSB and minor liq hunt"
-            )}% <br>
-            0.65: ${calculateStats(docs, "entry", "0.65")}% <br>
-            0.78: ${calculateStats(docs, "entry", "0.78")}% <br>
-            0.88: ${calculateStats(docs, "entry", "0.88")}%
-          </td>
-          <td>
-            Stop behind 1 (minor liq line): ${calculateStats(
-              docs,
-              "stop",
-              "Stop behind 1 (minor liq line)"
-            )}% <br>
-            Swing: ${calculateStats(docs, "stop", "swing")}% <br>
-            0.78 stop: ${calculateStats(docs, "stop", "0.78 stop")}% <br>
-            0.88 stop: ${calculateStats(docs, "stop", "0.88 stop")}% <br>
-            Gamble: ${calculateStats(docs, "stop", "gambling stop")}%
-          </td>
-          <td>
-            First liq pool: ${calculateStats(
-              docs,
-              "profit",
-              "First liq pool"
-            )}% <br>
-            Major liq pool: ${calculateStats(
-              docs,
-              "profit",
-              "Major liq pool"
-            )}% <br>
-            First untested base: ${calculateStats(
-              docs,
-              "profit",
-              "First untested base"
-            )}% <br>
-            Oposite signal: ${calculateStats(
-              docs,
-              "profit",
-              "Oposite signal occured"
-            )}% <br>
-            -0.236: ${calculateStats(docs, "tp", "-0.236")}% <br>
-            -0.65: ${calculateStats(docs, "tp", "-0.65")}% <br>
-            -1: ${calculateStats(docs, "tp", "-1")}% <br>
-           </td>
-          <td>
-            5m: ${calculateStats(docs, "timeframe", "5m")}% <br>
-            15m: ${calculateStats(docs, "timeframe", "15m")}% <br>
-            30m: ${calculateStats(docs, "timeframe", "30m")}% <br>
-            1h: ${calculateStats(docs, "timeframe", "1h")}% <br>
-            2h: ${calculateStats(docs, "timeframe", "2h")}% <br>
-            4h: ${calculateStats(docs, "timeframe", "4h")}%
-          </td>
-          <td>
-           Yes: ${calculateStats(
-             docs,
-             "question2",
-             "clear msb on higher timeframe?: yes"
-           )}% <br>
-           No: ${calculateStats(
-             docs,
-             "question2",
-             "clear msb on higher timeframe?: no"
-           )}%
-          </td>
-          <td>
-            Shady: ${calculateStats(
-              docs,
-              "question3",
-              "pool type: shady"
-            )}% <br>
-            Minor: ${calculateStats(
-              docs,
-              "question3",
-              "pool type: minor"
-            )}% <br>
-            Major: ${calculateStats(docs, "question3", "pool type: major")}% 
-          </td>
+          ${tr}
         </tbody>
       </table>
     </div>
@@ -359,8 +237,8 @@ function marklastOfFriday() {
     }
   });
   list.forEach((el) => {
-    const s = el.innerHTML.split("-");
-    const date = new Date(s);
+    const tradeDate = el.innerHTML.split("-");
+    const date = new Date(tradeDate);
     if (date.getDay() == 5) {
       el.parentElement.style.background = "#55def1";
     }
