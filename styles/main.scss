@@ -790,3 +790,81 @@ footer {
     }
   }
 }
+
+.edit_modal {
+  width: 60%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 1px));
+  background: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  box-shadow: 0 8px 8px 8px rgba($primary-color, 0.5);
+  display: none;
+  position: fixed;
+  h1 {
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .trade_pair {
+    display: flex;
+    flex-wrap: wrap;
+    div {
+      width: 25%;
+      padding: 0 0.5rem 0.5rem 0;
+      &:nth-child(2) {
+        width: 10%;
+      }
+      &:nth-child(4) {
+        width: 40%;
+      }
+    }
+    .input {
+      padding: 0.2rem;
+      width: 100%;
+      font-size: 1.2rem;
+    }
+  }
+  .trade_data {
+    display: flex;
+    flex-wrap: wrap;
+    div {
+      width: 25%;
+      padding: 1rem 1rem 1rem 0;
+      .select {
+        max-width: 90%;
+        min-width: 80%;
+      }
+    }
+  }
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+  }
+  .btn_wrapper {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+  .btn_edit {
+    padding: 0.5rem 2rem;
+    background: #0086b9;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    transition: all ease 0.3s;
+    cursor: pointer;
+    &:hover {
+      background: rgba(#0086b9, 0.7);
+    }
+  }
+}
+
+.toogleModal {
+  display: block;
+}

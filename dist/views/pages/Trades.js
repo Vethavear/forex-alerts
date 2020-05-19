@@ -1,4 +1,5 @@
 import { dbManager } from "../../app.js";
+import EditTrade from "../components/EditTrade.js";
 
 const raid = {
   question1: ["msb type: shady", "msb type: origin"],
@@ -57,6 +58,7 @@ const continuation = {
 let Trades = {
   render: async () => {
     let view = /*html*/ `
+    ${await EditTrade.render()};
     <section class ="p2" id="trades">     
     <div class="type-container p2">
     </div> 
@@ -87,6 +89,7 @@ let Trades = {
     const docs = await dbManager.getAllTrades();
     const globalTrades = await dbManager.getGlobalTrades();
     const tradeSection = document.querySelector(".type-container");
+    const tradeList = document.getElementById("trade-list");
 
     if (globalTrades.length > 0) {
       tradeSection.insertAdjacentHTML(
@@ -113,10 +116,14 @@ let Trades = {
     }
 
     tradeSection.addEventListener("click", expandType);
+    tradeList.addEventListener("click", (e) => {
+      toogleModal(e, docs);
+    });
   },
 };
 
 export default Trades;
+export { raid, continuation };
 
 function expandType(e) {
   const target = e.target;
@@ -137,6 +144,32 @@ function expandType(e) {
     isCollapsed = !ch,
     noHeightSet = !type.style.height;
   type.style.height = (isCollapsed || noHeightSet ? sh : 0) + "px";
+}
+
+function toogleModal(e, docs) {
+  const editModal = document.querySelector(".edit_modal");
+  const target = e.target;
+
+  if (target.tagName != "TD") return;
+  editModal.classList.toggle("toogleModal");
+
+  const tradeId = target.parentElement.id;
+  const trade = docs.find((el) => el.id == tradeId);
+  editModal.innerHTML = "";
+
+  EditTrade.fillModal(trade);
+
+  const close = document.querySelector(".close");
+  close.addEventListener("click", closeEditModal);
+}
+
+function closeEditModal(e) {
+  const target = e.target;
+  if (target.tagName != "IMG") return;
+
+  const modal = target.parentElement.parentElement;
+  modal.classList.toggle("toogleModal");
+  modal.removeEventListener("click", toogleModal);
 }
 
 function addStatistics(docs, tradeType = "Raids", tradeProperties = {}) {
@@ -201,7 +234,7 @@ function calculateStats(docs, key, filter) {
 }
 
 function addTrade(trade) {
-  const table = document.getElementById("trade-list");
+  let tradeList = document.getElementById("trade-list");
   let row =
     /*html*/
     `
@@ -221,11 +254,11 @@ function addTrade(trade) {
   let markup =
     /*html*/
     `
-    <tr>
+    <tr id="${trade.id}">
       ${row}
     </tr>
     `;
-  table.insertAdjacentHTML("beforeend", markup);
+  tradeList.insertAdjacentHTML("beforeend", markup);
 }
 
 function marklastOfFriday() {
