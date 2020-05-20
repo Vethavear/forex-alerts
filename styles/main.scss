@@ -716,26 +716,28 @@ footer {
       color: white;
     }
   }
-  input {
-    border-radius: 0.25rem;
-    // border: none;
-    border: 1px solid gray;
-    background: $primary-color;
-    margin: 2rem;
-    padding: 0 0.25rem;
-    height: 30px;
-    width: 209px;
-    color: white;
-    font-size: 1.1rem;
-    transition: all 0.3s;
-    font-weight: lighter;
-    &:focus,
-    &:hover {
-      border-color: $hover-color;
-    }
-  }
+  
+ 
 
   .row {
+    input {
+      border-radius: 0.25rem;
+      // border: none;
+      border: 1px solid gray;
+      background: $primary-color;
+      margin: 2rem;
+      padding: 0 0.25rem;
+      height: 30px;
+      width: 209px;
+      color: white;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      font-weight: lighter;
+      &:focus,
+      &:hover {
+        border-color: $hover-color;
+      }
+    }
     position: relative;
     label {
       font-size: 1.2rem;
@@ -787,6 +789,16 @@ footer {
             background: $hover-color;
           }
         }
+        
+      }
+    }
+    .settings{
+      .compoundDiv{
+        margin: 1rem 0;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        // align-items: center;
       }
     }
   }

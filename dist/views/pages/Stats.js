@@ -120,6 +120,18 @@ let Stats = {
           <label for="risk">Risk %</label>
           <input type="number" step="0.1" name="risk" id="risk" required>
         </div>
+        <p class="ts2">Compound<p>
+        <div class="compoundDiv">
+        <label>After every trade
+        <input type="radio" name="compound"  value="everytrade">
+        </label>
+        <label>Daily
+        <input type="radio" name="compound"  value="daily">
+        </label>
+        <label>Weekly
+        <input type="radio" name="compound"  value="weekly">
+        </label>
+        </div>
         <div class="row">
           <label for="changesDate">Changes date</label>
           <input type="date" name="changesDate" id="changesDate">
