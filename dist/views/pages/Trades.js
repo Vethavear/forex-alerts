@@ -67,6 +67,7 @@ let Trades = {
           <tr>
             <th>Pair</th>
             <th>Setup</th>
+            <th>TimeFrame</th>
             <th>Stop</th>
             <th>Profit</th>
             <th>Entry</th>
@@ -249,6 +250,7 @@ function addTrade(trade) {
     `
     <td>${trade.pair}</td>
     <td>${trade.setup}</td>
+    <td>${trade.timeframe}</td>
     <td>${trade.stop}</td>
     <td>${trade.profit}</td>
     <td>${trade.entry}</td>
