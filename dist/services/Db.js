@@ -85,7 +85,20 @@ class Db {
   }
 
   removeTrade(trade) {}
-  modifyTrade(trade) {}
+  modifyTrade(trade) {
+    let tempObj = {};
+    for (let key in trade) {
+      if (key == "id") continue;
+      tempObj[key] = trade[key];
+    }
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(`${authManager.uid}`)
+      .collection("trades")
+      .doc(trade.id)
+      .update(tempObj);
+  }
   getPairTrades(pair) {}
   getTrade(pair, id) {}
 

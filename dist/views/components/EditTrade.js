@@ -42,6 +42,15 @@ let EditTrade = {
     let tardeDataMarkup = addSelects(trade);
     tradeData.insertAdjacentHTML("beforeend", tardeDataMarkup);
   },
+
+  editTrade(trade) {
+    for (let key in trade) {
+      if (key == "id" || key == "thoughts" || key == "setup") continue;
+      trade[key] = document.getElementById(`${key}`).value;
+    }
+    updateView(trade);
+    return trade;
+  },
 };
 
 export default EditTrade;
@@ -65,7 +74,7 @@ function addOptions(key, trade) {
   let markup = ``;
 
   for (let val of raid[key]) {
-    if (val == trade[key]) {
+    if (val == trade[key].toLowerCase()) {
       markup += `
       <option value="${val}" selected>${val}</option>
     `;
@@ -76,4 +85,25 @@ function addOptions(key, trade) {
     }
   }
   return markup;
+}
+
+function updateView(trade) {
+  const row = document.getElementById(`${trade.id}`);
+
+  row.innerHTML = "";
+
+  let markup = /*html*/ `
+    <td>${trade.pair}</td>
+    <td>${trade.setup}</td>
+    <td>${trade.stop}</td>
+    <td>${trade.profit}</td>
+    <td>${trade.entry}</td>
+    <td>${trade.tp}</td>
+    <td><a href="${trade.chart}" target="_blank">tradingview...</a></td>
+    <td>${trade.question1}</td>
+    <td>${trade.question2}</td>
+    <td>${trade.question3}</td>
+    <td class="date">${trade.date}</td>
+  `;
+  row.insertAdjacentHTML(`afterbegin`, markup);
 }

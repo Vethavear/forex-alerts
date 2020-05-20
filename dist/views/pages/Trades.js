@@ -161,15 +161,25 @@ function toogleModal(e, docs) {
 
   const close = document.querySelector(".close");
   close.addEventListener("click", closeEditModal);
+
+  const save = document.querySelector(".btn_edit");
+  save.addEventListener("click", (e) => {
+    let editedTrade = EditTrade.editTrade(trade);
+    dbManager.modifyTrade(editedTrade);
+    closeEditModal(e);
+  });
 }
 
 function closeEditModal(e) {
   const target = e.target;
-  if (target.tagName != "IMG") return;
+  if (target.tagName != "IMG" && target.tagName != "A") return;
 
-  const modal = target.parentElement.parentElement;
+  const modal = document.querySelector(".edit_modal");
   modal.classList.toggle("toogleModal");
   modal.removeEventListener("click", toogleModal);
+
+  const save = document.querySelector(".btn_edit");
+  save.removeEventListener("click", EditTrade.saveTrade);
 }
 
 function addStatistics(docs, tradeType = "Raids", tradeProperties = {}) {

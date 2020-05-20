@@ -927,6 +927,7 @@ footer {
   overflow: hidden;
   font-size: 12px;
   text-align: center;
+  cursor: pointer;
 }
 
 #trades table td span {
