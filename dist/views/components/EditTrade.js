@@ -44,7 +44,7 @@ let EditTrade = {
   },
 
   editTrade(trade) {
-    for (let key in trade) {
+    for (let key in raid) {
       if (key == "id" || key == "thoughts" || key == "setup") continue;
       trade[key] = document.getElementById(`${key}`).value;
     }
@@ -57,12 +57,13 @@ export default EditTrade;
 
 function addSelects(trade) {
   let markup = ``;
-  for (let key in raid) {
+  let fields = trade.setup == "raid" ? raid : continuation;
+  for (let key in fields) {
     markup += `
     <div>
       <label for="${key}">${key}</label>
       <select id="${key}" class="select">
-        ${addOptions(key, trade)}
+        ${addOptions(key, trade, fields)}
       </select>
     </div>
   `;
@@ -70,11 +71,10 @@ function addSelects(trade) {
   return markup;
 }
 
-function addOptions(key, trade) {
+function addOptions(key, trade, fields) {
   let markup = ``;
-
-  for (let val of raid[key]) {
-    if (val == trade[key].toLowerCase()) {
+  for (let val of fields[key]) {
+    if (val.toLowerCase() == trade[key].toLowerCase()) {
       markup += `
       <option value="${val}" selected>${val}</option>
     `;
@@ -95,6 +95,7 @@ function updateView(trade) {
   let markup = /*html*/ `
     <td>${trade.pair}</td>
     <td>${trade.setup}</td>
+    <td>${trade.timeframe}</td>
     <td>${trade.stop}</td>
     <td>${trade.profit}</td>
     <td>${trade.entry}</td>
