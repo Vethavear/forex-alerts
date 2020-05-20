@@ -927,6 +927,7 @@ footer {
   overflow: hidden;
   font-size: 12px;
   text-align: center;
+  cursor: pointer;
 }
 
 #trades table td span {
@@ -1128,6 +1129,7 @@ footer {
   background: #55def1;
 }
 
+
 #statsContainer .weeklyStatsNsettings .settings .compoundDiv {
   margin: 1rem 0;
   display: -webkit-box;
@@ -1137,7 +1139,102 @@ footer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
+    -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+.edit_modal {
+  width: 60%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, calc(-50% - 1px));
+          transform: translate(-50%, calc(-50% - 1px));
+  background: #000;
+  color: #fff;
+    z-index: 10;
+  -webkit-box-shadow: 0 8px 8px 8px rgba(21, 25, 28, 0.5);
+          box-shadow: 0 8px 8px 8px rgba(21, 25, 28, 0.5);
+  display: none;
+  position: fixed;
+}
+.edit_modal h1 {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.edit_modal .trade_pair {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.edit_modal .trade_pair div {
+  width: 25%;
+  padding: 0 0.5rem 0.5rem 0;
+}
+
+.edit_modal .trade_pair div:nth-child(2) {
+  width: 10%;
+}
+
+.edit_modal .trade_pair div:nth-child(4) {
+  width: 40%;
+}
+
+.edit_modal .trade_pair .input {
+  padding: 0.2rem;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.edit_modal .trade_data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.edit_modal .trade_data div {
+  width: 25%;
+  padding: 1rem 1rem 1rem 0;
+}
+
+.edit_modal .trade_data div .select {
+  max-width: 90%;
+  min-width: 80%;
+}
+
+.edit_modal .close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.edit_modal .btn_wrapper {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.edit_modal .btn_edit {
+  padding: 0.5rem 2rem;
+  background: #0086b9;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+  cursor: pointer;
+}
+
+.edit_modal .btn_edit:hover {
+  background: rgba(0, 134, 185, 0.7);
+}
+
+.toogleModal {
+  display: block;
 }

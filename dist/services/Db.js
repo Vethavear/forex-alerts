@@ -26,7 +26,6 @@ class Db {
       .doc()
       .set(Object.assign({}, trade))
       .then(function () {
-
         console.log("Document successfully written!");
       })
       .catch(function (error) {
@@ -58,7 +57,9 @@ class Db {
       .get()
       .then(function (snapshot) {
         console.log("Got the documents");
-        snapshot.forEach((doc) => docs.push(doc.data()));
+        snapshot.forEach((doc) => {
+          docs.push({ id: doc.id, ...doc.data() });
+        });
       })
       .catch(function (err) {
         console.error(`Error getting documents: ${err}`);
@@ -83,11 +84,23 @@ class Db {
     return docs;
   }
 
-
-  removeTrade(trade) { }
-  modifyTrade(trade) { }
-  getPairTrades(pair) { }
-  getTrade(pair, id) { }
+  removeTrade(trade) {}
+  modifyTrade(trade) {
+    let tempObj = {};
+    for (let key in trade) {
+      if (key == "id") continue;
+      tempObj[key] = trade[key];
+    }
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(`${authManager.uid}`)
+      .collection("trades")
+      .doc(trade.id)
+      .update(tempObj);
+  }
+  getPairTrades(pair) {}
+  getTrade(pair, id) {}
 
   addPair(pair) {
     // adding for specific user
@@ -107,30 +120,27 @@ class Db {
     // all to all trades
   }
 
-// stats
+  // stats
 
-async getSpecificTrades(condition1, condition2, field, data1, data2 ){
-
-  let docs = [];
-  await firebase
-    .firestore()
-    .collection("users")
-    .doc(`${authManager.uid}`)
-    .collection("trades")
-    .where(field, condition1, data1)
-    .where(field, condition2 || '>=', data2 || '')
-    .get()
-    .then(function (snapshot) {
-      console.log("Got the documents");
-      snapshot.forEach((doc) => docs.push(doc.data()));
-    })
-    .catch(function (err) {
-      console.error(`Error getting documents: ${err}`);
-    });
-  return docs;
-}
-
-
+  async getSpecificTrades(condition1, condition2, field, data1, data2) {
+    let docs = [];
+    await firebase
+      .firestore()
+      .collection("users")
+      .doc(`${authManager.uid}`)
+      .collection("trades")
+      .where(field, condition1, data1)
+      .where(field, condition2 || ">=", data2 || "")
+      .get()
+      .then(function (snapshot) {
+        console.log("Got the documents");
+        snapshot.forEach((doc) => docs.push(doc.data()));
+      })
+      .catch(function (err) {
+        console.error(`Error getting documents: ${err}`);
+      });
+    return docs;
+  }
 
   // getPairs() {
   //   firebase
