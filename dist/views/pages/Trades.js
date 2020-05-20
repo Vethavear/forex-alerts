@@ -163,10 +163,12 @@ function toogleModal(e, docs) {
   close.addEventListener("click", closeEditModal);
 
   const save = document.querySelector(".btn_edit");
-  save.addEventListener("click", (e) => {
+
+  save.addEventListener("click", function handler(e) {
     let editedTrade = EditTrade.editTrade(trade);
     dbManager.modifyTrade(editedTrade);
     closeEditModal(e);
+    save.removeEventListener("click", handler);
   });
 }
 
@@ -177,9 +179,6 @@ function closeEditModal(e) {
   const modal = document.querySelector(".edit_modal");
   modal.classList.toggle("toogleModal");
   modal.removeEventListener("click", toogleModal);
-
-  const save = document.querySelector(".btn_edit");
-  save.removeEventListener("click", EditTrade.saveTrade);
 }
 
 function addStatistics(docs, tradeType = "Raids", tradeProperties = {}) {
