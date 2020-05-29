@@ -214,10 +214,11 @@ function roundToTwo(num) {
 
 function calculateStats(trades) {
 
-  let tradesData = {};
-  tradesData.Wins = 0;
-  tradesData.TradesCount = 0;
-  tradesData.R = 0;
+  let tradesData = {
+    Wins: 0,
+    TradesCount: 0,
+    R: 0
+  };
   trades.forEach(el => {
     if (el.profit > 0) {
       tradesData.Wins += 1;
