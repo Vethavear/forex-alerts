@@ -35,20 +35,23 @@ let Alerts = {
     const PairCtrl = (function (StorageCtrl) {
       const alerts = StorageCtrl.getAlerts();
 
+      function Alert(price, date, direction) {
+        this.id = Date.now() + Math.random();
+        this.price = parseFloat(price);
+        this.date = `${date.getFullYear()}-${(
+          "0" +
+          (date.getMonth() + 1)
+        ).slice(-2)}-${("0" + date.getDate()).slice(-2)}`;
+        this.direction = direction;
+      }
+
       return {
         getAlerts: function () {
           return alerts;
         },
         addAlert: function (pair, price, direction) {
           const date = new Date();
-          const alert = {
-            id: Date.now() + Math.random(),
-            price: parseFloat(price),
-            date: `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(
-              -2
-            )}-${("0" + date.getDate()).slice(-2)}`,
-            direction: direction,
-          };
+          const alert = new Alert(price, date, direction);
           alerts[pair.toLowerCase()].push(alert);
           StorageCtrl.updateStorage(alerts);
           return alert;
@@ -151,7 +154,7 @@ let Alerts = {
         };
       }
 
-      function showAlerts(e) {
+      function toggleAlertsWindow(e) {
         e.preventDefault();
         if (pairpicker.classList.contains("slideIn")) {
           pairpicker.classList.remove("slideIn");
@@ -162,64 +165,67 @@ let Alerts = {
         }
       }
 
+      function onAlertRemove(e) {
+        const target = e.target;
+        if (target.tagName != "I") {
+          return;
+        }
+        const alertId = target.closest(".row").id;
+        UICtrl.removeAlert(alertId);
+        const pair = selectors.currentPair.innerHTML.toLowerCase();
+        PairCtrl.removeAlert(pair, alertId);
+      }
+
+      function onAlertAdd() {
+        let direction = null;
+        try {
+          direction = document.querySelector("input[name=direction]:checked")
+            .value;
+        } catch {
+          alert("Pick direction");
+          return;
+        }
+        const price = selectors.inputField.value;
+        const pair = selectors.currentPair.textContent;
+        if (price > 0) {
+          const alert = PairCtrl.addAlert(pair, parseFloat(price), direction);
+          UICtrl.displayAlert(alert);
+          selectors.inputField.value = "";
+        }
+      }
+
+      function onChangePair(e) {
+        const target = e.target;
+
+        if (!target.matches(".changepair")) {
+          return;
+        }
+        const pair = target.innerHTML.replace("/", "");
+        UICtrl.changePair(pair);
+        addAlerts();
+      }
+
       return {
         init: async function () {
           addAlerts();
           const audioCtrl = prepareAudio(); // Prepare alert audio
 
-          alertsModal.addEventListener("click", showAlerts);
-          exit.addEventListener("click", showAlerts);
+          alertsModal.addEventListener("click", toggleAlertsWindow);
+          exit.addEventListener("click", toggleAlertsWindow);
+
           // Remove Alert
-          selectors.alertsContainer.addEventListener("click", function (e) {
-            const target = e.target;
-            if (target.tagName != "I") {
-              return;
-            }
-            const alertId = target.closest(".row").id;
-            UICtrl.removeAlert(alertId);
-            const pair = selectors.currentPair.innerHTML.toLowerCase();
-            PairCtrl.removeAlert(pair, alertId);
-          });
+          selectors.alertsContainer.addEventListener("click", onAlertRemove);
 
           // Add Alert
-          selectors.addBtn.addEventListener("click", function () {
-            let direction;
-            try {
-              direction = document.querySelector(
-                "input[name=direction]:checked"
-              ).value;
-            } catch {
-              alert("Pick direction");
-              return;
-            }
-            const price = selectors.inputField.value;
-            const pair = selectors.currentPair.textContent;
-            if (price > 0) {
-              const alert = PairCtrl.addAlert(
-                pair,
-                parseFloat(price),
-                direction
-              );
-              UICtrl.displayAlert(alert);
-              selectors.inputField.value = "";
-            }
-          });
+          selectors.addBtn.addEventListener("click", onAlertAdd);
 
           // Change Pair
-          selectors.pairContainer.addEventListener("click", function (e) {
-            const target = e.target;
+          selectors.pairContainer.addEventListener("click", onChangePair);
 
-            if (!target.matches(".changepair")) {
-              return;
-            }
-            const pair = target.innerHTML.replace("/", "");
-            UICtrl.changePair(pair);
-            addAlerts();
-          });
-          let prices;
           // Get prices from API
           // EURGBP,USDJPY,EURUSD, GBPUSD, AUDUSD, USDCHF, USDCAD
           setInterval(async () => {
+            let prices = null;
             let pairs = "";
             for (let key in alerts) {
               if (alerts[key].length > 0) {
@@ -247,7 +253,7 @@ let Alerts = {
                       alerts[pair.toLowerCase()][alertId],
                       pair
                     );
-                    if (selectors.currentPair == pair) {
+                    if (selectors.currentPair.textContent == pair) {
                       UICtrl.removeAlert(
                         alerts[pair.toLowerCase()][alertId].id
                       );
